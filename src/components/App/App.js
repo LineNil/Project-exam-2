@@ -4,7 +4,7 @@ import Layout from "../Layout";
 import VenueList from "../VenueList";
 import LogIn from "../Login";
 import Register from "../Register";
-import UserPage from "../UserPage";
+import UserAccount from "../UserAccount";
 import ManagerPage from "../ManagerPage";
 
 function App(){
@@ -16,8 +16,9 @@ function App(){
         <Route path="/" element={<VenueList/>} />
         <Route path="/login" element={<LogIn/>} />
         <Route path="/register" element={<Register/>} /> 
-        <Route path="/user" element= {<UserPage/>} />
+        
         <Route path="/manager" element={<ManagerPage />} />
+        <Route path="/user-account" element={<UserAccount />} />
         </Routes>
         
       </Layout>

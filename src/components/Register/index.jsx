@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom"; // Endret importen til å bruke useNavigate
 
 function Register() {
-
-  const history = useHistory();
+  const navigate = useNavigate(); // Endret deklarasjonen for å bruke useNavigate i stedet for useHistory
 
   const [formData, setFormData] = useState({
     username: "",
@@ -21,6 +18,11 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Validering av e-post
+    if (!formData.email.endsWith("@stud.noroff.no")) {
+      alert("Please enter a valid @stud.noroff.no email");
+      return;
+    }
     // Lagre dataene i localStorage
     localStorage.setItem("registrationData", JSON.stringify(formData));
     // Tilbakestill skjemaet
@@ -30,12 +32,14 @@ function Register() {
       password: "",
       role: "",
     });
-      // Omdiriger brukeren basert på rollen
-  if (formData.role === "user") {
-    history.push("/user");
-  } else if (formData.role === "manager") {
-    history.push("/manager");
-  }
+    // Omdiriger brukeren basert på rollen
+    if (formData.role === "user") {
+      navigate("/user-account"); // Endret bruk av navigate til å omdirigere til "/user-account"
+    } else if (formData.role === "manager") {
+      navigate("/manager"); 
+      // Legg til logikk for omdirigering til Manager-siden
+      console.log("Redirecting to Manager page");
+    }
   };
 
   return (
@@ -49,6 +53,7 @@ function Register() {
             name="username"
             value={formData.username}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -58,6 +63,7 @@ function Register() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -67,11 +73,12 @@ function Register() {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
           Role:
-          <select name="role" value={formData.role} onChange={handleChange}>
+          <select name="role" value={formData.role} onChange={handleChange} required>
             <option value="">Select Role</option>
             <option value="user">User</option>
             <option value="manager">Manager</option>

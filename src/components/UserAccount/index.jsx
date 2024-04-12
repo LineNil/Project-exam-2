@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserPage() {
+function UserAccount() {
   return (
     <div>
       <h2>Welcome, User!</h2>
@@ -9,4 +9,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default UserAccount;
