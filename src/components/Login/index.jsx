@@ -4,7 +4,7 @@ import React from "react";
 function LogIn(){
   return(
     <div>
-    <h2>Log in</h2>
+    <h2>Log in! this is a test</h2>
     <form>
       <label>
         Email:
