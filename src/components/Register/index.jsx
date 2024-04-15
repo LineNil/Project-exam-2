@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Endret importen til å bruke useNavigate
+import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const navigate = useNavigate(); // Endret deklarasjonen for å bruke useNavigate i stedet for useHistory
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     role: "", // For å lagre rollen som bruker velger
@@ -18,32 +18,41 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Legg til logging for formData for å sjekke om role blir riktig satt
+    console.log("FormData before submission:", formData);
+
     // Validering av e-post
     if (!formData.email.endsWith("@stud.noroff.no")) {
       alert("Please enter a valid @stud.noroff.no email");
       return;
     }
+
+    // Sett opp dataToSend med formData inkludert rollen
+    const dataToSend = {
+      ...formData,
+      role: formData.role, // Legg til rollen i dataToSend
+      venueManager: formData.role === "manager", // Sett venueManager basert på rollen
+    };
+
     try {
-      const response = await fetch("https://api.noroff.no/v2/auth/register", {
+      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
       const responseData = await response.json();
-      console.log(responseData); 
+      console.log("Response from server after registration:", responseData);
 
-     
-      /*
+      // Omdirigering etter registrering
       if (formData.role === "user") {
-        navigate("/user-account"); // Endret bruk av navigate til å omdirigere til "/user-account"
+        navigate("/user-account");
       } else if (formData.role === "manager") {
         navigate("/manager");
-        // Legg til logikk for omdirigering til Manager-siden
-        console.log("Redirecting to Manager page");
       }
-      */
+
     } catch (error) {
       console.error("Error:", error);
     }
@@ -57,8 +66,8 @@ function Register() {
           Username:
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
