@@ -8,7 +8,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
-    role: "", // For å lagre rollen som bruker velger
+    role: "", 
   });
 
   const handleChange = (e) => {
@@ -19,20 +19,19 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Legg til logging for formData for å sjekke om role blir riktig satt
+    
     console.log("FormData before submission:", formData);
 
-    // Validering av e-post
     if (!formData.email.endsWith("@stud.noroff.no")) {
       alert("Please enter a valid @stud.noroff.no email");
       return;
     }
 
-    // Sett opp dataToSend med formData inkludert rollen
+   
     const dataToSend = {
       ...formData,
-      role: formData.role, // Legg til rollen i dataToSend
-      venueManager: formData.role === "manager", // Sett venueManager basert på rollen
+      role: formData.role, 
+      venueManager: formData.role === "manager", 
     };
 
     try {
@@ -46,7 +45,7 @@ function Register() {
       const responseData = await response.json();
       console.log("Response from server after registration:", responseData);
 
-      // Omdirigering etter registrering
+
       if (formData.role === "user") {
         navigate("/user-account");
       } else if (formData.role === "manager") {

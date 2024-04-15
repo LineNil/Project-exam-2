@@ -26,21 +26,19 @@ function LogIn() {
       const responseData = await response.json();
       console.log(responseData);
 
-      // Håndter responsen fra serveren
       if (response.ok) {
-        // Lagre accessToken i localStorage eller context hvis nødvendig
+       
         localStorage.setItem("accessToken", responseData.data.accessToken);
-        
-        // Omdiriger brukeren basert på rollen
+
         if (responseData.data.role === "user") {
           navigate("/user-account");
         } else if (responseData.data.role === "manager") {
           navigate("/manager");
         } 
       } else {
-        // Håndter feil
+
         console.error("Login failed:", responseData.error);
-        // Vis feilmelding til brukeren
+
         alert("Login failed. Please check your email and password.");
       }
     } catch (error) {
