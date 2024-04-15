@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ApiUrl from "../Api/index";
+
 
 function useVenueData(){
   const [venues, setVenues] = useState([]);
@@ -7,7 +7,7 @@ function useVenueData(){
   useEffect(() => {
     async function getData(){
       try{
-        const response = await fetch(ApiUrl);
+        const response = await fetch("https://v2.api.noroff.dev/holidaze/venues");
         const json = await response.json();
         setVenues(json.data);
       } catch (error) {

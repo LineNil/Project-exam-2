@@ -16,29 +16,36 @@ function Register() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Validering av e-post
     if (!formData.email.endsWith("@stud.noroff.no")) {
       alert("Please enter a valid @stud.noroff.no email");
       return;
     }
-    // Lagre dataene i localStorage
-    localStorage.setItem("registrationData", JSON.stringify(formData));
-    // Tilbakestill skjemaet
-    setFormData({
-      username: "",
-      email: "",
-      password: "",
-      role: "",
-    });
-    // Omdiriger brukeren basert på rollen
-    if (formData.role === "user") {
-      navigate("/user-account"); // Endret bruk av navigate til å omdirigere til "/user-account"
-    } else if (formData.role === "manager") {
-      navigate("/manager"); 
-      // Legg til logikk for omdirigering til Manager-siden
-      console.log("Redirecting to Manager page");
+    try {
+      const response = await fetch("https://api.noroff.no/v2/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const responseData = await response.json();
+      console.log(responseData); 
+
+     
+      /*
+      if (formData.role === "user") {
+        navigate("/user-account"); // Endret bruk av navigate til å omdirigere til "/user-account"
+      } else if (formData.role === "manager") {
+        navigate("/manager");
+        // Legg til logikk for omdirigering til Manager-siden
+        console.log("Redirecting to Manager page");
+      }
+      */
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -78,7 +85,12 @@ function Register() {
         </label>
         <label>
           Role:
-          <select name="role" value={formData.role} onChange={handleChange} required>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select Role</option>
             <option value="user">User</option>
             <option value="manager">Manager</option>
