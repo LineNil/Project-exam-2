@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedOut from "../Layout/LoggedOut";
 
-
 function LogIn() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -56,10 +55,12 @@ function LogIn() {
       });
       const responseData = await response.json();
       console.log(responseData);
-
+  
       if (response.ok) {
         localStorage.setItem("accessToken", responseData.data.accessToken);
         localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("loggedInUserName", responseData.data.name); 
+        console.log("Logged In User Name:", responseData.data.name);
         fetchProfile(responseData.data.name);
         const profile = readProfileFromStorage();
         console.log(profile);
@@ -76,10 +77,11 @@ function LogIn() {
       console.error("Error:", error);
     }
   };
+  
 
   return (
     <div>
-    <HeaderLoggedOut/>
+      <HeaderLoggedOut />
       <h2>Log in!</h2>
       <form onSubmit={handleSubmit}>
         <label>
