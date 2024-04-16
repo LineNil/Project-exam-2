@@ -19,7 +19,6 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     console.log("FormData before submission:", formData);
 
     if (!formData.email.endsWith("@stud.noroff.no")) {
@@ -27,7 +26,6 @@ function Register() {
       return;
     }
 
-   
     const dataToSend = {
       ...formData,
       role: formData.role, 
@@ -45,15 +43,28 @@ function Register() {
       const responseData = await response.json();
       console.log("Response from server after registration:", responseData);
 
-
-      if (formData.role === "user") {
-        navigate("/user-account");
-      } else if (formData.role === "manager") {
-        navigate("/manager");
+      if (response.ok) {
+        if (formData.role === "user") {
+          navigate("/login");
+        } else if (formData.role === "manager") {
+          navigate("/login");
+        }
+      } else {
+        if (responseData.errors && responseData.errors.length > 0) {
+          const errorMessage = responseData.errors[0].message;
+          if (errorMessage === "Profile already exists") {
+            alert("User with this email already exists. Please try again with a different email.");
+          } else {
+            alert("An error occurred. Please try again.");
+          }
+        } else {
+          alert("An unknown error occurred. Please try again.");
+        }
       }
 
     } catch (error) {
       console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
