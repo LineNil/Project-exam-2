@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import HeaderLoggedOut from "../Layout/LoggedOut";
+
+
 
 function Register() {
   const navigate = useNavigate();
@@ -70,6 +73,7 @@ function Register() {
 
   return (
     <div>
+    <HeaderLoggedOut/>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <label>

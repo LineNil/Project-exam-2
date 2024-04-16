@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import useVenueData from "../VenueData/index";
 import Search from "../Search/index";
 import HeaderImage from "../HeaderImage";
+import HeaderLoggedOut from "../Layout/LoggedOut";
+
+
 
 function VenueList() {
   const allVenues = useVenueData();
@@ -20,6 +23,7 @@ function VenueList() {
 
   return (
     <div>
+      <HeaderLoggedOut/>
       <HeaderImage/>
       <Search handleSearch={handleSearch} /> 
       <div>
