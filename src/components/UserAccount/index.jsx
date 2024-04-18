@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import HeaderLoggedIn from "../Layout/LoggedIn/User";
 import ApiKey from "../Api/ApiKey";
+import AvatarSettings from "./AvatarSettings";
+import { Link } from "react-router-dom";
 
 function UserAccount() {
   const [userName, setUserName] = useState("");
   const [userRole, setUserRole] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
 
   useEffect(() => {
     async function fetchProfile() {
@@ -33,6 +36,7 @@ function UserAccount() {
         const userName = responseData.data.name;
         setUserName(userName);
         setUserRole(responseData.data.venueManager ? "Manager" : "User");
+        setUserAvatar(responseData.data.avatar.url); 
       } catch (error) {
         console.error("Error:", error);
       }
@@ -47,9 +51,17 @@ function UserAccount() {
       <h2>Welcome, {userName}!</h2>
       <p>You are registered as a {userRole}.</p>
       <p>You are on the user page</p>
-      {/* Legg til innhold spesifikt for brukere her */}
+      {userAvatar && <img src={userAvatar} alt="User Avatar" />}
+      <AvatarSettings setUserAvatar={setUserAvatar} />
+      <Link to="/mybookings">
+        <button>My Bookings</button>
+      </Link>
+      <Link to="/venue-list-loggedin">
+        <button>View Venues</button>
+      </Link>
     </div>
   );
 }
 
 export default UserAccount;
+

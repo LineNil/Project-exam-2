@@ -15,7 +15,7 @@ function HeaderLoggedIn() {
   return (
     <NavDiv>
       <LogoDiv>
-        <Link to="/">
+        <Link to="/venue-list-loggedin">
           <Holidaze>Holidaze</Holidaze>
           <HolidazeP>Unlock your dream holiday</HolidazeP>
         </Link>
@@ -25,7 +25,7 @@ function HeaderLoggedIn() {
         <Link to="/">
           <ButtonStyle>Home</ButtonStyle>
         </Link>
-        <Link to="/profile">
+        <Link to="/user-account">
           <ButtonStyle>Profile</ButtonStyle>
         </Link>
         <ButtonStyle onClick={handleLogout}>Log Out</ButtonStyle>
