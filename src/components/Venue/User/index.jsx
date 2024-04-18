@@ -1,11 +1,44 @@
 import React, { useState } from "react";
-import HeaderLoggedIn from "../../Layout/LoggedIn/User";
+import HeaderLoggedIn from "../../Layout/User";
 import { useLocation } from "react-router-dom";
 import useVenueData from "../FetchData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ApiKey from "../../Api/ApiKey";
 
-function VenueDetailsLoggedIn() {
+
+
+async function createBooking(startDate, endDate, guests, venueId) {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": ApiKey,
+      },
+      body: JSON.stringify({
+        dateFrom: startDate.toISOString(),
+        dateTo: endDate.toISOString(),
+        guests: guests,
+        venueId: venueId
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create booking");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    throw error;
+  }
+}
+
+function VenueDetailsLoggedInUser() {
   const location = useLocation();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -13,9 +46,14 @@ function VenueDetailsLoggedIn() {
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
 
-  const handleBookVenue = () => {
-    // Handle booking logic
-    console.log("Booking venue from", startDate, "to", endDate, "for", guests, "guests");
+  const handleBookVenue = async () => {
+    try {
+      await createBooking(startDate, endDate, guests, venueId);
+      console.log("Booking created successfully!");
+      // Handle success scenario, e.g., redirect to a confirmation page
+    } catch (error) {
+      // Handle error scenario, e.g., display an error message to the user
+    }
   };
 
   if (!venue) {
@@ -65,4 +103,4 @@ function VenueDetailsLoggedIn() {
   );
 }
 
-export default VenueDetailsLoggedIn;
+export default VenueDetailsLoggedInUser;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderLoggedIn from "../Layout/LoggedIn/User";
+import HeaderLoggedIn from "../Layout/User";
 import ApiKey from "../Api/ApiKey";
 import AvatarSettings from "./AvatarSettings";
 import { Link } from "react-router-dom";
@@ -53,7 +53,7 @@ function UserAccount() {
       <p>You are on the user page</p>
       {userAvatar && <img src={userAvatar} alt="User Avatar" />}
       <AvatarSettings setUserAvatar={setUserAvatar} />
-      <Link to="/mybookings">
+      <Link to="/user-bookings">
         <button>My Bookings</button>
       </Link>
       <Link to="/venue-list-loggedin">
