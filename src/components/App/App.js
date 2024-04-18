@@ -19,7 +19,7 @@ function App(){
           <Route path="/register" element={<Register />} /> 
           <Route path="/manager" element={<ManagerPage />} />
           <Route path="/user-account" element={<UserAccount />} />
-          <Route path="/venue-details/:id" element={<VenueDetailsLoggedIn />} /> {/* Oppdatert rute */}
+          <Route path="/venue-details/:id" element={<VenueDetailsLoggedIn />} />
         </Routes>
       </div>
     </BrowserRouter>

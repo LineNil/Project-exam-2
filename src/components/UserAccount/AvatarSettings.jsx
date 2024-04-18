@@ -32,9 +32,7 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Updated user profile with new avatar:", responseData.data);
-        // Oppdaterer brukerens avatar i brukergrensesnittet
         setUserAvatar(newAvatarUrl);
-        // Lagrer den nye avatar-URL-en i localStorage
         localStorage.setItem("userAvatar", newAvatarUrl);
       } else {
         console.error("Failed to update user avatar:", response.status);

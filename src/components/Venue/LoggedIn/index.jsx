@@ -9,12 +9,12 @@ function VenueDetailsLoggedIn() {
   const location = useLocation();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const [guests, setGuests] = useState(1); // Default to 1 guest
+  const [guests, setGuests] = useState(1);
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
 
   const handleBookVenue = () => {
-    // Handle booking logic here
+    // Handle booking logic
     console.log("Booking venue from", startDate, "to", endDate, "for", guests, "guests");
   };
 
