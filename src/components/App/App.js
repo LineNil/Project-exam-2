@@ -8,6 +8,7 @@ import UserAccount from "../UserAccount";
 import ManagerPage from "../ManagerPage";
 import VenueDetailsLoggedInUser from "../Venue/User";
 import UserBookings from "../Bookings/User";
+import BookingSuccess from "../Bookings/User/success";
 
 function App(){
   return(
@@ -22,6 +23,7 @@ function App(){
           <Route path="/user-account" element={<UserAccount />} />
           <Route path="/venue-details/:id" element={<VenueDetailsLoggedInUser />} />
           <Route path="/user-bookings" element={<UserBookings />} />
+          <Route path="/booking-success" element={<BookingSuccess/>}/>
         </Routes>
       </div>
     </BrowserRouter>

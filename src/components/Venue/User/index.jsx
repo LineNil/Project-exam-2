@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import HeaderLoggedIn from "../../Layout/User";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useVenueData from "../FetchData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ApiKey from "../../Api/ApiKey";
-
-
 
 async function createBooking(startDate, endDate, guests, venueId) {
   const accessToken = localStorage.getItem("accessToken");
@@ -40,6 +38,7 @@ async function createBooking(startDate, endDate, guests, venueId) {
 
 function VenueDetailsLoggedInUser() {
   const location = useLocation();
+  const navigate = useNavigate(); // Bruker useNavigate her
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [guests, setGuests] = useState(1);
@@ -50,10 +49,16 @@ function VenueDetailsLoggedInUser() {
     try {
       await createBooking(startDate, endDate, guests, venueId);
       console.log("Booking created successfully!");
-      // Handle success scenario, e.g., redirect to a confirmation page
+      navigateToBookingSuccess(); // Navigerer til booking-suksesssiden
     } catch (error) {
-      // Handle error scenario, e.g., display an error message to the user
+      // Håndter feilscenario, f.eks., vis en feilmelding til brukeren
     }
+  };
+
+  const navigateToBookingSuccess = () => {
+    // Implementer navigeringen til booking-suksesssiden her
+    console.log("Navigating to booking success page...");
+    navigate("/booking-success");
   };
 
   if (!venue) {
