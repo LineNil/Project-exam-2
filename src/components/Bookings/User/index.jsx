@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../Api/ApiKey";
+import HeaderLoggedIn from "../../Layout/User";
 
 function UserBookings() {
   const [bookings, setBookings] = useState([]);
@@ -33,6 +34,7 @@ function UserBookings() {
 
   return (
     <div>
+      <HeaderLoggedIn />
       <h2>Your Bookings</h2>
       <ul>
         {bookings.map((booking) => (

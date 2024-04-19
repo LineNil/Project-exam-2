@@ -22,7 +22,7 @@ function HeaderLoggedIn() {
       </LogoDiv>
 
       <ButtonDiv>
-        <Link to="/">
+        <Link to="/venue-list-loggedin">
           <ButtonStyle>Home</ButtonStyle>
         </Link>
         <Link to="/user-account">

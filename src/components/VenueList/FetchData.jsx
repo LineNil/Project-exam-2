@@ -13,6 +13,7 @@ function useVenueData() {
           }
         });
         const json = await response.json();
+        console.log("API response:", json); // Legger til logging for å se API-responsen
         setVenues(json.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -25,4 +26,4 @@ function useVenueData() {
   return venues;
 }
 
-export default useVenueData;
+export default useVenueData

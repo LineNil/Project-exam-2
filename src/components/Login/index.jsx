@@ -24,18 +24,12 @@ function LogIn() {
         }
       );
       const responseData = await response.json();
-      localStorage.setItem("profile", JSON.stringify(responseData));
+      console.log("Profile:", responseData.data);
+      localStorage.setItem("profile", JSON.stringify(responseData.data));
+      return responseData.data;
     } catch (error) {
       console.error("Error:", error);
     }
-  }
-
-  function readProfileFromStorage() {
-    const profile = localStorage.getItem("profile");
-    if (profile) {
-      console.log("Profile:", JSON.parse(profile));
-    }
-    return JSON.parse(profile);
   }
 
   const handleChange = (e) => {
@@ -55,18 +49,19 @@ function LogIn() {
       });
       const responseData = await response.json();
       console.log(responseData);
-  
+
       if (response.ok) {
         localStorage.setItem("accessToken", responseData.data.accessToken);
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("loggedInUserName", responseData.data.name); 
+        localStorage.setItem("loggedInUserName", responseData.data.name);
         console.log("Logged In User Name:", responseData.data.name);
-        fetchProfile(responseData.data.name);
-        const profile = readProfileFromStorage();
+        const profile = await fetchProfile(responseData.data.name);
         console.log(profile);
         if (profile && profile.venueManager) {
+          console.log("Navigating to manager page...");
           navigate("/manager");
         } else {
+          console.log("Navigating to user account page...");
           navigate("/user-account");
         }
       } else {
@@ -77,7 +72,6 @@ function LogIn() {
       console.error("Error:", error);
     }
   };
-  
 
   return (
     <div>

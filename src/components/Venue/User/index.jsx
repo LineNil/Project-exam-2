@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderLoggedIn from "../../Layout/User";
 import { useLocation, useNavigate } from "react-router-dom";
 import useVenueData from "../FetchData";
@@ -9,6 +9,7 @@ import ApiKey from "../../Api/ApiKey";
 async function createBooking(startDate, endDate, guests, venueId) {
   const accessToken = localStorage.getItem("accessToken");
   try {
+    // Opprett bookingen her ved å gjøre et API-kall til serveren
     const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
       method: "POST",
       headers: {
@@ -32,7 +33,7 @@ async function createBooking(startDate, endDate, guests, venueId) {
     return data;
   } catch (error) {
     console.error("Error creating booking:", error);
-    throw error;
+    throw new Error("Failed to create booking");
   }
 }
 
@@ -42,8 +43,41 @@ function VenueDetailsLoggedInUser() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [guests, setGuests] = useState(1);
+  const [error, setError] = useState(null); // Tilstand for å lagre feilmeldingen
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
+  const [bookedDates, setBookedDates] = useState([]);
+
+  useEffect(() => {
+    async function fetchBookedDates() {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const response = await fetch(`https://v2.api.noroff.dev/holidaze/bookings?venueId=${venueId}`, {
+          headers: {
+            "X-Noroff-API-Key": ApiKey,
+            "Authorization": `Bearer ${accessToken}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch booked dates');
+        }
+
+        const data = await response.json();
+        const dates = data.data.map(booking => ({
+          startDate: new Date(booking.dateFrom),
+          endDate: new Date(booking.dateTo)
+        }));
+        setBookedDates(dates);
+      } catch (error) {
+        console.error('Error fetching booked dates:', error);
+      }
+    }
+
+    if (venueId) {
+      fetchBookedDates();
+    }
+  }, [venueId]);
 
   const handleBookVenue = async () => {
     try {
@@ -52,6 +86,8 @@ function VenueDetailsLoggedInUser() {
       navigateToBookingSuccess(); // Navigerer til booking-suksesssiden
     } catch (error) {
       // Håndter feilscenario, f.eks., vis en feilmelding til brukeren
+      console.error("Booking failed:", error);
+      setError(error.message); // Setter feilmeldingen for å vise til brukeren
     }
   };
 
@@ -73,6 +109,7 @@ function VenueDetailsLoggedInUser() {
       <p>City: {venue.location.city}</p>
       <p>Rating: {venue.rating}</p>
       <p>NOK {venue.price}</p>
+      
       <div>
         <p>Select booking dates:</p>
         <DatePicker
@@ -83,6 +120,7 @@ function VenueDetailsLoggedInUser() {
           endDate={endDate}
           minDate={new Date()}
           dateFormat="dd/MM/yyyy"
+          excludeDates={bookedDates.map(booking => booking.startDate)}
         />
         <DatePicker
           selected={endDate}
@@ -92,6 +130,7 @@ function VenueDetailsLoggedInUser() {
           endDate={endDate}
           minDate={startDate}
           dateFormat="dd/MM/yyyy"
+          excludeDates={bookedDates.map(booking => booking.endDate)}
         />
       </div>
       <div>
@@ -104,6 +143,7 @@ function VenueDetailsLoggedInUser() {
         />
       </div>
       <button onClick={handleBookVenue}>Book Venue</button>
+      {error && <p style={{ color: "red" }}>{error}</p>} {/* Viser feilmelding hvis det er en */}
     </div>
   );
 }
