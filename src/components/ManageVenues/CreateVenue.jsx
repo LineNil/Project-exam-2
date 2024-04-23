@@ -1,35 +1,37 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
+import HeaderLoggedInManager from "../Layout/Manager";
 
 function CreateVenue() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: 0, // Endret til 0 som standardverdi
-    maxGuests: 0, // Endret til 0 som standardverdi
+    price: 0,
+    maxGuests: 0,
     rating: 0,
     meta: {
       wifi: false,
       parking: false,
-      breakfast: false,
-      pets: false
     },
     location: {
       address: "",
       city: "",
       zip: "",
       country: "",
-      continent: "",
       lat: 0,
       lng: 0
     }
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const parsedValue = name === "price" || name === "maxGuests" ? (value.trim() !== '' && !isNaN(value) ? parseInt(value) : 0) : value;
     setFormData({
       ...formData,
-      [name]: name === "price" || name === "maxGuests" ? parseInt(value) : value
+      [name]: parsedValue
     });
     console.log("Form Data Updated:", formData);
   };
@@ -64,15 +66,18 @@ function CreateVenue() {
       }
       const data = await response.json();
       console.log("Venue created successfully:", data);
-      // Handle success, e.g., redirect to another page
+      navigate(`/created-venue-success`);
+
     } catch (error) {
       console.error("Error creating venue:", error);
       // Handle error, e.g., display error message to user
     }
   };
 
+
   return (
     <div>
+      <HeaderLoggedInManager />
       <h2>Create New Venue</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -114,13 +119,6 @@ function CreateVenue() {
           Country:
           <input type="text" name="country" value={formData.location.country} onChange={handleLocationChange} />
         </label>
-        <br />
-        <label>
-          Continent:
-          <input type="text" name="continent" value={formData.location.continent} onChange={handleLocationChange} />
-        </label>
-        <br />
-        {/* Add more fields for other properties */}
         <button type="submit">Create Venue</button>
       </form>
     </div>

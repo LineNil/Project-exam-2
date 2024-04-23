@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderLoggedIn from "../Layout/User";
+import HeaderLoggedInManager from "../Layout/Manager";
 import ApiKey from "../Api/ApiKey";
 import AvatarSettings from "../UserAccount/AvatarSettings";
 import { Link } from "react-router-dom";
@@ -48,7 +48,7 @@ function ManagerAccount() {
 
   return (
     <div>
-      <HeaderLoggedIn />
+      <HeaderLoggedInManager />
       <h2>Welcome, {userName}!</h2>
       <p>You are registered as a {userRole}.</p>
       <p>You are on the manager page</p>
@@ -57,7 +57,7 @@ function ManagerAccount() {
       <Link to="/my-venues">
         <button>My Venues</button>
       </Link>
-      <Link to="/venue-list-loggedin">
+      <Link to="/venue-list-loggedin-manager">
         <button>View Venues</button>
       </Link>      
       <Link to="/create-venue">

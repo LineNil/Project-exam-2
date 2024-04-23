@@ -11,6 +11,10 @@ import UserBookings from "../Bookings/User";
 import BookingSuccess from "../Bookings/User/success";
 import MyVenues from "../Bookings/Manager";
 import CreateVenue from "../ManageVenues/CreateVenue";
+import VenueListLoggedInManager from "../VenueList/LoggedIn/Manager";
+import CreatedVenueSuccess from "../ManageVenues/Success"; 
+import VenueInfoManager from "../ManageVenues/Venueinfo";
+
 
 function App(){
   return(
@@ -19,6 +23,8 @@ function App(){
         <Routes>
 
           <Route path="/venue-list-loggedin" element={<VenueListLoggedIn />} />
+          <Route path="/venue-list-loggedin-manager" element={<VenueListLoggedInManager />} />
+
           <Route path="/" element={<VenueListLoggedOut />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} /> 
@@ -30,6 +36,8 @@ function App(){
           <Route path="/my-venues" element={<MyVenues />} />
           
           <Route path="/create-venue" element={<CreateVenue />} />
+          <Route path="/created-venue-success" element={<CreatedVenueSuccess />} />
+          <Route path="/venue-info-manager/:venueId" element={<VenueInfoManager />} />
         </Routes>
       </div>
     </BrowserRouter>

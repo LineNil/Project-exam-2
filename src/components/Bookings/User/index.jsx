@@ -4,12 +4,13 @@ import HeaderLoggedIn from "../../Layout/User";
 
 function UserBookings() {
   const [bookings, setBookings] = useState([]);
+  const accessToken = localStorage.getItem("accessToken");
+  const profileName = localStorage.getItem("loggedInUserName");
 
   useEffect(() => {
     async function fetchBookings() {
-      const accessToken = localStorage.getItem("accessToken");
       try {
-        const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
+        const response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileName}/bookings`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -30,7 +31,7 @@ function UserBookings() {
     }
 
     fetchBookings();
-  }, []);
+  }, [accessToken, profileName]);
 
   return (
     <div>
@@ -43,7 +44,6 @@ function UserBookings() {
             <p>Check-in: {booking.dateFrom}</p>
             <p>Check-out: {booking.dateTo}</p>
             <p>Guests: {booking.guests}</p>
-
           </li>
         ))}
       </ul>
@@ -52,3 +52,7 @@ function UserBookings() {
 }
 
 export default UserBookings;
+
+
+
+
