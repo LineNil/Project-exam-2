@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import HeaderLoggedInManager from "../Layout/Manager";
-import ApiKey from "../Api/ApiKey";
-import AvatarSettings from "../UserAccount/AvatarSettings";
+import HeaderLoggedIn from "../../Layout/User";
+import ApiKey from "../../Api/ApiKey";
+import AvatarSettings from "../AvatarSettings";
 import { Link } from "react-router-dom";
 
-
-function ManagerAccount() {
+function UserAccount() {
   const [userName, setUserName] = useState("");
   const [userRole, setUserRole] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
@@ -48,24 +47,21 @@ function ManagerAccount() {
 
   return (
     <div>
-      <HeaderLoggedInManager />
+      <HeaderLoggedIn />
       <h2>Welcome, {userName}!</h2>
       <p>You are registered as a {userRole}.</p>
-      <p>You are on the manager page</p>
+      <p>You are on the user page</p>
       {userAvatar && <img src={userAvatar} alt="User Avatar" />}
       <AvatarSettings setUserAvatar={setUserAvatar} />
-      <Link to="/my-venues">
-        <button>My Venues</button>
+      <Link to="/user-bookings">
+        <button>My Bookings</button>
       </Link>
-      <Link to="/venue-list-loggedin-manager">
+      <Link to="/venue-list-loggedin">
         <button>View Venues</button>
-      </Link>      
-      <Link to="/create-venue">
-        <button>Create new venue</button>
       </Link>
     </div>
   );
 }
 
-export default ManagerAccount;
+export default UserAccount;
 

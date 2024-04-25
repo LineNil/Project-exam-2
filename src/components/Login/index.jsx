@@ -1,36 +1,15 @@
+// LoginForm.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ApiKey from "../Api/ApiKey";
+import { fetchProfile } from "./apiService"; 
 import HeaderLoggedOut from "../Layout/LoggedOut";
 
-function LogIn() {
+function LoginForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  async function fetchProfile(name) {
-    const accessToken = localStorage.getItem("accessToken");
-    try {
-      const response = await fetch(
-        "https://v2.api.noroff.dev/holidaze/profiles/" + name,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "X-Noroff-API-Key": ApiKey,
-          },
-        }
-      );
-      const responseData = await response.json();
-      console.log("Profile:", responseData.data);
-      localStorage.setItem("profile", JSON.stringify(responseData.data));
-      return responseData.data;
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -104,4 +83,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default LoginForm;

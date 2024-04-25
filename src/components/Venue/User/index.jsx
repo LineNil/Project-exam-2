@@ -109,6 +109,7 @@ function VenueDetailsLoggedInUser() {
       <p>City: {venue.location.city}</p>
       <p>Rating: {venue.rating}</p>
       <p>NOK {venue.price}</p>
+      <p>Max guests: {venue.maxGuests}</p>
       
       <div>
         <p>Select booking dates:</p>

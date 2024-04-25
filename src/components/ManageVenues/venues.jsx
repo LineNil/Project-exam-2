@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ApiKey from "../../Api/ApiKey";
-import HeaderLoggedInManager from "../../Layout/Manager";
+import ApiKey from "../Api/ApiKey";
+import HeaderLoggedInManager from "../Layout/Manager";
 import { Link } from "react-router-dom";
 
 function MyVenues() {
@@ -12,7 +12,7 @@ function MyVenues() {
     async function fetchUserVenues() {
       try {
         const response = await fetch(
-          `https://v2.api.noroff.dev/holidaze/profiles/${profileName}/venues`,
+          `https://v2.api.noroff.dev/holidaze/profiles/${profileName}/venues?_bookings=true`,
           {
             method: "GET",
             headers: {
@@ -27,12 +27,12 @@ function MyVenues() {
         }
 
         const data = await response.json();
-        console.log("User venues data:", data); // Check if data is returned
+        console.log("User venues data:", data); // Sjekk om dataene returneres
         if (data && data.data) {
           setVenues(data.data);
         } else {
           console.log("User has no venues.");
-          setVenues([]); // Reset venues to an empty array
+          setVenues([]); // Tilbakestill venues til en tom array
         }
       } catch (error) {
         console.error("Error fetching user's venues:", error);
@@ -51,6 +51,17 @@ function MyVenues() {
           <li key={venue.id}>
             <p>Name: {venue.name}</p>
             <p>Description: {venue.description}</p>
+            <p>Bookings:</p>
+            <ul>
+              {venue.bookings &&
+                venue.bookings.map((booking) => (
+                  <li key={booking.id}>
+                    <p>User: {booking.customer.name}</p>
+                    <p>From: {booking.dateFrom}</p>
+                    <p>To: {booking.dateTo}</p>
+                  </li>
+                ))}
+            </ul>
             <Link to={`/venue-info-manager/${venue.id}`}>
               <button>Manage</button>
             </Link>

@@ -4,15 +4,15 @@ import VenueListLoggedIn from "../VenueList/LoggedIn";
 import VenueListLoggedOut from "../VenueList/LoggedOut";
 import LogIn from "../Login";
 import Register from "../Register";
-import UserAccount from "../UserAccount";
-import ManagerAccount from "../ManagerAccount";
+import UserAccount from "../Accounts/User";
+import ManagerAccount from "../Accounts/Manager";
 import VenueDetailsLoggedInUser from "../Venue/User";
 import UserBookings from "../Bookings/User";
 import BookingSuccess from "../Bookings/User/success";
-import MyVenues from "../Bookings/Manager";
-import CreateVenue from "../ManageVenues/CreateVenue";
+import MyVenues from "../ManageVenues/venues";
+import CreateVenue from "../ManageVenues/createVenue";
 import VenueListLoggedInManager from "../VenueList/LoggedIn/Manager";
-import CreatedVenueSuccess from "../ManageVenues/Success"; 
+import CreatedVenueSuccess from "../ManageVenues/createsuccess";
 import VenueInfoManager from "../ManageVenues/Venueinfo";
 
 

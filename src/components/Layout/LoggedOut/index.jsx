@@ -4,10 +4,6 @@ import { ButtonDiv, ButtonStyle, NavDiv, LogoDiv, Holidaze, HolidazeP } from "..
 
 
 
-
-
-
-
 function HeaderLoggedOut() {
   return (
     <NavDiv>
