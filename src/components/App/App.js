@@ -14,11 +14,13 @@ import CreateVenue from "../ManageVenues/createVenue";
 import VenueListLoggedInManager from "../VenueList/LoggedIn/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";
 import VenueInfoManager from "../ManageVenues/Venueinfo";
+import { BodyStyle } from "./style";
 
 
 function App(){
   return(
-    <BrowserRouter>
+    <BodyStyle>
+ <BrowserRouter>
       <div>
         <Routes>
 
@@ -41,6 +43,8 @@ function App(){
         </Routes>
       </div>
     </BrowserRouter>
+    </BodyStyle>
+   
   );
 }
 

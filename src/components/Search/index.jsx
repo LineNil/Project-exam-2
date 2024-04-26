@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SearchButton, SearchForm } from "./style";
+import { SearchButton, SearchForm,StyledInput } from "./style";
 import { Link } from "react-router-dom";
 
 function Search() {
@@ -45,9 +45,9 @@ function Search() {
   return (
     <div>
       <SearchForm onSubmit={handleSubmit}>
-        <input
+        <StyledInput
           type="text"
-          placeholder="Search venues..."
+          placeholder="Expolore venues..."
           value={searchTerm}
           onChange={handleChange}
         />
