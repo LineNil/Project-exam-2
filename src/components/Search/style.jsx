@@ -8,7 +8,10 @@ margin-left: 15px;
 justify-content: center;
 margin-top: 15px;
 gap: 10px;
-
+margin-top: -100px;
+  position: relative;
+  z-index: 1;
+margin-bottom: 100px;
 `;
 
 export const SearchButton = styled.button`
@@ -33,7 +36,7 @@ padding: 20px 170px;
   border: 2px solid white;
   border-radius: 7px;
   font-size: 14px;
-  background-color: #ffffff63;
+  background-color: #ffffff85;
   color: black;
   text-align: left;
   padding-left: 10px;

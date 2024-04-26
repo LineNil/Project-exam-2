@@ -3,6 +3,7 @@ import Search from "../../Search/index";
 import HeaderImage from "../../HeaderImage";
 import useVenueData from "../FetchData";
 import HeaderLoggedOut from "../../Layout/LoggedOut";
+import { VenuesDiv } from "../style"; 
 
 function VenueListLoggedIn() {
   const venues = useVenueData();
@@ -24,7 +25,7 @@ function VenueListLoggedIn() {
       <HeaderLoggedOut />
       <HeaderImage />
       <Search handleSearch={handleSearch} />
-      <div>
+      <VenuesDiv>
         {filteredVenues.map((venue) => (
           <div key={venue.id}>
             <h2>{venue.name}</h2>
@@ -33,7 +34,7 @@ function VenueListLoggedIn() {
             <p>NOK {venue.price}</p>
           </div>
         ))}
-      </div>
+      </VenuesDiv>
     </div>
   );
 }
