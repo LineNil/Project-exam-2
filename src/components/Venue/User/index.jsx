@@ -104,7 +104,8 @@ function VenueDetailsLoggedInUser() {
   return (
     <div>
       <HeaderLoggedIn />
-      <h2>{venue.name}</h2>
+
+      <h2>{venue.name} User</h2>
       <p>Description: {venue.description}</p>
       <p>City: {venue.location.city}</p>
       <p>Rating: {venue.rating}</p>
@@ -112,6 +113,7 @@ function VenueDetailsLoggedInUser() {
       <p>Max guests: {venue.maxGuests}</p>
       
       <div>
+        <h3>User page</h3>
         <p>Select booking dates:</p>
         <DatePicker
           selected={startDate}

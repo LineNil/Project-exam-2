@@ -26,8 +26,16 @@ background-color: rgb(246, 242, 233);
   display: flex;
   align-items: center;
 
-  &:hover {
+
+  &:hover,
+  &:active{
     background-color: rgb(237, 171, 13);
+  }
+
+
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+    padding: 16px 18px;
   }
 `;
 
@@ -40,4 +48,9 @@ padding: 20px 170px;
   color: black;
   text-align: left;
   padding-left: 10px;
+
+  @media screen and (max-width: 768px){
+    font-size: 12px;
+    padding: 15px 30px;
+  }
 `;

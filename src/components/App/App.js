@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import VenueListLoggedIn from "../VenueList/LoggedIn";
-import VenueListLoggedOut from "../VenueList/LoggedOut";
+import VenueListLoggedIn from "../VenueList/LoggedIn/User";
+import VenueListLoggedOut from "../VenueList/NoUser";
 import LogIn from "../Login";
 import Register from "../Register";
 import UserAccount from "../Accounts/User";
@@ -11,11 +11,12 @@ import UserBookings from "../Bookings/User";
 import BookingSuccess from "../Bookings/User/success";
 import MyVenues from "../ManageVenues/venues";
 import CreateVenue from "../ManageVenues/createVenue";
-import VenueListLoggedInManager from "../VenueList/LoggedIn/Manager";
+import VenueListManager from "../VenueList/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";
 import VenueInfoManager from "../ManageVenues/Venueinfo";
 import { BodyStyle } from "./style";
-
+import VenueDetailsNoUser from "../Venue/NoUser";
+import VenueDetailsManager from "../Venue/Manager";
 
 function App(){
   return(
@@ -25,8 +26,9 @@ function App(){
         <Routes>
 
           <Route path="/venue-list-loggedin" element={<VenueListLoggedIn />} />
-          <Route path="/venue-list-loggedin-manager" element={<VenueListLoggedInManager />} />
-
+          <Route path="/venue-list-manager" element={<VenueListManager />} />
+          <Route path="/venue-details-no-user/:id" element={<VenueDetailsNoUser />} />
+          <Route path="/venue-details-manager/:id" element={<VenueDetailsManager />} />
           <Route path="/" element={<VenueListLoggedOut />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} /> 

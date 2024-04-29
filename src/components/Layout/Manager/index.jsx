@@ -16,14 +16,14 @@ function HeaderLoggedInManager() {
   return (
     <NavDiv>
       <LogoDiv>
-        <LogoLink to="/venue-list-loggedin-manager">
+        <LogoLink to="/venue-list-manager">
           <ImageLogo/>
         </LogoLink>
       </LogoDiv>
 
       <ButtonDiv>
-        <Link to="/venue-list-loggedin-manager">
-          <ButtonStyle>Home</ButtonStyle>
+        <Link to="/venue-list-manager">
+          <ButtonStyle>Home Manager Layout</ButtonStyle>
         </Link>
         <Link to="/manager">
           <ButtonStyle>Profile</ButtonStyle>

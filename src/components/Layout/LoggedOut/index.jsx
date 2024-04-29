@@ -15,7 +15,7 @@ function HeaderLoggedOut() {
 
       <ButtonDiv>
         <Link to="/login">
-          <ButtonStyle>Log in</ButtonStyle>
+          <ButtonStyle>Log in Logged out Layout</ButtonStyle>
         </Link>
         <Link to="/register">
           <ButtonStyle>Register</ButtonStyle>

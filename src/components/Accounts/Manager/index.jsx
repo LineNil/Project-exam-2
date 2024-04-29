@@ -57,7 +57,7 @@ function ManagerAccount() {
       <Link to="/my-venues">
         <button>My Venues</button>
       </Link>
-      <Link to="/venue-list-loggedin-manager">
+      <Link to="/venue-list-manager">
         <button>View Venues</button>
       </Link>      
       <Link to="/create-venue">
