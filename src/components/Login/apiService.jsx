@@ -1,4 +1,3 @@
-// apiService.js
 import ApiKey from "../Api/ApiKey";
 
 async function fetchProfile(name) {

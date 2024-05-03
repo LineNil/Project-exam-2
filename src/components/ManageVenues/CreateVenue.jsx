@@ -10,7 +10,7 @@ function CreateVenue() {
     price: 0,
     maxGuests: 0,
     rating: 0,
-    images: [], 
+    media: [], 
     meta: {
       wifi: true,
       parking: true,
@@ -65,12 +65,14 @@ function CreateVenue() {
                 "Content-Type": "application/json",
                 "X-Noroff-API-Key": ApiKey,
                 Authorization: `Bearer ${accessToken}`,
+                "Access-Control-Allow-Origin": '*'
             },
             body: JSON.stringify({
                 ...formData,
-                images: formData.images.map(imageUrl => ({ url: imageUrl })),
+                media: formData.media.map(imageUrl => ({ url: imageUrl })),
             })
         });
+        console.log({response})
         if (!response.ok) {
             throw new Error("Failed to create venue");
         }
@@ -87,10 +89,10 @@ function CreateVenue() {
 
   const handleImageUrlChange = (e) => {
     const { value } = e.target;
-    const updatedImages = [...formData.images, { url: value }];
+    const updatedImages = [...formData.media, { url: value }];
     setFormData({
         ...formData,
-        images: updatedImages 
+        maida: updatedImages 
     });
     console.log("Images Updated:", updatedImages);
 };

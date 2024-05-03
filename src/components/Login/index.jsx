@@ -1,9 +1,9 @@
-// LoginForm.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchProfile } from "./apiService"; 
 import HeaderLoggedOut from "../Layout/LoggedOut";
-import { LogInRegisterBody, LogInDiv, LabelDiv, LoginH2, InputInfo, Input, DontHaveAccount, RegisterFree } from "./style";
+import { LogInRegisterBody, LogInDiv, LabelDiv, LoginH2, InputInfo, Input, DontHaveAccount, RegisterFree, ButtonStyle, Form, ErrorMessage } from "./style";
+import Footer from "../Layout/Footer/index";
 
 
 function LoginForm() {
@@ -12,10 +12,12 @@ function LoginForm() {
     email: "",
     password: "",
   });
-
+  
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setError(""); 
   };
 
   const handleSubmit = async (e) => {
@@ -46,10 +48,11 @@ function LoginForm() {
           navigate("/user-account");
         }
       } else {
+        setError("Login failed. Please check your email and password.");
         console.error("Login failed:", responseData.error);
-        alert("Login failed. Please check your email and password.");
       }
     } catch (error) {
+      setError("An error occurred. Please try again later.");
       console.error("Error:", error);
     }
   };
@@ -58,52 +61,37 @@ function LoginForm() {
     <div>
       <HeaderLoggedOut />
       <LogInRegisterBody>
-      <LogInDiv>
-      <LoginH2>Log in!</LoginH2>
-      <DontHaveAccount>Don't have an account?</DontHaveAccount>
-      <RegisterFree>Register for free today!</RegisterFree>
-      <form onSubmit={handleSubmit}>
-        <LabelDiv>
-
-
-        <label>
-          <InputInfo>
-          Email:
-          </InputInfo>
-          <Input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-        </label>
-        </LabelDiv>
-
-
-
-<LabelDiv>
-<label>
-       <InputInfo>
-       Password:
-        </InputInfo>
-          <Input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-</LabelDiv>
-    
-        <button type="submit">Log In</button>
-      </form>
+        <LogInDiv>
+          <LoginH2>Log in!</LoginH2>
+          <DontHaveAccount>Don't have an account?</DontHaveAccount>
+          <RegisterFree to="/register">Register for free!</RegisterFree>
+          <Form onSubmit={handleSubmit}>
+            <LabelDiv>
+             <InputInfo>Email:</InputInfo>
+             <Input
+               type="email"
+               name="email"
+               value={formData.email}
+               onChange={handleChange}
+                required
+             />
+           </LabelDiv>
+           <LabelDiv>
+              <InputInfo>Password:</InputInfo>
+              <Input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+             />
+           </LabelDiv>
+           <ButtonStyle type="submit">Log In</ButtonStyle>
+           {error && <ErrorMessage>{error}</ErrorMessage>} 
+          </Form>
         </LogInDiv> 
-
       </LogInRegisterBody>
-      
+      <Footer/>
     </div>
   );
 }

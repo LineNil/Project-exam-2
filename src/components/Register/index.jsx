@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderLoggedOut from "../Layout/LoggedOut";
+import { RegisterDiv, LogInRegisterBody, LoginH2, DontHaveAccount, RegisterFree, Form, LabelDiv, InputInfo, Input, ButtonStyle, StyledSelect  } from "../Login/style";
 
 
 
@@ -17,6 +18,11 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    
+    if (name=== "password" && value.length < 8) {
+      alert("Password must be at least 8 characters long");
+    }
+  
   };
 
   const handleSubmit = async (e) => {
@@ -74,41 +80,45 @@ function Register() {
   return (
     <div>
     <HeaderLoggedOut/>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
+    <LogInRegisterBody>
+      <RegisterDiv>
+      <LoginH2>Register</LoginH2>
+      <DontHaveAccount>Already have an account?</DontHaveAccount>
+      <RegisterFree to="/register">Log in!</RegisterFree>
+      <Form onSubmit={handleSubmit}>
+        <LabelDiv>
+        <InputInfo>Username:</InputInfo>
+          <Input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             required
           />
-        </label>
-        <label>
-          Email:
-          <input
+        </LabelDiv>
+        <LabelDiv>
+        <InputInfo>Email:</InputInfo>
+          <Input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
           />
-        </label>
-        <label>
-          Password:
-          <input
+        </LabelDiv>
+        <LabelDiv>
+        <InputInfo>Password:</InputInfo>
+          <Input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
           />
-        </label>
-        <label>
-          Role:
-          <select
+        </LabelDiv>
+        <LabelDiv>
+        <InputInfo>Password:</InputInfo>
+          <StyledSelect 
             name="role"
             value={formData.role}
             onChange={handleChange}
@@ -117,10 +127,14 @@ function Register() {
             <option value="">Select Role</option>
             <option value="user">User</option>
             <option value="manager">Manager</option>
-          </select>
-        </label>
-        <button type="submit">Register</button>
-      </form>
+          </StyledSelect >
+        </LabelDiv>
+        <ButtonStyle type="submit">Register</ButtonStyle>
+      </Form>
+      </RegisterDiv>
+ 
+    </LogInRegisterBody>
+
     </div>
   );
 }

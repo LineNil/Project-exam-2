@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonDiv, ButtonStyle, LogoLink, NavDiv, LogoDiv, ImageLogo } from "../style";
+import { ButtonDiv, ButtonStyle, LogoLink, NavDiv, LogoDiv, ImageLogoLoggedOut } from "../style";
 
 
 
@@ -9,13 +9,13 @@ function HeaderLoggedOut() {
     <NavDiv>
       <LogoDiv>
         <LogoLink to="/">
-<ImageLogo/>
+<ImageLogoLoggedOut/>
         </LogoLink>
       </LogoDiv>
 
       <ButtonDiv>
         <Link to="/login">
-          <ButtonStyle>Log in Logged out Layout</ButtonStyle>
+          <ButtonStyle>Log in</ButtonStyle>
         </Link>
         <Link to="/register">
           <ButtonStyle>Register</ButtonStyle>

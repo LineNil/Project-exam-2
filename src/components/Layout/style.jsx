@@ -8,6 +8,16 @@ export const LogoLink = styled(Link)`
   text-decoration: none;
 `;
 
+
+export const ImageLogoLoggedOut = styled.div`
+background-image: url("${Logo}");
+display: flex;
+height: 75px;
+width: 140px;
+background-repeat: no-repeat;
+background-size: contain;
+`;
+
 export const ImageLogo = styled.div`
   background-image: url("${Logo}");
   display: flex;
@@ -34,6 +44,7 @@ background-color: rgb(242, 208, 127);
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: Playfair Display;
 
   &:hover,
   &:active {
