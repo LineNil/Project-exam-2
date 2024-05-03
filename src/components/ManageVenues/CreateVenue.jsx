@@ -67,10 +67,7 @@ function CreateVenue() {
                 Authorization: `Bearer ${accessToken}`,
                 "Access-Control-Allow-Origin": '*'
             },
-            body: JSON.stringify({
-                ...formData,
-                media: formData.media.map(imageUrl => ({ url: imageUrl })),
-            })
+            body: JSON.stringify(formData)
         });
         console.log({response})
         if (!response.ok) {
@@ -81,146 +78,142 @@ function CreateVenue() {
         navigate(`/created-venue-success`);
     } catch (error) {
         console.error("Error creating venue:", error);
-        // Håndter feil, f.eks. vis feilmelding til bruker
+        // Handle errors, e.g., display error message to user
     }
 };
 
-
-
-  const handleImageUrlChange = (e) => {
+const handleImageUrlChange = (e) => {
     const { value } = e.target;
     const updatedImages = [...formData.media, { url: value }];
     setFormData({
         ...formData,
-        maida: updatedImages 
+        media: updatedImages 
     });
     console.log("Images Updated:", updatedImages);
 };
 
-
-
-  return (
-    <div>
-      <HeaderLoggedInManager />
-      <h2>Create New Venue</h2>
-      <form 
+return (
+  <div>
+    <HeaderLoggedInManager />
+    <h2>Create New Venue</h2>
+    <form 
       onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input 
+      <label>
+        Name:
+        <input 
           type="text" 
           name="name" 
           value={formData.name} 
           onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Description:
-          <textarea 
+      </label>
+      <br />
+      <label>
+        Description:
+        <textarea 
           name="description" 
           value={formData.description} 
           onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Price:
-          <input 
+      </label>
+      <br />
+      <label>
+        Price:
+        <input 
           type="number" 
           name="price" 
           value={formData.price} 
           onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Max Guests:
-          <input 
+      </label>
+      <br />
+      <label>
+        Max Guests:
+        <input 
           type="number" 
           name="maxGuests" 
           value={formData.maxGuests} 
           onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Address:
-          <input 
+      </label>
+      <br />
+      <label>
+        Address:
+        <input 
           type="text" 
           name="address" 
           value={formData.location.address} 
           onChange={handleLocationChange} />
-        </label>
-        <br />
+      </label>
+      <br />
 
-        <label>
-          Image URL:
-          <input 
-            type="text" 
-            name="imageUrl" 
-            value={formData.imageUrl} 
-            onChange={handleImageUrlChange} />
-        </label>
-        <br />
-        <label>
-          City:
-          <input 
+      <label>
+        Image URL:
+        <input 
+          type="text" 
+          name="imageUrl" 
+          value={formData.imageUrl} 
+          onChange={handleImageUrlChange} />
+      </label>
+      <br />
+      <label>
+        City:
+        <input 
           type="text" 
           name="city" 
           value={formData.location.city} 
           onChange={handleLocationChange} />
-        </label>
-        <br />
-        <label>
-          Zip:
-          <input 
+      </label>
+      <br />
+      <label>
+        Zip:
+        <input 
           type="text" 
           name="zip" 
           value={formData.location.zip} 
           onChange={handleLocationChange} />
-        </label>
-        <br />
-        <label>
-          Country:
-          <input 
+      </label>
+      <br />
+      <label>
+        Country:
+        <input 
           type="text" 
           name="country" 
           value={formData.location.country} 
           onChange={handleLocationChange} />
-        </label>
-        <br />
-        <label>
-          <input 
-            type="checkbox" 
-            name="wifi" 
-            checked={formData.meta.wifi} 
-            onChange={handleChange} />
-          Wifi
-        </label>
+      </label>
+      <br />
+      <label>
+        <input 
+          type="checkbox" 
+          name="wifi" 
+          checked={formData.meta.wifi} 
+          onChange={handleChange} />
+        Wifi
+      </label>
 
-        <br />
-        <label>
-          <input 
-            type="checkbox" 
-            name="parking" 
-            checked={formData.meta.parking} 
-            onChange={handleChange} />
-          Parking
-        </label>
-        <br />
-        <label>
-          <input 
-            type="checkbox" 
-            name="breakfast" 
-            checked={formData.meta.breakfast} 
-            onChange={handleChange} />
-          Breakfast
-        </label>
-        <br />
+      <br />
+      <label>
+        <input 
+          type="checkbox" 
+          name="parking" 
+          checked={formData.meta.parking} 
+          onChange={handleChange} />
+        Parking
+      </label>
+      <br />
+      <label>
+        <input 
+          type="checkbox" 
+          name="breakfast" 
+          checked={formData.meta.breakfast} 
+          onChange={handleChange} />
+        Breakfast
+      </label>
+      <br />
 
-        <button 
+      <button 
         type="submit"
-        >Create Venue</button>
-      </form>
-    </div>
-  );
+      >Create Venue</button>
+    </form>
+  </div>
+);
 }
 
 export default CreateVenue;
