@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderLoggedOut from "../Layout/LoggedOut";
-import { RegisterDiv, LogInRegisterBody, LoginH2, DontHaveAccount, RegisterFree, Form, LabelDiv, InputInfo, Input, ButtonStyle, StyledSelect  } from "../Login/style";
-
-
+import { RegisterDiv, LogInRegisterBody, LoginH2, DontHaveAccount, RegisterFree, Form, LabelDiv, InputInfo, Input, ButtonStyle, StyledSelect, ErrorMessageRegister  } from "../Login/style";
+import Footer from "../Layout/Footer";
 
 function Register() {
   const navigate = useNavigate();
@@ -15,14 +14,34 @@ function Register() {
     role: "", 
   });
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [nameError, setNameError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     
-    if (name=== "password" && value.length < 8) {
-      alert("Password must be at least 8 characters long");
+    // Sjekk for e-postvalidering
+    if (name === "email" && !value.endsWith("@stud.noroff.no")) {
+      setEmailError("Please enter a valid @stud.noroff.no email");
+    } else {
+      setEmailError("");
     }
-  
+
+    // Sjekk for passordvalidering
+    if (name === "password" && value.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
+
+    // Sjekk for navnvalidering
+    if (name === "name" && value.length < 3) {
+      setNameError("Name must be at least 3 characters long");
+    } else {
+      setNameError("");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -30,8 +49,9 @@ function Register() {
 
     console.log("FormData before submission:", formData);
 
-    if (!formData.email.endsWith("@stud.noroff.no")) {
-      alert("Please enter a valid @stud.noroff.no email");
+    // Sjekk om det er noen feil før du sender skjemaet
+    if (emailError || passwordError || nameError) {
+      alert("Please fix the errors before submitting the form");
       return;
     }
 
@@ -95,6 +115,7 @@ function Register() {
             onChange={handleChange}
             required
           />
+          {nameError && <ErrorMessageRegister>{nameError}</ErrorMessageRegister>}
         </LabelDiv>
         <LabelDiv>
         <InputInfo>Email:</InputInfo>
@@ -105,6 +126,9 @@ function Register() {
             onChange={handleChange}
             required
           />
+  
+          {emailError && <ErrorMessageRegister>{emailError}</ErrorMessageRegister>}
+
         </LabelDiv>
         <LabelDiv>
         <InputInfo>Password:</InputInfo>
@@ -115,6 +139,9 @@ function Register() {
             onChange={handleChange}
             required
           />
+          {passwordError && <ErrorMessageRegister>{passwordError}</ErrorMessageRegister>}
+
+
         </LabelDiv>
         <LabelDiv>
         <InputInfo>Password:</InputInfo>
@@ -132,8 +159,8 @@ function Register() {
         <ButtonStyle type="submit">Register</ButtonStyle>
       </Form>
       </RegisterDiv>
- 
     </LogInRegisterBody>
+    <Footer/>
 
     </div>
   );

@@ -183,3 +183,17 @@ export const StyledSelect = styled.select`
     font-size: 11px;
   }
 `;
+
+export const ErrorMessageRegister = styled.p`
+color: red;
+  font-size: 11px;
+  margin: 0px;
+  text-align: center;
+  background-color: #ffffffa3;  
+  padding: 15px;
+  border-radius: 5px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 6px;
+  }
+`;
