@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Search from "../../../Search/User";
-import HeaderImage from "../../../HeaderImage";
-import HeaderLoggedIn from "../../../Layout/User";
-import useVenueData from "../../FetchData";
-import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location, LocationInfo, NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating } from "../../style";
+import Search from "../../Search/User/index";
+import HeaderImage from "../../HeaderImage";
+import HeaderLoggedIn from "../../Layout/User";
+import useVenueData from "../FetchData";
+import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location, LocationInfo, NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating } from "../style";
 
 
-import defaultImage from "../../DefaultImg.jpg";
+import defaultImage from "../DefaultImg.jpg";
 
 function VenueListLoggedIn() {
   const venues = useVenueData();

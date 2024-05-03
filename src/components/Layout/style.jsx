@@ -26,9 +26,9 @@ export const ButtonDiv = styled.div`
 `;
 
 export const ButtonStyle = styled.button`
-  background-color: rgb(246, 242, 233);
+background-color: rgb(242, 208, 127);
   color: black;
-  font-size: 13px;
+  font-size: 11px;
   padding: 10px 27px;
   border: 1px solid rgb(237, 171, 13);
   border-radius: 7px;
@@ -37,7 +37,7 @@ export const ButtonStyle = styled.button`
 
   &:hover,
   &:active {
-    background-color: rgb(237, 171, 13);
+    background-color: rgb(227, 186, 86);
   }
 
   @media screen and (max-width: 768px) {
@@ -49,8 +49,15 @@ export const ButtonStyle = styled.button`
 export const NavDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgb(246, 242, 233);
+  background: linear-gradient(to bottom, rgb(246, 242, 233), rgba(246, 242, 233, 0));  
   padding: 10px;
+`;
+
+export const NavDivProfile = styled.div`
+display: flex;
+justify-content: space-between;
+background-color: #f4e2b8;
+padding: 10px;
 `;
 
 export const LogoDiv = styled.div`

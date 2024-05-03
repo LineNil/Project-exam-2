@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import VenueListLoggedIn from "../VenueList/LoggedIn/User";
+import VenueListLoggedIn from "../VenueList/User";
 import VenueListLoggedOut from "../VenueList/NoUser";
 import LogIn from "../Login";
 import Register from "../Register";
@@ -9,7 +9,7 @@ import ManagerAccount from "../Accounts/Manager";
 import VenueDetailsLoggedInUser from "../Venue/User";
 import UserBookings from "../Bookings/User";
 import BookingSuccess from "../Bookings/User/success";
-import MyVenues from "../ManageVenues/venues";
+import MyVenues from "../Accounts/Manager/venues";
 import CreateVenue from "../ManageVenues/createVenue";
 import VenueListManager from "../VenueList/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";

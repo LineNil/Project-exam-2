@@ -9,7 +9,6 @@ import ApiKey from "../../Api/ApiKey";
 async function createBooking(startDate, endDate, guests, venueId) {
   const accessToken = localStorage.getItem("accessToken");
   try {
-    // Opprett bookingen her ved å gjøre et API-kall til serveren
     const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
       method: "POST",
       headers: {
@@ -39,11 +38,11 @@ async function createBooking(startDate, endDate, guests, venueId) {
 
 function VenueDetailsLoggedInUser() {
   const location = useLocation();
-  const navigate = useNavigate(); // Bruker useNavigate her
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const [guests, setGuests] = useState(1);
-  const [error, setError] = useState(null); // Tilstand for å lagre feilmeldingen
+  const [error, setError] = useState(null);
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
   const [bookedDates, setBookedDates] = useState([]);
@@ -83,16 +82,15 @@ function VenueDetailsLoggedInUser() {
     try {
       await createBooking(startDate, endDate, guests, venueId);
       console.log("Booking created successfully!");
-      navigateToBookingSuccess(); // Navigerer til booking-suksesssiden
+      navigateToBookingSuccess(); 
     } catch (error) {
-      // Håndter feilscenario, f.eks., vis en feilmelding til brukeren
+
       console.error("Booking failed:", error);
-      setError(error.message); // Setter feilmeldingen for å vise til brukeren
+      setError(error.message);
     }
   };
 
   const navigateToBookingSuccess = () => {
-    // Implementer navigeringen til booking-suksesssiden her
     console.log("Navigating to booking success page...");
     navigate("/booking-success");
   };
@@ -146,7 +144,7 @@ function VenueDetailsLoggedInUser() {
         />
       </div>
       <button onClick={handleBookVenue}>Book Venue</button>
-      {error && <p style={{ color: "red" }}>{error}</p>} {/* Viser feilmelding hvis det er en */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }

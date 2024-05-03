@@ -3,6 +3,9 @@ import HeaderLoggedInManager from "../../Layout/Manager";
 import ApiKey from "../../Api/ApiKey";
 import AvatarSettings from "../AvatarSettings";
 import { Link } from "react-router-dom";
+import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, AvatarDiv, UserName, AvatarSettingsWrapper } from "../style";
+import Footer from "../../Layout/Footer";
+import MyVenues from "./venues";
 
 
 function ManagerAccount() {
@@ -48,22 +51,39 @@ function ManagerAccount() {
 
   return (
     <div>
-      <HeaderLoggedInManager />
-      <h2>Welcome, {userName}!</h2>
-      <p>You are registered as a {userRole}.</p>
-      <p>You are on the manager page</p>
-      {userAvatar && <img src={userAvatar} alt="User Avatar" />}
-      <AvatarSettings setUserAvatar={setUserAvatar} />
-      <Link to="/my-venues">
-        <button>My Venues</button>
-      </Link>
-      <Link to="/venue-list-manager">
-        <button>View Venues</button>
-      </Link>      
-      <Link to="/create-venue">
-        <button>Create new venue</button>
-      </Link>
+  <HeaderLoggedInManager />
+      <Container>
+      <LeftContainer>
+        <ProfileContainer>
+          {userAvatar && (
+            <AvatarImage src={userAvatar} alt="User Avatar" />
+          )}
+       <AvatarSettingsWrapper>
+       <AvatarSettings setUserAvatar={setUserAvatar} />
+       </AvatarSettingsWrapper>
+     
+        <UserName>{userName}</UserName>
+        
+        <LinksDiv>
+
+            <StyledButton to="/my-venues">My Venues</StyledButton>
+
+
+            <StyledButton to="/venue-list-manager">View Venues</StyledButton>
+
+            <StyledButton to="/create-venue">Create new venue</StyledButton>
+        </LinksDiv>
+        </ProfileContainer>
+      </LeftContainer>
+      <RightContainer>
+        <MyVenues/>
+      </RightContainer>
+
+    </Container>
+    <Footer/>
     </div>
+    
+   
   );
 }
 

@@ -3,6 +3,8 @@ import ApiKey from "../Api/ApiKey";
 
 const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
   const [newAvatarUrl, setNewAvatarUrl] = useState("");
+  const [avatarUpdated, setAvatarUpdated] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleAvatarChange = async () => {
     try {
@@ -34,6 +36,9 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
         console.log("Updated user profile with new avatar:", responseData.data);
         setUserAvatar(newAvatarUrl);
         localStorage.setItem("userAvatar", newAvatarUrl);
+        setAvatarUpdated(true);
+        setNewAvatarUrl("");
+        setIsOpen(false); // Close the window after updating avatar
       } else {
         console.error("Failed to update user avatar:", response.status);
       }
@@ -44,9 +49,18 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
 
   return (
     <div>
-      <h3>Change Avatar</h3>
-      <input type="text" value={newAvatarUrl} onChange={(e) => setNewAvatarUrl(e.target.value)} />
-      <button onClick={handleAvatarChange}>Update Avatar</button>
+      <button onClick={() => setIsOpen(true)}>Update Avatar</button>
+      {isOpen && (
+        <div>
+          <input
+            type="text"
+            value={newAvatarUrl}
+            onChange={(e) => setNewAvatarUrl(e.target.value)}
+          />
+          <button onClick={handleAvatarChange}>Save</button>
+          <button onClick={() => setIsOpen(false)}>Cancel</button>
+        </div>
+      )}
     </div>
   );
 };

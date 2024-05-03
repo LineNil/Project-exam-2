@@ -1,11 +1,18 @@
-// VenueInfoManager.jsx
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedInManager from "../Layout/Manager";
-import deleteVenue from "../ManageVenues/deleteVenue";
 import updateVenue from "../ManageVenues/updateVenue";
+import styled from "styled-components"
+import defaultImage from "../VenueList/DefaultImg.jpg";
+
+const Img = styled.img`
+width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 3px;
+`;
+
 
 function VenueInfoManager() {
   const { venueId } = useParams();
@@ -17,10 +24,10 @@ function VenueInfoManager() {
     maxGuests: 0,
     rating: 0,
     meta: {
-      wifi: false,
-      parking: false,
-      breakfast: false,
-      pets: false
+      wifi: true,
+      parking: true,
+      breakfast: true,
+      pets: true
     },
     location: {
       address: "",
@@ -30,7 +37,8 @@ function VenueInfoManager() {
       continent: "",
       lat: 0,
       lng: 0
-    }
+    },
+    imageUrl: "" // Legg til imageUrl i formData
   });
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const navigate = useNavigate();
@@ -67,18 +75,6 @@ function VenueInfoManager() {
     }
   }, [venueId]);
 
-  const handleDeleteVenue = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const success = await deleteVenue(venueId, accessToken);
-
-      if (success) {
-        navigate("/my-venues");
-      }
-    } catch (error) {
-      console.error("Error deleting venue:", error);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -108,7 +104,31 @@ function VenueInfoManager() {
     <div>
       <HeaderLoggedInManager />
       <h2>{venue.name}</h2>
-      <p>Description: {venue.description}</p>
+      {/* Vis bildet her */}
+      {venue.media.length > 0 ? (
+              <Img src={venue.media[0].url} alt={venue.media[0].alt} />
+            ) : (
+              <Img src={defaultImage} alt="Default" />
+            )}      <p>Description: {venue.description}</p>
+      <p>Adress: {venue.location.address}, {venue.location.city}</p>
+      <p>zip: {venue.location.zip}</p>
+      <p>Country: {venue.location.country}</p>
+      <p>Rating: {venue.rating}</p>
+      <p>NOK {venue.price}</p>
+      <p>Max guests: {venue.maxGuests}</p>
+      <p>Pets: {venue.meta.pets ? "Allowed" : "Not Allowed"}</p>
+      <p>Wifi: {venue.meta.wifi ? "yes" : "No"}</p>
+      <p>Brekfast: {venue.meta.breakfast ? "yes" : "No"}</p>
+      <p>Parking: {venue.meta.parking ? "yes" : "No"}</p>
+
+
+
+
+
+
+
+
+
       {showUpdateForm ? (
         <form onSubmit={handleSubmit}>
           <label>
@@ -153,7 +173,6 @@ function VenueInfoManager() {
       ) : (
         <button onClick={() => setShowUpdateForm(true)}>Update</button>
       )}
-      <button onClick={handleDeleteVenue}>Delete</button>
     </div>
   );
 }

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchProfile } from "./apiService"; 
 import HeaderLoggedOut from "../Layout/LoggedOut";
+import { LogInRegisterBody, LogInDiv, LabelDiv, LoginH2, InputInfo, Input, DontHaveAccount, RegisterFree } from "./style";
+
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -55,21 +57,38 @@ function LoginForm() {
   return (
     <div>
       <HeaderLoggedOut />
-      <h2>Log in!</h2>
+      <LogInRegisterBody>
+      <LogInDiv>
+      <LoginH2>Log in!</LoginH2>
+      <DontHaveAccount>Don't have an account?</DontHaveAccount>
+      <RegisterFree>Register for free today!</RegisterFree>
       <form onSubmit={handleSubmit}>
+        <LabelDiv>
+
+
         <label>
+          <InputInfo>
           Email:
-          <input
+          </InputInfo>
+          <Input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
           />
+
         </label>
-        <label>
-          Password:
-          <input
+        </LabelDiv>
+
+
+
+<LabelDiv>
+<label>
+       <InputInfo>
+       Password:
+        </InputInfo>
+          <Input
             type="password"
             name="password"
             value={formData.password}
@@ -77,8 +96,14 @@ function LoginForm() {
             required
           />
         </label>
+</LabelDiv>
+    
         <button type="submit">Log In</button>
       </form>
+        </LogInDiv> 
+
+      </LogInRegisterBody>
+      
     </div>
   );
 }
