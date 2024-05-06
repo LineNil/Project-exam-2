@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location,LocationInfo,NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating, SearchForm, SearchButton, StyledInput, Results, ResultsH2Div } from "../../VenueList/style";
+import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location,LocationInfo,NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating, SearchForm, SearchButton, StyledInput, Results, ResultsH2Div, NoResults } from "../../VenueList/style";
 
 
 // Importer standard fallback-bilde
@@ -98,7 +98,7 @@ function SearchNoUser() {
           
         </VenuesDiv>
       ) : searched ? (
-        <p>No results found.</p>
+        <NoResults>No results found.</NoResults>
       ) : null}
     </div>
   );

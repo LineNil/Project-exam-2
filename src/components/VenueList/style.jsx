@@ -178,3 +178,8 @@ display: flex;
 justify-content: center;
 grid-column: 1 / -1;
 `;
+
+export const NoResults = styled.p`
+  text-align: center;
+  font-size: 20px;
+`;

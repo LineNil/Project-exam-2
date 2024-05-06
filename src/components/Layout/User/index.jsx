@@ -22,7 +22,7 @@ function HeaderLoggedIn() {
 
       <ButtonDiv>
         <Link to="/venue-list-loggedin">
-          <ButtonStyle>Home User layout</ButtonStyle>
+          <ButtonStyle>Home</ButtonStyle>
         </Link>
         <Link to="/user-account">
           <ButtonStyle>Profile</ButtonStyle>

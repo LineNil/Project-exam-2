@@ -41,7 +41,7 @@ function VenueListManager() {
             )}
             <Info>
 
-              <VenueName>{venue.name}, manager venue list</VenueName>
+              <VenueName>{venue.name}</VenueName>
 
 
 

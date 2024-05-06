@@ -39,7 +39,7 @@ function VenueListLoggedIn() {
             )}
             <Info>
 
-              <VenueName>{venue.name} user page</VenueName>
+              <VenueName>{venue.name}</VenueName>
 
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location,LocationInfo,NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating, SearchForm, SearchButton, StyledInput, Results, ResultsH2Div } from "../../VenueList/style";
+import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location,LocationInfo,NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating, SearchForm, SearchButton, StyledInput, Results, ResultsH2Div, NoResults } from "../../VenueList/style";
 
 
 import defaultImage from "../../VenueList/DefaultImg.jpg";
@@ -60,7 +60,7 @@ function SearchUser() {
 
         <VenuesDiv>
                 <ResultsH2Div>
-          <Results>Search Results user</Results>
+          <Results>Search Results</Results>
           </ResultsH2Div>
 
             {searchResults.map((venue, index) => (
@@ -73,7 +73,7 @@ function SearchUser() {
                   <Img src={defaultImage} alt="Default image" />
                 )}
                 <Info>
-                  <VenueName>{venue.name} user page</VenueName>
+                  <VenueName>{venue.name}</VenueName>
                   <VenueCardInfo>
                     <Location>Location:</Location>
                     <LocationInfo>{venue.location.city}, {venue.location.country}</LocationInfo>
@@ -96,7 +96,7 @@ function SearchUser() {
           
         </VenuesDiv>
       ) : searched ? (
-        <p>No results found.</p>
+        <NoResults>No results found.</NoResults>
       ) : null}
     </div>
   );

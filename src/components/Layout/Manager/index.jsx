@@ -23,7 +23,7 @@ function HeaderLoggedInManager() {
 
       <ButtonDiv>
         <Link to="/venue-list-manager">
-          <ButtonStyle>Home Manager Layout</ButtonStyle>
+          <ButtonStyle>Home</ButtonStyle>
         </Link>
         <Link to="/manager">
           <ButtonStyle>Profile</ButtonStyle>

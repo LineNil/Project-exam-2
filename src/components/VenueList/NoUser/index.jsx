@@ -4,7 +4,7 @@ import HeaderImage from "../../HeaderImage";
 import useVenueData from "../FetchData";
 import HeaderLoggedOut from "../../Layout/LoggedOut";
 import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location, LocationInfo, NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating } from "../style"; 
-
+import Footer from "../../Layout/Footer";
 
 // Importer standard fallback-bilde
 import defaultImage from "../DefaultImg.jpg";
@@ -71,6 +71,7 @@ function VenueListNoUser() {
           </VenueItem>
         ))}
       </VenuesDiv>
+      <Footer/>
     </div>
   );
 }
