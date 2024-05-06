@@ -51,7 +51,7 @@ function SearchNoUser() {
       <SearchForm onSubmit={handleSubmit}>
         <StyledInput
           type="text"
-          placeholder="Expolore venues... no user"
+          placeholder="Expolore venues..."
           value={searchTerm}
           onChange={handleChange}
         />
@@ -62,7 +62,7 @@ function SearchNoUser() {
         
         <VenuesDiv>
                 <ResultsH2Div>
-          <Results>Search Results logged out</Results>
+          <Results>Search Results</Results>
           </ResultsH2Div>
 
             {searchResults.map((venue, index) => (

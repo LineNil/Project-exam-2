@@ -1,12 +1,54 @@
 import React, { useState, useEffect } from "react";
-import HeaderLoggedOut from "../../Layout/LoggedOut";
+
 import { useLocation } from "react-router-dom";
+import HeaderLoggedOut from "../../Layout/LoggedOut";
+
 import useVenueData from "../FetchData";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 import ApiKey from "../../Api/ApiKey";
+import defaultImage from "../../VenueList/DefaultImg.jpg";
+import {
+  VenueImage,
+  Container,
+  LeftColumn,
+  RightColumn,
+  PriceContainer,
+  VenueInfo,
+  Option,
+  VenueDescription,
+  VenueLocation,
+  IconParagraph,
+  IconParagraphWifi,
+  FacilitiesText,
+  FacilitiesContainer,
+  VenueName,
+  Rating,
+  PriceInfo,
+  Price,
+  BookNow,
+  BookingDate,
+  Guests,
+  MaxGuests,
+  LogIn,
+  StarIcon,
+  CustomDatePicker,
+  DatePickerContainer,
+} from "../style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWifi,
+  faParking,
+  faUtensils,
+  faPaw,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import Footer from "../../Layout/Footer";
+
+
 
 function VenueDetailsNoUser() {
+  const [selectedInfo, setSelectedInfo] = useState("Description");
+
   const location = useLocation();
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
@@ -47,39 +89,117 @@ function VenueDetailsNoUser() {
     return <div>Loading...</div>;
   }
 
+  const handleInfoClick = (info) => {
+    setSelectedInfo(info);
+  };
+
   return (
     <div>
       <HeaderLoggedOut />
-      <h2>{venue.name} No user</h2>
-      <p>Description: {venue.description}</p>
-      <p>City: {venue.location.city}</p>
-      <p>Rating: {venue.rating}</p>
-      <p>NOK {venue.price}</p>
-      <p>Max guests: {venue.maxGuests}</p>
-      
-      <div>
-        <h3> logged out or manager</h3>
-        <p>Select booking dates:</p>
-        <DatePicker
-          selected={new Date()}
-          disabled
-          dateFormat="dd/MM/yyyy"
-        />
-        <DatePicker
-          selected={new Date()}
-          disabled
-          dateFormat="dd/MM/yyyy"
-        />
-      </div>
-      <div>
-        <p>Number of guests:</p>
-        <input
-          type="number"
-          value={1}
-          disabled
-        />
-      </div>
-      <p>Please log in or register to book this venue.</p>
+      <Container>
+        <LeftColumn>
+          <VenueImage
+            src={venue.media.length > 0 ? venue.media[0].url : defaultImage}
+            alt={
+              venue.media.length > 0 ? venue.media[0].alt : "Default"
+            }
+          />
+          <VenueInfo>
+            <Option isSelected={selectedInfo === "Description"} onClick={() => handleInfoClick("Description")}>
+              Description
+            </Option>
+            <Option isSelected={selectedInfo === "Location"} onClick={() => handleInfoClick("Location")}>
+              Location
+            </Option>
+            <Option isSelected={selectedInfo === "Facilities"} onClick={() => handleInfoClick("Facilities")}>
+              Facilities
+            </Option>
+          </VenueInfo>
+          <div>
+            {selectedInfo === "Description" && (
+              <div>
+                <VenueDescription>
+                  {venue.description}
+                </VenueDescription>
+              </div>
+            )}
+            {selectedInfo === "Location" && (
+              <div>
+                <VenueLocation>
+                  <p>
+                    {venue.location.address},
+                  </p>
+                  <p> {venue.location.zip} {venue.location.city}</p>
+                </VenueLocation>
+              </div>
+            )}
+            {selectedInfo === "Facilities" && (
+              <FacilitiesContainer>
+                <IconParagraphWifi>
+                  <FontAwesomeIcon icon={faWifi}/>
+                  <FacilitiesText>
+                    {venue.meta.wifi ? "Wifi included" : "No wifi included"}
+                  </FacilitiesText>
+                </IconParagraphWifi>
+                <IconParagraph>
+                  <FontAwesomeIcon icon={faPaw} />
+                  <FacilitiesText> 
+                    {venue.meta.pets ? "Pet friendly" : "Pets not allowed"}
+                  </FacilitiesText>
+                </IconParagraph>
+                <IconParagraph>
+                  <FontAwesomeIcon icon={faUtensils} />
+                  <FacilitiesText>
+                    {venue.meta.breakfast ? "Breakfast included" : "No breakfast included"}
+                  </FacilitiesText>
+                </IconParagraph>
+                <IconParagraph>
+                  <FontAwesomeIcon icon={faParking} />
+                  <FacilitiesText> 
+                    {venue.meta.parking ? "Parking included" : "No parking included"}
+                  </FacilitiesText>
+                </IconParagraph>
+              </FacilitiesContainer>
+            )}
+          </div>
+        </LeftColumn>
+        <RightColumn>
+          <VenueName>{venue.name}</VenueName>
+          <Rating>
+            {venue.rating}
+            <StarIcon icon={faStar} />
+          </Rating>
+          <PriceContainer>
+            <PriceInfo>Starting price</PriceInfo>
+            <Price>NOK {venue.price}</Price>
+          </PriceContainer>
+          <BookNow>Book your venue now!</BookNow>
+          <DatePickerContainer>
+            <BookingDate>Select booking dates:</BookingDate>
+            <CustomDatePicker
+              selected={new Date()}
+              disabled
+              dateFormat="dd/MM/yyyy"
+            />
+            <CustomDatePicker
+              selected={new Date()}
+              disabled
+              dateFormat="dd/MM/yyyy"
+            />
+          </DatePickerContainer>
+          <div>
+            <Guests>Number of guests:</Guests>
+            <input
+              type="number"
+              value={1}
+              disabled
+            />
+            <MaxGuests>Max guests: {venue.maxGuests}</MaxGuests>
+          </div>
+          <LogIn to="/login">Please log in as user to book this venue.</LogIn>
+        </RightColumn>
+      </Container>
+      <Footer />
     </div>
   );
 }

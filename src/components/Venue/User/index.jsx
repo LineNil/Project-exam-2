@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import HeaderLoggedIn from "../../Layout/User";
 import { useLocation, useNavigate } from "react-router-dom";
 import useVenueData from "../FetchData";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 import ApiKey from "../../Api/ApiKey";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
-import { VenueImage, Container, LeftColumn, RightColumn, PriceContainer, VenueInfo, Option, VenueDescription, VenueLocation, IconParagraph, IconParagraphWifi, FacilitiesText, FacilitiesContainer, VenueName, Rating, PriceInfo, Price, BookNow, BookingDate, Guests, MaxGuests, BookingButton, StarIcon  } from "../style";
+import { VenueImage, Container, LeftColumn, RightColumn, PriceContainer, VenueInfo, Option, VenueDescription, VenueLocation, IconParagraph, IconParagraphWifi, FacilitiesText, FacilitiesContainer, VenueName, Rating, PriceInfo, Price, BookNow, BookingDate, Guests, MaxGuests, BookingButton, StarIcon, CustomDatePicker, DatePickerContainer   } from "../style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWifi, faParking, faUtensils, faPaw, faStar } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../../Layout/Footer/index";
@@ -194,12 +193,14 @@ function VenueDetailsLoggedInUser() {
 
           </Rating>
           <PriceContainer>
-            <PriceInfo>Starting price including taxes and fees</PriceInfo>
+            <PriceInfo>Starting price</PriceInfo>
             <Price>NOK {venue.price}</Price>
           </PriceContainer>
           <BookNow>Book your venue now!</BookNow>
+
+          <DatePickerContainer>
           <BookingDate>Select booking dates:</BookingDate>
-          <DatePicker
+          <CustomDatePicker 
             selected={startDate}
             onChange={(date) =>
               setStartDate(date)
@@ -213,7 +214,7 @@ function VenueDetailsLoggedInUser() {
               (booking) => booking.startDate
             )}
           />
-          <DatePicker
+          <CustomDatePicker 
             selected={endDate}
             onChange={(date) =>
               setEndDate(date)
@@ -227,6 +228,8 @@ function VenueDetailsLoggedInUser() {
               (booking) => booking.endDate
             )}
           />
+          </DatePickerContainer>
+        
           <div>
             <Guests>Number of guests:</Guests>
             <input

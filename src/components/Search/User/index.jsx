@@ -49,7 +49,7 @@ function SearchUser() {
       <SearchForm onSubmit={handleSubmit}>
         <StyledInput
           type="text"
-          placeholder="Expolore venues.. user."
+          placeholder="Expolore venues..."
           value={searchTerm}
           onChange={handleChange}
         />

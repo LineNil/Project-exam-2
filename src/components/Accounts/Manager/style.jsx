@@ -25,6 +25,7 @@ export const VenueDetails = styled.div`
 
 export const VenueItem = styled.li`
   margin-bottom: 20px;
+  list-style: none;
 `;
 
 export const ManageButton = styled.button`
