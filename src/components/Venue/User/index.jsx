@@ -31,14 +31,14 @@ async function createBooking(startDate, endDate, guests, venueId) {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to create booking");
+      throw new Error("The selected dates and guests either overlap with an existing booking or exceed the maximum guests for this venue.");
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
     console.error("Error creating booking:", error);
-    throw new Error("Failed to create booking");
+    throw new Error("The selected dates and guests either overlap with an existing booking or exceed the maximum guests for this venue.");
   }
 }
 
@@ -117,16 +117,16 @@ function VenueDetailsLoggedInUser() {
         <LeftColumn>
           <VenueImage src={venue.media.length > 0 ? venue.media[0].url : defaultImage} alt={ venue.media.length > 0 ? venue.media[0].alt : "Default" }/>
           <VenueInfo>
-            <Option isSelected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
-              Description
-            </Option>
-            <Option isSelected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
-              Location
-            </Option>
-            <Option isSelected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
-              Facilities
-            </Option>
-          </VenueInfo>
+  <Option selected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
+    Description
+  </Option>
+  <Option selected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
+    Location
+  </Option>
+  <Option selected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
+    Facilities
+  </Option>
+</VenueInfo>
           <div>
             {selectedInfo === "Description" && (
               <div>

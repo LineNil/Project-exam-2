@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ApiKey from "../Api/ApiKey";
+import { UpdateAvatarButton, NewAvatarForm, AvatarSettingsWrapper, CancelAvatar, SaveAvatar, InputAvatar, ErrorMessage } from "../Accounts/style";
 
 const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
   const [newAvatarUrl, setNewAvatarUrl] = useState("");
   const [avatarUpdated, setAvatarUpdated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState(null); // State to track error
 
   const handleAvatarChange = async () => {
     try {
@@ -41,25 +43,30 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
         setIsOpen(false); // Close the window after updating avatar
       } else {
         console.error("Failed to update user avatar:", response.status);
+        setError("Failed to update user avatar. Please try again."); // Set error message if update fails
       }
     } catch (error) {
       console.error("Error:", error);
+      setError("An error occurred. Please try again."); // Set error message if an error occurs
     }
   };
 
   return (
     <div>
-      <button onClick={() => setIsOpen(true)}>Update Avatar</button>
+      <UpdateAvatarButton onClick={() => setIsOpen(true)}>Update Avatar</UpdateAvatarButton>
       {isOpen && (
-        <div>
-          <input
-            type="text"
-            value={newAvatarUrl}
-            onChange={(e) => setNewAvatarUrl(e.target.value)}
-          />
-          <button onClick={handleAvatarChange}>Save</button>
-          <button onClick={() => setIsOpen(false)}>Cancel</button>
-        </div>
+        <AvatarSettingsWrapper>
+          <NewAvatarForm>
+            <InputAvatar
+              type="text"
+              value={newAvatarUrl}
+              onChange={(e) => setNewAvatarUrl(e.target.value)}
+            />
+            <SaveAvatar onClick={handleAvatarChange}>Save</SaveAvatar>
+            <CancelAvatar onClick={() => setIsOpen(false)}>Cancel</CancelAvatar>
+          </NewAvatarForm>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+        </AvatarSettingsWrapper>
       )}
     </div>
   );

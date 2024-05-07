@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import HeaderLoggedInManager from "../../Layout/Manager";
 import ApiKey from "../../Api/ApiKey";
 import AvatarSettings from "../AvatarSettings";
-import { Link } from "react-router-dom";
-import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, AvatarDiv, UserName, AvatarSettingsWrapper } from "../style";
+import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, UserName, AvatarSettingsWrapper } from "../style";
 import Footer from "../../Layout/Footer";
 import MyVenues from "./venues";
 
@@ -55,9 +54,15 @@ function ManagerAccount() {
       <Container>
       <LeftContainer>
         <ProfileContainer>
+
+
+
+
           {userAvatar && (
             <AvatarImage src={userAvatar} alt="User Avatar" />
           )}
+
+
        <AvatarSettingsWrapper>
        <AvatarSettings setUserAvatar={setUserAvatar} />
        </AvatarSettingsWrapper>

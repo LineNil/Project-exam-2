@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import HeaderLoggedIn from "../../Layout/User";
 import ApiKey from "../../Api/ApiKey";
 import AvatarSettings from "../AvatarSettings";
-import { Link } from "react-router-dom";
+import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, UserName, AvatarSettingsWrapper } from "../style";
+import Footer from "../../Layout/Footer";
+import UserBookings from "../../Bookings/User";
+
 
 function UserAccount() {
   const [userName, setUserName] = useState("");
@@ -48,17 +51,37 @@ function UserAccount() {
   return (
     <div>
       <HeaderLoggedIn />
-      <h2>Welcome, {userName}!</h2>
-      <p>You are registered as a {userRole}.</p>
-      <p>You are on the user page</p>
-      {userAvatar && <img src={userAvatar} alt="User Avatar" />}
-      <AvatarSettings setUserAvatar={setUserAvatar} />
-      <Link to="/user-bookings">
-        <button>My Bookings</button>
-      </Link>
-      <Link to="/venue-list-loggedin">
-        <button>View Venues</button>
-      </Link>
+      <Container>
+        <LeftContainer>
+          <ProfileContainer>
+            {userAvatar && (
+              <AvatarImage src={userAvatar} alt="User Avatar" />
+            )}
+<AvatarSettingsWrapper>
+<AvatarSettings setUserAvatar={setUserAvatar} />
+</AvatarSettingsWrapper>
+<UserName>{userName}</UserName>
+<LinksDiv>
+
+<StyledButton to="/user-bookings">My bookings</StyledButton>
+
+<StyledButton to="/venue-list-loggedin">View Venues</StyledButton>
+
+</LinksDiv>
+</ProfileContainer>
+
+      </LeftContainer>
+
+      <RightContainer>
+       <UserBookings/>
+      </RightContainer>
+
+
+
+
+ 
+      </Container>
+      <Footer/>
     </div>
   );
 }

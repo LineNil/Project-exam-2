@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../Api/ApiKey";
 import { Link } from "react-router-dom";
-import { Heading, VenueContainer, VenueDetails, BookingDetails, VenueItem, ManageButton, Name, Bookings, CustomerName, CustomerEmail, BookingDate, Date, CustomerBookingContainer, VenueName, Img, ManageContainer, ManageButtonDelete } from "./style";
+import { Heading, VenueContainer, VenueDetails, BookingDetails, VenueItem, ManageButton, Address, Bookings, CustomerName, CustomerEmail, BookingDate, Date, CustomerBookingContainer, VenueName, Img, ManageContainer, ManageButtonDelete, ShowAllButton } from "./style";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
 import deleteVenue from "../../ManageVenues/deleteVenue";
 
@@ -64,9 +64,14 @@ function MyVenues() {
       {venues.map((venue) => (
         <VenueItem key={venue.id}>
           <VenueContainer>
+
+
+
+
             <VenueDetails>
-              <Name>Name</Name>
-              <VenueName>{venue.name} | {venue.location.address}, {venue.location.city}</VenueName>
+              
+              <VenueName>{venue.name}</VenueName>
+              <Address>{venue.location.address}, {venue.location.city}</Address>
               {venue.media.length > 0 ? (
                 <Img src={venue.media[0].url} alt={venue.media[0].alt} />
               ) : (
@@ -82,6 +87,10 @@ function MyVenues() {
                 <ManageButtonDelete onClick={() => handleDeleteVenue(venue.id)}>Delete</ManageButtonDelete>
               </ManageContainer>
             </VenueDetails>
+
+
+
+
             <BookingDetails>
               <Bookings>Bookings</Bookings>
               {/* Show only the first three bookings if showAllBookings is false */}
@@ -95,9 +104,9 @@ function MyVenues() {
               ))}
               {/* Show button to toggle showing all bookings */}
               {venue.bookings && venue.bookings.length > 3 && (
-                <button onClick={() => setShowAllBookings(!showAllBookings)}>
+                <ShowAllButton onClick={() => setShowAllBookings(!showAllBookings)}>
                   {showAllBookings ? "Show Less" : "Show All"}
-                </button>
+                </ShowAllButton>
               )}
             </BookingDetails>
           </VenueContainer>

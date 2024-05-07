@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../Api/ApiKey";
-import HeaderLoggedIn from "../../Layout/User";
+import { Heading, VenueContainer, Img, VenueDetails, VenueItem, VenueName, Address, ManageContainer, ManageButton, BookingDetails, Bookings, BookingContainer, BookingDate, DateBooked } from "./style"; 
+import defaultImage from "../../VenueList/DefaultImg.jpg";
+import { Link } from "react-router-dom";
 
 function UserBookings() {
   const [bookings, setBookings] = useState([]);
@@ -44,27 +46,77 @@ function UserBookings() {
     return pricePerDay * numberOfDays;
   };
 
+  const handleDeleteBooking = async (bookingId) => {
+    try {
+      const response = await fetch(
+        `https://v2.api.noroff.dev/holidaze/bookings/${bookingId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "X-Noroff-API-Key": ApiKey,
+          },
+        }
+      );
+      if (response.ok) {
+        // Remove the deleted booking from the state
+        const updatedBookings = bookings.filter((booking) => booking.id !== bookingId);
+        setBookings(updatedBookings);
+        console.log("Booking deleted successfully.");
+      } else {
+        console.error("Failed to delete booking.");
+      }
+    } catch (error) {
+      console.error("Error deleting booking:", error);
+    }
+  };
+
   return (
     <div>
-      <HeaderLoggedIn />
-      <h2>Your Bookings</h2>
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            <p>Booking ID: {booking.id}</p>
-            <p>Check-in: {booking.dateFrom}</p>
-            <p>Check-out: {booking.dateTo}</p>
-            <p>Guests: {booking.guests}</p>
+      <Heading>Your Bookings</Heading>
+      {bookings.map((booking) => (
+        <VenueItem key={booking.id}>
+          <VenueContainer>
+            <VenueDetails>
+              <VenueName>{booking.venue.name}</VenueName>
+              <Address>{booking.venue.location.address}, {booking.venue.location.city}</Address>
+              <Img src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage} alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"} />
+              <ManageContainer>
+                <Link to={`/venue-list-loggedin`}>
+                  <ManageButton>View venue</ManageButton>
+                </Link>
+                <ManageButton onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButton>
+              </ManageContainer>
+            </VenueDetails>
+<BookingDetails>
+<Bookings>Bookings</Bookings>
+<BookingContainer>
+  <BookingDate>Booked from-to</BookingDate>
+  <DateBooked>{booking.dateFrom} - {booking.dateTo}</DateBooked>
+
+  <BookingDate>Guests</BookingDate>
+  <DateBooked>{booking.guests}</DateBooked>
+
+
+
             {booking.venue && (
               <div>
-                <p>Venue: {booking.venue.name}</p>
-                <p>Price per day: NOK {booking.venue.price}</p>
-                <p>Total price: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</p>
+                  <BookingDate>Price</BookingDate>
+                <DateBooked>Per day: NOK {booking.venue.price}</DateBooked>
+                <DateBooked>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</DateBooked>
               </div>
             )}
-          </li>
-        ))}
-      </ul>
+            <BookingDate>Booking ID</BookingDate>
+            <DateBooked>{booking.id}</DateBooked>
+
+
+</BookingContainer>
+
+</BookingDetails>
+
+          </VenueContainer>
+        </VenueItem>
+      ))}
     </div>
   );
 }
