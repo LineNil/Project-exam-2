@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedInManager from "../Layout/Manager";
 import updateVenue from "../ManageVenues/updateVenue";
@@ -41,7 +41,6 @@ function VenueInfoManager() {
     imageUrl: "" // Legg til imageUrl i formData
   });
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchVenue() {
