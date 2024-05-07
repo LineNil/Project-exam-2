@@ -9,7 +9,6 @@ import MyVenues from "./venues";
 
 function ManagerAccount() {
   const [userName, setUserName] = useState("");
-  const [userRole, setUserRole] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
 
   useEffect(() => {
@@ -38,7 +37,6 @@ function ManagerAccount() {
         console.log(responseData.data);
         const userName = responseData.data.name;
         setUserName(userName);
-        setUserRole(responseData.data.venueManager ? "Manager" : "User");
         setUserAvatar(responseData.data.avatar.url); 
       } catch (error) {
         console.error("Error:", error);

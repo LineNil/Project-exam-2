@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ApiKey from "../Api/ApiKey";
 import { UpdateAvatarButton, NewAvatarForm, AvatarSettingsWrapper, CancelAvatar, SaveAvatar, InputAvatar, ErrorMessage } from "../Accounts/style";
 
@@ -40,7 +40,7 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
         localStorage.setItem("userAvatar", newAvatarUrl);
         setAvatarUpdated(true);
         setNewAvatarUrl("");
-        setIsOpen(false); // Close the window after updating avatar
+        setIsOpen(false); 
       } else {
         console.error("Failed to update user avatar:", response.status);
         setError("Failed to update user avatar. Please try again."); // Set error message if update fails
@@ -50,6 +50,14 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
       setError("An error occurred. Please try again."); // Set error message if an error occurs
     }
   };
+
+
+  useEffect(() => {
+    if (avatarUpdated) {
+      alert("Avatar updated successfully!");
+      setAvatarUpdated(false); // Reset the avatarUpdated state
+    }
+  }, [avatarUpdated]);
 
   return (
     <div>

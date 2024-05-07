@@ -46,7 +46,6 @@ function VenueDetailsManager() {
   const location = useLocation();
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
-  const [bookedDates, setBookedDates] = useState([]);
 
   useEffect(() => {
     async function fetchBookedDates() {
@@ -66,12 +65,7 @@ function VenueDetailsManager() {
           throw new Error("Failed to fetch booked dates");
         }
 
-        const data = await response.json();
-        const dates = data.data.map((booking) => ({
-          startDate: new Date(booking.dateFrom),
-          endDate: new Date(booking.dateTo),
-        }));
-        setBookedDates(dates);
+
       } catch (error) {
         console.error("Error fetching booked dates:", error);
       }
