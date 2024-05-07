@@ -10,7 +10,7 @@ import VenueDetailsLoggedInUser from "../Venue/User";
 import UserBookings from "../Bookings/User";
 import BookingSuccess from "../Bookings/User/success";
 import MyVenues from "../Accounts/Manager/venues";
-import CreateVenue from "../ManageVenues/createVenue";
+import CreateVenue from "../ManageVenues/CreateVenue";
 import VenueListManager from "../VenueList/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";
 import VenueInfoManager from "../ManageVenues/Venueinfo";
