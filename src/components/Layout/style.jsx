@@ -60,8 +60,7 @@ background-color: rgb(242, 208, 127);
 export const NavDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(to bottom, rgb(246, 242, 233), rgba(246, 242, 233, 0));  
-  padding: 10px;
+  background: linear-gradient(to right, rgb(246, 242, 233), rgba(246, 242, 233, 0.3));  padding: 10px;
 `;
 
 export const NavDivProfile = styled.div`

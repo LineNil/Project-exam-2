@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedInManager from "../Layout/Manager";
+import { CreateVenueForm, Heading, CheckBox, LabelCheckbox, InputName, TextArea, Input, Label,  RightContainer, LeftContainer, ButtonContainer, SubmittButton } from "./CreateStyle";
 
 function CreateVenue() {
   const [formData, setFormData] = useState({
@@ -12,10 +13,10 @@ function CreateVenue() {
     rating: 0,
     media: [], 
     meta: {
-      wifi: true,
-      parking: true,
-      breakfast: true,
-      pets: true
+      wifi: false,
+      parking: false,
+      breakfast: false,
+      pets: false
     },
     location: {
       address: "",
@@ -95,123 +96,165 @@ const handleImageUrlChange = (e) => {
 return (
   <div>
     <HeaderLoggedInManager />
-    <h2>Create New Venue</h2>
-    <form 
+
+    <Heading>Create New Venue</Heading>
+    <CreateVenueForm
       onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input 
+
+        <LeftContainer>
+      <Label>
+      <InputName>
+Name
+        </InputName>
+        <Input 
           type="text" 
           name="name" 
+          placeholder="Lake Cabin"
+
           value={formData.name} 
           onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Description:
-        <textarea 
-          name="description" 
-          value={formData.description} 
-          onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Price:
-        <input 
-          type="number" 
-          name="price" 
-          value={formData.price} 
-          onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Max Guests:
-        <input 
-          type="number" 
-          name="maxGuests" 
-          value={formData.maxGuests} 
-          onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Address:
-        <input 
+      </Label>
+      <Label>
+      <InputName>
+City        </InputName>
+        <Input 
           type="text" 
-          name="address" 
-          value={formData.location.address} 
+          name="city" 
+          placeholder="Oslo"
+          value={formData.location.city} 
           onChange={handleLocationChange} />
-      </label>
-      <br />
-
-      <label>
-        Image URL:
-        <input 
+      </Label>
+      <Label>
+        <InputName>
+        Image:
+        </InputName>
+        <Input 
           type="text" 
           name="imageUrl" 
           value={formData.imageUrl} 
           onChange={handleImageUrlChange} />
-      </label>
-      <br />
-      <label>
-        City:
-        <input 
+      </Label>
+      <Label>
+      <InputName>
+Description        </InputName>
+        <TextArea  
+          name="description" 
+          placeholder="Write something about the venue..."
+
+          value={formData.description} 
+          onChange={handleChange} />
+      </Label>
+      <Label>
+      <InputName>
+Price NOK       </InputName>        <Input 
+          type="number" 
+          name="price" 
+          placeholder="100"
+
+          value={formData.price} 
+          onChange={handleChange} />
+      </Label>
+
+
+
+
+
+
+
+
+
+</LeftContainer>
+
+
+
+
+
+
+<RightContainer>
+<Label>
+<InputName>Address        </InputName>        
+<Input 
           type="text" 
-          name="city" 
-          value={formData.location.city} 
+          name="address" 
+          placeholder="12 Maple Road"
+
+          value={formData.location.address} 
           onChange={handleLocationChange} />
-      </label>
-      <br />
-      <label>
-        Zip:
-        <input 
+      </Label>
+      <Label>
+      <InputName>Zip</InputName>        
+<Input 
           type="text" 
           name="zip" 
+          placeholder="95586"
           value={formData.location.zip} 
           onChange={handleLocationChange} />
-      </label>
-      <br />
-      <label>
-        Country:
-        <input 
+      </Label>
+<Label>
+<InputName>Country</InputName>              
+<Input 
           type="text" 
           name="country" 
+          placeholder="Norway"
+
           value={formData.location.country} 
           onChange={handleLocationChange} />
-      </label>
-      <br />
-      <label>
-        <input 
+      </Label>
+      <Label>
+      <InputName>Max guests</InputName>              <Input 
+          type="number" 
+          name="maxGuests" 
+          placeholder="5"
+          value={formData.maxGuests} 
+          onChange={handleChange} />
+      </Label>
+
+
+
+      <LabelCheckbox >
+        <CheckBox  
           type="checkbox" 
           name="wifi" 
           checked={formData.meta.wifi} 
           onChange={handleChange} />
-        Wifi
-      </label>
-
-      <br />
-      <label>
-        <input 
+      <InputName>Wifi</InputName>            </LabelCheckbox >
+      <LabelCheckbox >
+        <CheckBox  
+          type="checkbox" 
+          name="pets" 
+          checked={formData.meta.pets} 
+          onChange={handleChange} />
+      <InputName>Pets</InputName>            </LabelCheckbox >
+      <LabelCheckbox >
+        <CheckBox  
           type="checkbox" 
           name="parking" 
           checked={formData.meta.parking} 
           onChange={handleChange} />
-        Parking
-      </label>
-      <br />
-      <label>
-        <input 
+      <InputName>Parking</InputName>            </LabelCheckbox >
+      <LabelCheckbox >
+        <CheckBox  
           type="checkbox" 
           name="breakfast" 
           checked={formData.meta.breakfast} 
           onChange={handleChange} />
-        Breakfast
-      </label>
-      <br />
+              <InputName>Breakfast</InputName>      
+      </LabelCheckbox >
 
-      <button 
-        type="submit"
-      >Create Venue</button>
-    </form>
+
+
+</RightContainer>
+
+
+
+<ButtonContainer>
+<SubmittButton 
+  type="submit">
+  Create Venue
+</SubmittButton>
+</ButtonContainer>
+
+  </CreateVenueForm>
   </div>
 );
 }
