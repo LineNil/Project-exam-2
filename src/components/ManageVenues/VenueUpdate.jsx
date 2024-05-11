@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedInManager from "../Layout/Manager";
+import updateVenue from "./updatePUT";
 import Footer from "../Layout/Footer/index";
 import {
   CreateVenueForm,
@@ -19,7 +20,8 @@ import {
   ErrorMessage // Legg til ErrorMessage-komponenten
 } from "./CreateStyle";
 
-function CreateVenue() {
+function VenueUpdate() {
+  const { venueId } = useParams();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -28,24 +30,54 @@ function CreateVenue() {
     rating: 0,
     media: [],
     meta: {
-      wifi: false,
-      parking: false,
-      breakfast: false,
-      pets: false
+      wifi: true,
+      parking: true,
+      breakfast: true,
+      pets: true
     },
     location: {
       address: "",
       city: "",
       zip: "",
       country: "",
+      continent: "",
       lat: 0,
       lng: 0
     }
   });
-
   const [error, setError] = useState(""); // Legg til tilstand for feilmeldinger
   const [errors, setErrors] = useState({}); // Legg til tilstand for valideringsfeil
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchVenue() {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const response = await fetch(
+          `https://v2.api.noroff.dev/holidaze/venues/${venueId}`,
+          {
+            method: "GET",
+            headers: {
+              "X-Noroff-API-Key": ApiKey,
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch venue");
+        }
+
+        const data = await response.json();
+        setFormData(data.data); // Populate form data with venue details
+      } catch (error) {
+        console.error("Error fetching venue:", error);
+      }
+    }
+
+    if (venueId) {
+      fetchVenue();
+    }
+  }, [venueId]);
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
@@ -78,6 +110,25 @@ function CreateVenue() {
     console.log("Location Data Updated:", formData.location);
   };
 
+  const handleImageUrlChange = (e) => {
+    const { value } = e.target;
+    const isValidUrl = validateUrl(value); // Valider URL-en
+    setErrors({ ...errors, imageUrl: isValidUrl ? "" : "Invalid URL" }); // Sett feilmelding basert på gyldighet av URL
+    if (isValidUrl) {
+      setFormData({
+        ...formData,
+        media: [{ url: value }]
+      });
+    }
+  };
+  
+  const validateUrl = (url) => {
+    // Enkel validering av URL ved å bruke en regex
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlRegex.test(url);
+  };
+
+
   const handleSubmit = async (e) => {
     const accessToken = localStorage.getItem("accessToken");
     e.preventDefault();
@@ -88,40 +139,17 @@ function CreateVenue() {
         return; // Avbryt innsendingen hvis det er valideringsfeil
       }
 
-      const response = await fetch(
-        "https://v2.api.noroff.dev/holidaze/venues",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Noroff-API-Key": ApiKey,
-            Authorization: `Bearer ${accessToken}`,
-            "Access-Control-Allow-Origin": "*"
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+      const response = await updateVenue(venueId, formData, accessToken);
       console.log({ response });
-      if (!response.ok) {
-        throw new Error("Failed to create venue");
+      if (!response) {
+        throw new Error("Failed to update venue");
       }
-      const data = await response.json();
-      console.log("Venue created successfully:", data);
-      navigate(`/created-venue-success`);
+      console.log("Venue updated successfully:", response);
+      // Naviger til suksesssiden eller gjør noe annet ved vellykket oppdatering
     } catch (error) {
-      console.error("Error creating venue:", error);
+      console.error("Error updating venue:", error);
       setError(error.message); // Sett feilmelding
     }
-  };
-
-  const handleImageUrlChange = (e) => {
-    const { value } = e.target;
-    const updatedImages = [...formData.media, { url: value }];
-    setFormData({
-      ...formData,
-      media: updatedImages
-    });
-    console.log("Images Updated:", updatedImages);
   };
 
   // Valideringsfunksjon for skjemaet
@@ -145,16 +173,24 @@ function CreateVenue() {
     if (data.rating > 5) {
       errors.rating = "Rating cannot be greater than 5";
     }
+    const imageUrl = data.media[0]?.url;
+    const isValidUrl = validateUrl(imageUrl);
+    if (!isValidUrl) {
+      errors.imageUrl = "Invalid URL";
+    } else if (imageUrl && imageUrl.length > 300) {
+      errors.imageUrl = "URL cannot be longer than 300 characters";
+    }
     return errors;
   };
+
   return (
     <div>
       <HeaderLoggedInManager />
 
-      <Heading>Create New Venue</Heading>
+      <Heading>Update Venue</Heading>
       <CreateVenueForm onSubmit={handleSubmit}>
         <LeftContainer>
-        <Label>
+          <Label>
             <InputName>Name</InputName>
             <Input
               type="text"
@@ -183,6 +219,8 @@ function CreateVenue() {
               value={formData.imageUrl}
               onChange={handleImageUrlChange}
             />
+            {errors.imageUrl && <ErrorMessage>{errors.imageUrl}</ErrorMessage>}
+
           </Label>
           <Label>
             <InputName>Description</InputName>
@@ -216,9 +254,11 @@ function CreateVenue() {
             />
             {errors.rating && <ErrorMessage>{errors.rating}</ErrorMessage>}
           </Label>
+
         </LeftContainer>
 
         <RightContainer>
+
           <Label>
             <InputName>Address</InputName>
             <Input
@@ -260,7 +300,7 @@ function CreateVenue() {
             />
             {errors.maxGuests && <ErrorMessage>{errors.maxGuests}</ErrorMessage>}
           </Label>
-<p>Facilities</p>
+          <p>Facilities</p>
           <LabelCheckbox>
             <CheckBox
               type="checkbox"
@@ -300,7 +340,7 @@ function CreateVenue() {
         </RightContainer>
 
         <ButtonContainer>
-          <SubmitButton type="submit">Create Venue</SubmitButton>
+          <SubmitButton type="submit">Update Venue</SubmitButton>
         </ButtonContainer>
 
         {/* Legg til ErrorMessage-komponenten for å vise feilmeldinger */}
@@ -311,4 +351,4 @@ function CreateVenue() {
   );
 }
 
-export default CreateVenue;
+export default VenueUpdate;

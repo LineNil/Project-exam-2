@@ -13,7 +13,7 @@ import MyVenues from "../Accounts/Manager/venues";
 import CreateVenue from "../ManageVenues/CreateVenue";
 import VenueListManager from "../VenueList/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";
-import VenueInfoManager from "../ManageVenues/Venueinfo";
+import VenueUpdate from "../ManageVenues/VenueUpdate";
 import { BodyStyle } from "./style";
 import VenueDetailsNoUser from "../Venue/NoUser";
 import VenueDetailsManager from "../Venue/Manager";
@@ -41,7 +41,7 @@ function App(){
           
           <Route path="/create-venue" element={<CreateVenue />} />
           <Route path="/created-venue-success" element={<CreatedVenueSuccess />} />
-          <Route path="/venue-info-manager/:venueId" element={<VenueInfoManager />} />
+          <Route path="/venue-update/:venueId" element={<VenueUpdate />} />
         </Routes>
       </div>
     </BrowserRouter>

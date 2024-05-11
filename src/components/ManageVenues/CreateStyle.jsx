@@ -76,7 +76,7 @@ export const Input = styled.input`
 border: 1px solid rgb(204, 204, 204);
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   width: 90%;
   transition: border-color 0.3s;
 `;
@@ -93,10 +93,11 @@ export const TextArea = styled.textarea`
 border: 1px solid rgb(204, 204, 204);
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   width: 90%;
   transition: border-color 0.3s;
   height: 90px;
+  
 `;
 
 export const CheckBox = styled.input`
@@ -114,6 +115,10 @@ export const CheckBox = styled.input`
 
 export const ErrorMessage = styled.p`
 color: red;
+font-size: 11px;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 0px;
 `;
 
 

@@ -81,8 +81,8 @@ function MyVenues() {
                 <Link to={`/venue-info-manager/${venue.id}`}>
                   <ManageButton>View</ManageButton>
                 </Link>
-                <Link to={`/venue-info-manager/${venue.id}`}>
-                  <ManageButton>Edit/View</ManageButton>
+                <Link to={`/venue-update/${venue.id}`}>
+                  <ManageButton>Edit</ManageButton>
                 </Link>
                 <ManageButtonDelete onClick={() => handleDeleteVenue(venue.id)}>Delete</ManageButtonDelete>
               </ManageContainer>
