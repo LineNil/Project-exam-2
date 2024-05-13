@@ -9,7 +9,7 @@ function HeaderLoggedIn() {
 
     localStorage.removeItem("accessToken");
 
-    window.location.href = window.location.href = "/login";
+    window.location.href = "/login";
   };
 
   return (
