@@ -75,7 +75,7 @@ function SearchNoUser() {
                   <Img src={defaultImage} alt="Default image" />
                 )}
                 <Info>
-                  <VenueName>{venue.name} logged out</VenueName>
+                  <VenueName>{venue.name}</VenueName>
                   <VenueCardInfo>
                     <Location>Location:</Location>
                     <LocationInfo>{venue.location.city}, {venue.location.country}</LocationInfo>

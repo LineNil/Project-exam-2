@@ -40,7 +40,7 @@ function VenueListNoUser() {
             )}
             <Info>
 
-              <VenueName>{venue.name} no user</VenueName>
+              <VenueName>{venue.name}</VenueName>
 
 
 
