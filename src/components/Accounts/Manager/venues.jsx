@@ -78,7 +78,7 @@ function MyVenues() {
                 <Img src={defaultImage} alt="Default" />
               )}
               <ManageContainer>
-                <Link to={`/venue-info-manager/${venue.id}`}>
+                <Link to={`/venue-details-manager/${venue.id}`}>
                   <ManageButton>View</ManageButton>
                 </Link>
                 <Link to={`/venue-update/${venue.id}`}>
