@@ -104,7 +104,7 @@ function Register() {
       <RegisterDiv>
       <LoginH2>Register</LoginH2>
       <DontHaveAccount>Already have an account?</DontHaveAccount>
-      <RegisterFree to="/register">Log in!</RegisterFree>
+      <RegisterFree to="/login">Log in!</RegisterFree>
       <Form onSubmit={handleSubmit}>
         <LabelDiv>
         <InputInfo>Username:</InputInfo>
