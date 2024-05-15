@@ -30,29 +30,33 @@ export const ImageLogo = styled.div`
 export const ButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-right: 2%;
+
+  @media screen and (max-width: 768px) {
+    gap: 9px;
+
+  }
 `;
 
 export const ButtonStyle = styled.button`
-background-color: rgb(242, 208, 127);
+background-color: rgb(246, 242, 233);
   color: black;
-  font-size: 11px;
-  padding: 10px 27px;
-  border: 1px solid rgb(237, 171, 13);
-  border-radius: 7px;
+  font-size: 12px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: Playfair Display;
+  border: none;
 
   &:hover,
   &:active {
-    background-color: rgb(227, 186, 86);
+    color: rgb(227, 186, 86);
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 11px;
+    font-size: 10px;
     padding: 5px 13px;
   }
 `;
@@ -73,7 +77,6 @@ padding: 10px;
 export const LogoDiv = styled.div`
   margin-left: 2%;
   margin-top: 0px;
-  flex: 1;
 `;
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../Api/ApiKey";
 import { Link } from "react-router-dom";
-import { Heading, VenueContainer, VenueDetails, BookingDetails, VenueItem, ManageButton, Address, Bookings, CustomerName, CustomerEmail, BookingDate, Date, CustomerBookingContainer, VenueName, Img, ManageContainer, ManageButtonDelete, ShowAllButton } from "./style";
+import { Heading, VenueContainer, VenueDetails, BookingDetails, VenueItem, ManageButton, Address, Bookings, CustomerName, CustomerEmail, BookingDate, StyledDate, CustomerBookingContainer, VenueName, Img, ManageContainer, ManageButtonDelete, ShowAllButton } from "../User/bookings/bookingStyles";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
 import deleteVenue from "../../ManageVenues/deleteVenue";
 
@@ -99,7 +99,7 @@ function MyVenues() {
                   <CustomerName>{booking.customer.name}</CustomerName>
                   <CustomerEmail>{booking.customer.email}</CustomerEmail>
                   <BookingDate>Booked from-to</BookingDate>
-                  <Date>{booking.dateFrom} - {booking.dateTo}</Date>
+                  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
                 </CustomerBookingContainer>
               ))}
               {/* Show button to toggle showing all bookings */}

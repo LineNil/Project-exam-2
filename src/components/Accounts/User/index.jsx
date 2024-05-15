@@ -4,7 +4,7 @@ import ApiKey from "../../Api/ApiKey";
 import AvatarSettings from "../AvatarSettings";
 import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, UserName, AvatarSettingsWrapper } from "../style";
 import Footer from "../../Layout/Footer";
-import UserBookings from "../../Bookings/User";
+import UserBookings from "./bookings";
 
 
 function UserAccount() {
@@ -61,9 +61,8 @@ function UserAccount() {
 <UserName>{userName}</UserName>
 <LinksDiv>
 
-<StyledButton to="/user-bookings">My bookings</StyledButton>
 
-<StyledButton to="/venue-list-loggedin">View Venues</StyledButton>
+<StyledButton to="/venue-list-loggedin">Explore Venues</StyledButton>
 
 </LinksDiv>
 </ProfileContainer>

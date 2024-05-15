@@ -11,12 +11,19 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
 `;
+
 
 export const LeftColumn = styled.div`
   flex: 1;
   padding: 15px 75px;
-  
+  @media screen and (max-width: 768px) {
+    padding: 0px;
+  }
 
 `;
 
@@ -26,6 +33,12 @@ flex: 1;
   text-align: center;
   border: 1px black solid;
   padding-bottom: 75px;
+
+  @media screen and (max-width: 768px) {
+    margin: 40px 0px;
+  }
+
+
 `;
 
 export const VenueImage = styled.img`
@@ -55,6 +68,10 @@ font-family: Playfair Display;
 margin-top: 45px;
   line-height: 1.5;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    padding: 0px 20px;
+  }
 `;
 
 export const VenueLocation = styled.div`
@@ -82,6 +99,8 @@ export const FacilitiesText = styled.span`
 padding-left: 15px;
 font-size:13px;
 font-family: Playfair Display;
+
+
 `;
 
 export const FacilitiesContainer = styled.div`
@@ -90,6 +109,11 @@ export const FacilitiesContainer = styled.div`
   grid-template-rows: auto; /* Automatic row sizing */
   margin-top: 45px;
   padding-left: 15%;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+
 `;
 
 export const VenueName = styled.p`

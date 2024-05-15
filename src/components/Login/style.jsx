@@ -109,7 +109,7 @@ background-color: rgb(242, 208, 127);
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 35px 0px;
+  margin-top: 35px;
 
   &:hover,
   &:active {
@@ -130,7 +130,6 @@ flex-direction: column;
 export const ErrorMessage = styled.p`
 color: red;
   font-size: 11px;
-  margin-top: 5px;
   text-align: center;
   background-color: #ffffffa3;  
   padding: 15px;

@@ -8,6 +8,7 @@ display: grid;
   gap: 20px;
   border-bottom: 1px solid black;
   padding-bottom: 40px;
+  overflow: hidden;
 `;
 
 export const VenueItem = styled.div`
@@ -45,7 +46,7 @@ text-decoration: none;
 
 &:hover,
 &:active {
-  background-color: rgb(237, 171, 13);
+  background-color: rgba(237, 171, 13, 0.38);
 }
 
 @media screen and (max-width: 768px) {

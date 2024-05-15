@@ -4,15 +4,16 @@ import VenueListLoggedIn from "../VenueList/User";
 import VenueListLoggedOut from "../VenueList/NoUser";
 import LogIn from "../Login";
 import Register from "../Register";
-import UserAccount from "../Accounts/User";
+import UserAccount from "../Accounts/User/index";
 import ManagerAccount from "../Accounts/Manager";
 import VenueDetailsLoggedInUser from "../Venue/User";
-import UserBookings from "../Bookings/User";
-import BookingSuccess from "../Bookings/User/success";
+import UserBookings from "../Accounts/User/bookings";
+import BookingSuccess from "../Accounts/User/bookings/success";
 import MyVenues from "../Accounts/Manager/venues";
 import CreateVenue from "../ManageVenues/CreateVenue";
 import VenueListManager from "../VenueList/Manager";
 import CreatedVenueSuccess from "../ManageVenues/createsuccess";
+import UpdateVenueSuccess from "../ManageVenues/updateSuccess";
 import VenueUpdate from "../ManageVenues/VenueUpdate";
 import { BodyStyle } from "./style";
 import VenueDetailsNoUser from "../Venue/NoUser";
@@ -41,6 +42,9 @@ function App(){
           
           <Route path="/create-venue" element={<CreateVenue />} />
           <Route path="/created-venue-success" element={<CreatedVenueSuccess />} />
+          <Route path="/update-venue-success" element={<UpdateVenueSuccess/>} />
+
+
           <Route path="/venue-update/:venueId" element={<VenueUpdate />} />
         </Routes>
       </div>

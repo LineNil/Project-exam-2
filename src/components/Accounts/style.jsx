@@ -8,9 +8,17 @@ height:100px;
 
 export const Container = styled.div`
 display: grid;
-grid-template-columns: 1fr 1fr; 
+grid-template-columns: 1fr 1fr;
+
 padding-top: 85px;
-background-color: #c880251c;
+background-color: #c880251c; 
+
+@media screen and (max-width: 768px) {
+  display: flex;
+  flex-direction: column;
+    padding-top: 40px;
+}
+
 `
 
 export const LeftContainer = styled.div`
@@ -21,6 +29,8 @@ justify-items: center;
 export const RightContainer = styled.div`
 justify-items: center;
   display: grid;
+
+
 
 `;
 

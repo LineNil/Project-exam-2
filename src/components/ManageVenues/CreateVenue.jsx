@@ -136,6 +136,9 @@ function CreateVenue() {
     if (data.price <= 0) {
       errors.price = "Price must be greater than 0";
     }
+    if (data.price >= 10000) {
+      errors.price = "Price cannot be greater than 10,000";
+    }
     if (data.maxGuests <= 0) {
       errors.maxGuests = "Max guests must be greater than 0";
     }

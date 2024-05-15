@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ApiKey from "../Api/ApiKey";
 import HeaderLoggedInManager from "../Layout/Manager";
 import updateVenue from "./updatePUT";
@@ -17,8 +17,10 @@ import {
   LeftContainer,
   ButtonContainer,
   SubmitButton,
-  ErrorMessage // Legg til ErrorMessage-komponenten
+  ErrorMessage,
+  CancelButton // Legg til ErrorMessage-komponenten
 } from "./CreateStyle";
+
 
 function VenueUpdate() {
   const { venueId } = useParams();
@@ -47,6 +49,7 @@ function VenueUpdate() {
   });
   const [error, setError] = useState(""); // Legg til tilstand for feilmeldinger
   const [errors, setErrors] = useState({}); // Legg til tilstand for valideringsfeil
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchVenue() {
@@ -145,6 +148,7 @@ function VenueUpdate() {
         throw new Error("Failed to update venue");
       }
       console.log("Venue updated successfully:", response);
+      navigate(`/update-venue-success`);
       // Naviger til suksesssiden eller gjør noe annet ved vellykket oppdatering
     } catch (error) {
       console.error("Error updating venue:", error);
@@ -340,7 +344,9 @@ function VenueUpdate() {
         </RightContainer>
 
         <ButtonContainer>
-          <SubmitButton type="submit">Update Venue</SubmitButton>
+          <SubmitButton type="submit">Update</SubmitButton>
+
+          <CancelButton to="/manager">Cancel</CancelButton>
         </ButtonContainer>
 
         {/* Legg til ErrorMessage-komponenten for å vise feilmeldinger */}

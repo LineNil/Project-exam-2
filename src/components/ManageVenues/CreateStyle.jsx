@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -9,9 +10,18 @@ font-size: 35px;
 font-family: MonteCarlo;
 `;
 
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Sentrer knappene horisontalt */
+  align-items: center; /* Sentrer knappene vertikalt */
+  padding: 20px 0; /* Legg til litt padding over og under knappene */
+  margin-top: 20px;
+`;
+
 export const SubmitButton = styled.button`
-background-color: rgb(242, 208, 127);
-color: black;
+  background-color: rgb(242, 208, 127);
+  color: black;
   font-size: 13px;
   padding: 12px 35px;
   border: 1px solid rgb(237, 171, 13);
@@ -19,7 +29,31 @@ color: black;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: Playfair Display;
+  margin-right: 20px; /* Legg til litt mellomrom mellom knappene */
+  
+  &:hover,
+  &:active {
+    background-color: rgb(227, 186, 86);
+  }
 
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+    padding: 5px 13px;
+  }
+`;
+
+export const CancelButton = styled(Link)`
+  background-color: rgb(242, 208, 127);
+  color: black;
+  font-size: 13px;
+  padding: 12px 35px;
+  border: 1px solid rgb(237, 171, 13);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Playfair Display;
+  text-decoration: none;
+  
   &:hover,
   &:active {
     background-color: rgb(227, 186, 86);
@@ -35,6 +69,10 @@ export const CreateVenueForm = styled.form`
   display: flex;
   flex-wrap: wrap;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;  
+      }
 `;
 
 export const Name = styled.label`
@@ -45,21 +83,27 @@ export const RightContainer = styled.div`
   flex: 1;
   flex-direction: column;
   display: flex;
-  margin: 0px 200px 0px 50px;`;
+  margin: 0px 200px 0px 50px;
+  
+  @media screen and (max-width: 768px) {
+    margin: 0px;
+  }
+
+  `;
+
 
 export const LeftContainer = styled.div`
   flex: 1;
   flex-direction: column;
   display: flex;
-  margin: 0px 50px 0px 200px;`;
+  margin: 0px 50px 0px 200px;
+  
+  @media screen and (max-width: 768px) {
+    margin: 0px;
+  }
+  `;
 
-export const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  margin-top: 20px;
-`;
+
 
 export const Label = styled.label`
   margin-bottom: 10px;
@@ -124,4 +168,64 @@ font-size: 11px;
 
 
 
+//success
 
+export const SuccessContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  height: 100vh;
+`;
+
+export const SuccessContent = styled.div`
+  margin-top: 50px;
+`;
+
+export const SuccessHeading = styled.h2`
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+`;
+
+export const Message = styled.p`
+  font-size: 14px;
+  margin-bottom: 10px;
+`;
+
+
+export const ButtonContainerSuccess = styled.div`
+display:flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 0px auto;
+  margin-top: 50px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+
+export const Button = styled.button`
+background-color: rgb(242, 208, 127);
+  color: black;
+  font-size: 11px;
+  padding: 10px 27px;
+  border: 1px solid rgb(237, 171, 13);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Playfair Display;
+  margin: 12px;
+
+  &:hover,
+  &:active {
+    background-color: rgb(227, 186, 86);
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+    padding: 5px 13px;
+  }
+
+`;

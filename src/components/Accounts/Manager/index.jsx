@@ -69,7 +69,7 @@ function ManagerAccount() {
         
         <LinksDiv>
 
-            <StyledButton to="/my-venues">My Venues</StyledButton>
+        
 
 
             <StyledButton to="/venue-list-manager">View Venues</StyledButton>

@@ -4,7 +4,7 @@ import { SuccessContainer, SuccessContent, SuccessHeading, Message, ButtonContai
 import Footer from "../Layout/Footer";
 import HeaderLoggedInManager from "../Layout/Manager";
 
-function CreatedVenueSuccess() {
+function UpdateVenueSuccess() {
 
   return (
     <div>
@@ -12,9 +12,8 @@ function CreatedVenueSuccess() {
 <SuccessContainer>
 
 <SuccessContent>
-<SuccessHeading>Congratulations!</SuccessHeading>
-<Message>You've successfully added a new venue to our platform.</Message>
-<Message>Your venue is now live and ready for bookings.</Message>
+<SuccessHeading>Update successful!</SuccessHeading>
+<Message>You've successfully updated your venue.</Message>
 </SuccessContent>
 <ButtonContainerSuccess>
 <Link to="/venue-list-manager">
@@ -35,4 +34,4 @@ function CreatedVenueSuccess() {
   );
 }
 
-export default CreatedVenueSuccess;
+export default UpdateVenueSuccess;

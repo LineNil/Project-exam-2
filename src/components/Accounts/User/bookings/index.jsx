@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ApiKey from "../../Api/ApiKey";
-import { Heading, VenueContainer, Img, VenueDetails, VenueItem, VenueName, Address, ManageContainer, ManageButton, BookingDetails, Bookings, BookingContainer, BookingDate, DateBooked } from "./style"; 
-import defaultImage from "../../VenueList/DefaultImg.jpg";
+import ApiKey from "../../../Api/ApiKey";
+import { Heading, StyledDate, ManageButtonDelete, VenueContainer, Img, VenueDetails, VenueItem, VenueName, Address, ManageContainer, ManageButton, BookingDetails, Bookings, BookingContainer, BookingDate } from "./bookingStyles"; 
+import defaultImage from "../../../VenueList/DefaultImg.jpg";
 import { Link } from "react-router-dom";
 
 function UserBookings() {
@@ -73,6 +73,7 @@ function UserBookings() {
 
   return (
     <div>
+      
       <Heading>Your Bookings</Heading>
       {bookings.map((booking) => (
         <VenueItem key={booking.id}>
@@ -83,31 +84,31 @@ function UserBookings() {
               <Img src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage} alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"} />
               <ManageContainer>
                 <Link to={`/venue-list-loggedin`}>
-                  <ManageButton>View venue</ManageButton>
+                  <ManageButton>View</ManageButton>
                 </Link>
-                <ManageButton onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButton>
+                <ManageButtonDelete onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButtonDelete>
               </ManageContainer>
             </VenueDetails>
 <BookingDetails>
-<Bookings>Bookings</Bookings>
+<Bookings>Booking</Bookings>
 <BookingContainer>
   <BookingDate>Booked from-to</BookingDate>
-  <DateBooked>{booking.dateFrom} - {booking.dateTo}</DateBooked>
+  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
 
   <BookingDate>Guests</BookingDate>
-  <DateBooked>{booking.guests}</DateBooked>
+  <StyledDate>{booking.guests}</StyledDate>
 
 
 
             {booking.venue && (
               <div>
                   <BookingDate>Price</BookingDate>
-                <DateBooked>Per day: NOK {booking.venue.price}</DateBooked>
-                <DateBooked>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</DateBooked>
+                <StyledDate>Per day: NOK {booking.venue.price}</StyledDate>
+                <StyledDate>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</StyledDate>
               </div>
             )}
             <BookingDate>Booking ID</BookingDate>
-            <DateBooked>{booking.id}</DateBooked>
+            <StyledDate>{booking.id}</StyledDate>
 
 
 </BookingContainer>
