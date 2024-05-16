@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderLoggedIn from "../../../Layout/User";
+import HeaderLoggedInManager from "../../../Layout/Manager";
 import Footer from "../../../Layout/Footer";
 import { Link } from "react-router-dom";
 import { 
@@ -12,10 +12,10 @@ import {
 } from "../../bookingStyles";
 
 
-function BookingSuccess() {
+function BookingSuccessManager() {
   return (
     <div>
-      <HeaderLoggedIn />
+      <HeaderLoggedInManager />
       <SuccessContainer>
         <SuccessContent>
           <SuccessHeading>Booking Successful!</SuccessHeading>
@@ -23,10 +23,10 @@ function BookingSuccess() {
           <Message>Your booking has been confirmed.</Message>
         </SuccessContent>
         <ButtonContainer>
-          <Link to="/venue-list-loggedin">
+          <Link to="/venue-list-manager">
             <Button>All venues</Button>
           </Link>
-          <Link to="/user-account">
+          <Link to="/manager">
             <Button>Your bookings</Button>
           </Link>
         </ButtonContainer>
@@ -36,4 +36,4 @@ function BookingSuccess() {
   );
 }
 
-export default BookingSuccess;
+export default BookingSuccessManager;

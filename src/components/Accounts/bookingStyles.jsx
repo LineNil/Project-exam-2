@@ -137,6 +137,11 @@ export const BookingDetails = styled.div`
   margin-top: 30px;
 `;
 
+export const NoData = styled.p`
+font-size: 11px;
+text-align: center;
+`;
+
 export const Bookings = styled.p`
 text-align: center;
 font-size: 21px;

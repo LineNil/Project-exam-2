@@ -5,12 +5,17 @@ export const AvatarDiv = styled.div`
 height:100px;
 `;
 
+export const NoData = styled.p`
+font-size: 11px;
+text-align: center;
+`;
 
 export const Container = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr;
 
 padding-top: 85px;
+padding-bottom: 85px;
 background-color: #c880251c; 
 
 @media screen and (max-width: 768px) {
@@ -57,11 +62,42 @@ export const LinksDiv = styled.div`
 
 `;
 
+
+
 export const StyledButton = styled(Link)`
 background-color: rgb(242, 208, 127);
   color: black;
   font-size: 11px;
   padding: 10px 0px;
+  border: 1px solid rgb(237, 171, 13);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Playfair Display;
+  margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    background-color: rgb(227, 186, 86);
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+    padding: 5px 13px;
+  }
+`;
+
+export const SwitchContainer = styled.div`
+display: flex;
+  gap: 10px;
+`;
+
+export const Switch = styled(Link)`
+  color: black;
+  font-size: 9px;
+  padding: 7px 12px;
   border: 1px solid rgb(237, 171, 13);
   border-radius: 7px;
   cursor: pointer;
@@ -97,6 +133,7 @@ color: red;
   margin-top: 155px;
 `;
 
+//Avatar settings
 
 export const UpdateAvatarButton = styled.button`
 background-color: rgba(242, 208, 127, 0.23);

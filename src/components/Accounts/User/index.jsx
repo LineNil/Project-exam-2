@@ -2,9 +2,20 @@ import React, { useEffect, useState } from "react";
 import HeaderLoggedIn from "../../Layout/User";
 import ApiKey from "../../Api/ApiKey";
 import AvatarSettings from "../AvatarSettings";
-import { LinksDiv, Container, ProfileContainer, AvatarImage, StyledButton, LeftContainer, RightContainer, UserName, AvatarSettingsWrapper } from "../style";
 import Footer from "../../Layout/Footer";
 import UserBookings from "./bookings";
+import { 
+  LinksDiv, 
+  Container, 
+  ProfileContainer, 
+  AvatarImage, 
+  StyledButton, 
+  LeftContainer, 
+  RightContainer, 
+  UserName, 
+  AvatarSettingsWrapper 
+} from "../style";
+
 
 
 function UserAccount() {
@@ -13,15 +24,11 @@ function UserAccount() {
 
   useEffect(() => {
     async function fetchProfile() {
-      console.log("Local Storage:", localStorage);
 
       const accessToken = localStorage.getItem("accessToken");
       const loggedInUserName = localStorage.getItem("loggedInUserName");
 
-      console.log("Logged In User Name:", loggedInUserName);
-
       if (!accessToken || !loggedInUserName) {
-        console.error("Access token or logged in user name not found in localStorage");
         return;
       }
 
@@ -34,15 +41,12 @@ function UserAccount() {
           },
         });
         const responseData = await response.json();
-        console.log(responseData.data);
         const userName = responseData.data.name;
         setUserName(userName);
         setUserAvatar(responseData.data.avatar.url); 
       } catch (error) {
-        console.error("Error:", error);
       }
     }
-
     fetchProfile();
   }, []);
 
@@ -55,28 +59,18 @@ function UserAccount() {
             {userAvatar && (
               <AvatarImage src={userAvatar} alt="User Avatar" />
             )}
-<AvatarSettingsWrapper>
-<AvatarSettings setUserAvatar={setUserAvatar} />
-</AvatarSettingsWrapper>
-<UserName>{userName}</UserName>
-<LinksDiv>
-
-
-<StyledButton to="/venue-list-loggedin">Explore Venues</StyledButton>
-
-</LinksDiv>
-</ProfileContainer>
-
-      </LeftContainer>
-
-      <RightContainer>
-       <UserBookings/>
-      </RightContainer>
-
-
-
-
- 
+            <AvatarSettingsWrapper>
+              <AvatarSettings setUserAvatar={setUserAvatar} />
+            </AvatarSettingsWrapper>
+            <UserName>{userName}</UserName>
+            <LinksDiv>
+              <StyledButton to="/venue-list-loggedin">Explore Venues</StyledButton>
+            </LinksDiv>
+          </ProfileContainer>
+        </LeftContainer>
+        <RightContainer>
+          <UserBookings/>
+       </RightContainer>
       </Container>
       <Footer/>
     </div>

@@ -90,16 +90,25 @@ function VenueUpdate() {
           ? parseInt(value)
           : 0
         : value;
-    setFormData({
-      ...formData,
-      meta: {
-        ...formData.meta,
-        [name]: checked
-      },
-      [name]: parsedValue
-    });
-    console.log("Form Data Updated:", formData);
-  };
+
+        if (name === "imageUrl") {
+          setFormData({
+            ...formData,
+            media: [{url: value}]
+          });
+        }else {
+          setFormData({
+            ...formData,
+            meta: {
+              ...formData.meta,
+              [name]: checked
+            },
+            [name]: parsedValue
+          });
+          console.log("Form Data Updated:", formData);
+        };
+        }
+
 
   const handleLocationChange = (e) => {
     const { name, value } = e.target;
@@ -220,7 +229,7 @@ function VenueUpdate() {
             <Input
               type="text"
               name="imageUrl"
-              value={formData.imageUrl}
+              value={formData.media[0]?.url ?? ""}
               onChange={handleImageUrlChange}
             />
             {errors.imageUrl && <ErrorMessage>{errors.imageUrl}</ErrorMessage>}

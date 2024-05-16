@@ -7,9 +7,9 @@ export const LogInRegisterBody = styled.div`
   position: relative;
   background-image: url("${loginRegisterImg}");
   background-size: cover;
-  height: 800px;
+  height: 100%px;
   background-position: 0% 65%;
-
+padding-bottom: 50px;
   border-radius: 40px;
   margin: 0px 10px;
   display: flex;
@@ -109,7 +109,8 @@ background-color: rgb(242, 208, 127);
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 35px;
+  margin-top: 30px;
+  margin-bottom: 35px;
 
   &:hover,
   &:active {
@@ -152,7 +153,7 @@ export const RegisterDiv = styled.div`
   padding: 0px 145px;
   border-radius: 20px;
   margin-top: 90px;
-  height: 80%;
+  height: 100%;
 
   @media screen and (max-width: 768px) {
     padding-left: 30px; 

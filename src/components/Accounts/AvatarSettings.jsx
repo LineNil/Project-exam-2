@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../Api/ApiKey";
-import { UpdateAvatarButton, NewAvatarForm, AvatarSettingsWrapper, CancelAvatar, SaveAvatar, InputAvatar, ErrorMessage } from "../Accounts/style";
+import { 
+  UpdateAvatarButton, 
+  NewAvatarForm, 
+  AvatarSettingsWrapper, 
+  CancelAvatar, 
+  SaveAvatar, 
+  InputAvatar, 
+  ErrorMessage 
+} from "../Accounts/style";
 
 const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
   const [newAvatarUrl, setNewAvatarUrl] = useState("");
   const [avatarUpdated, setAvatarUpdated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [error, setError] = useState(null); // State to track error
+  const [error, setError] = useState(null);
 
   const handleAvatarChange = async () => {
     try {
@@ -14,7 +22,6 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
       const loggedInUserName = localStorage.getItem("loggedInUserName");
 
       if (!accessToken || !loggedInUserName) {
-        console.error("Access token or logged in user name not found in localStorage");
         return;
       }
 
@@ -34,22 +41,19 @@ const AvatarSettings = ({ userAvatar, setUserAvatar }) => {
       });
 
       if (response.ok) {
-        const responseData = await response.json();
-        console.log("Updated user profile with new avatar:", responseData.data);
         setUserAvatar(newAvatarUrl);
         localStorage.setItem("userAvatar", newAvatarUrl);
         setAvatarUpdated(true);
         setNewAvatarUrl("");
         setIsOpen(false); 
       } else {
-        console.error("Failed to update user avatar:", response.status);
-        setError("Failed to update user avatar. Please try again."); // Set error message if update fails
+        setError("Failed to update user avatar. Please try again.");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      setError("An error occurred. Please try again."); // Set error message if an error occurs
-    }
-  };
+      } catch (error) {
+        setError("An error occurred. Please try again.");
+      }
+      };
+      
 
 
   useEffect(() => {

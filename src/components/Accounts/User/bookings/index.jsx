@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../../Api/ApiKey";
-import { Heading, StyledDate, ManageButtonDelete, VenueContainer, Img, VenueDetails, VenueItem, VenueName, Address, ManageContainer, ManageButton, BookingDetails, Bookings, BookingContainer, BookingDate } from "./bookingStyles"; 
 import defaultImage from "../../../VenueList/DefaultImg.jpg";
-import { Link } from "react-router-dom";
+import { Heading, 
+  StyledDate, 
+  ManageButtonDelete, 
+  VenueContainer, 
+  NoData, 
+  Img, 
+  VenueDetails, 
+  VenueItem, 
+  VenueName, 
+  Address, 
+  ManageContainer, 
+  BookingDetails, 
+  Bookings, 
+  BookingContainer, 
+  BookingDate 
+} from "../../bookingStyles"; 
+
 
 function UserBookings() {
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const accessToken = localStorage.getItem("accessToken");
   const profileName = localStorage.getItem("loggedInUserName");
 
@@ -23,26 +39,22 @@ function UserBookings() {
           }
         );
         const responseData = await response.json();
-        console.log("Response Data:", responseData);
         if (Array.isArray(responseData.data)) {
-          console.log("Response Data is an array.");
           setBookings(responseData.data);
-        } else {
-          console.error("Error: Response data is not an array.");
-        }
+        } 
       } catch (error) {
-        console.error("Error fetching bookings:", error);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchBookings();
   }, [accessToken, profileName]);
 
-  // Function to calculate total price based on venue price and number of days booked
   const calculateTotalPrice = (pricePerDay, dateFrom, dateTo) => {
     const start = new Date(dateFrom);
     const end = new Date(dateTo);
-    const numberOfDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // Calculate difference in days
+    const numberOfDays = Math.round((end - start) / (1000 * 60 * 60 * 24));
     return pricePerDay * numberOfDays;
   };
 
@@ -59,65 +71,54 @@ function UserBookings() {
         }
       );
       if (response.ok) {
-        // Remove the deleted booking from the state
         const updatedBookings = bookings.filter((booking) => booking.id !== bookingId);
         setBookings(updatedBookings);
-        console.log("Booking deleted successfully.");
-      } else {
-        console.error("Failed to delete booking.");
       }
     } catch (error) {
-      console.error("Error deleting booking:", error);
     }
   };
 
   return (
     <div>
-      
       <Heading>Your Bookings</Heading>
-      {bookings.map((booking) => (
-        <VenueItem key={booking.id}>
-          <VenueContainer>
-            <VenueDetails>
-              <VenueName>{booking.venue.name}</VenueName>
-              <Address>{booking.venue.location.address}, {booking.venue.location.city}</Address>
-              <Img src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage} alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"} />
-              <ManageContainer>
-                <Link to={`/venue-list-loggedin`}>
-                  <ManageButton>View</ManageButton>
-                </Link>
-                <ManageButtonDelete onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButtonDelete>
-              </ManageContainer>
-            </VenueDetails>
-<BookingDetails>
-<Bookings>Booking</Bookings>
-<BookingContainer>
-  <BookingDate>Booked from-to</BookingDate>
-  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
-
-  <BookingDate>Guests</BookingDate>
-  <StyledDate>{booking.guests}</StyledDate>
-
-
-
-            {booking.venue && (
-              <div>
-                  <BookingDate>Price</BookingDate>
-                <StyledDate>Per day: NOK {booking.venue.price}</StyledDate>
-                <StyledDate>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</StyledDate>
-              </div>
-            )}
-            <BookingDate>Booking ID</BookingDate>
-            <StyledDate>{booking.id}</StyledDate>
-
-
-</BookingContainer>
-
-</BookingDetails>
-
-          </VenueContainer>
-        </VenueItem>
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : bookings.length === 0 ? (
+        <NoData>You have no upcoming bookings</NoData>
+      ) : (
+        bookings.map((booking) => (
+          <VenueItem key={booking.id}>
+            <VenueContainer>
+              <VenueDetails>
+                <VenueName>{booking.venue.name}</VenueName>
+                <Address>{booking.venue.location.address}, {booking.venue.location.city}</Address>
+                <Img src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage} alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"} />
+                <ManageContainer>
+                  <ManageButtonDelete onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButtonDelete>
+                </ManageContainer>
+              </VenueDetails>
+              <BookingDetails>
+                <Bookings>Booking</Bookings>
+                <BookingContainer>
+                  <BookingDate>Booked from-to</BookingDate>
+                  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
+                  <BookingDate>Guests</BookingDate>
+                  <StyledDate>{booking.guests}</StyledDate>
+                  {booking.venue && (
+                    <div>
+                      <BookingDate>Price</BookingDate>
+                      <StyledDate>Per day: NOK {booking.venue.price}</StyledDate>
+                      <StyledDate>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</StyledDate>
+                    </div>
+                  )}
+                  <BookingDate>Booking ID</BookingDate>
+                  <StyledDate>{booking.id}</StyledDate>
+                </BookingContainer>
+              </BookingDetails>
+            </VenueContainer>
+          </VenueItem>
+        ))
+      )}
     </div>
   );
 }

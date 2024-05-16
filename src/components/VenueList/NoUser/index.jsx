@@ -3,8 +3,11 @@ import Search from "../../Search/NoUser";
 import HeaderImage from "../../HeaderImage";
 import useVenueData from "../FetchData";
 import HeaderLoggedOut from "../../Layout/LoggedOut";
-import { VenuesDiv, VenueItem, Img, Info, ViewVenue, LinkViewVenue, VenueName, Location, LocationInfo, NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating } from "../style"; 
+import { VenuesDiv, VenueItem, Img, Info, ScrollToTop, ViewVenue, LinkViewVenue, VenueName, Location, LocationInfo, NOK, NOKInfo, Rating, RatingNumber, VenueCardInfo, VenueCardInfoRating } from "../style"; 
 import Footer from "../../Layout/Footer";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 // Importer standard fallback-bilde
 import defaultImage from "../DefaultImg.jpg";
@@ -24,6 +27,10 @@ function VenueListNoUser() {
     setFilteredVenues(filteredVenues);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
       <HeaderLoggedOut />
@@ -33,11 +40,14 @@ function VenueListNoUser() {
         {filteredVenues.map((venue, index) => (
           <VenueItem key={venue.id} index={index}>
             {/* Sjekk om det er tilgjengelige bilder, hvis ikke, bruk fallback-bilde */}
+
+            <Link to={`/venue-details-no-user/${venue.id}`} state={{ venue }}>
             {venue.media.length > 0 ? (
               <Img src={venue.media[0].url} alt={venue.media[0].alt} />
             ) : (
               <Img src={defaultImage} alt="Default" />
             )}
+            </Link>
             <Info>
 
               <VenueName>{venue.name}</VenueName>
@@ -71,6 +81,8 @@ function VenueListNoUser() {
           </VenueItem>
         ))}
       </VenuesDiv>
+      <ScrollToTop onClick={scrollToTop}>
+      <FontAwesomeIcon icon={faArrowUp} />      </ScrollToTop>
       <Footer/>
     </div>
   );

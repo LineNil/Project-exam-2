@@ -11,45 +11,84 @@ function Register() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     role: "", 
   });
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [nameError, setNameError] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    
-    // Sjekk for e-postvalidering
-    if (name === "email" && !value.endsWith("@stud.noroff.no")) {
-      setEmailError("Please enter a valid @stud.noroff.no email");
-    } else {
-      setEmailError("");
-    }
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+  
+  // Sjekk for e-postvalidering
+  if (name === "email" && !value.endsWith("@stud.noroff.no")) {
+    setEmailError("Please enter a valid @stud.noroff.no email");
+  } else if (name === "email") {
+    setEmailError("");
+  }
 
-    // Sjekk for passordvalidering
-    if (name === "password" && value.length < 8) {
-      setPasswordError("Password must be at least 8 characters long");
-    } else {
-      setPasswordError("");
-    }
+  // Sjekk for passordvalidering
+  if (name === "password" && value.length < 8) {
+    setPasswordError("Password must be at least 8 characters long");
+  } else if (name === "password") {
+    setPasswordError("");
+  }
 
-    // Sjekk for navnvalidering
-    if (name === "name" && value.length < 3) {
-      setNameError("Name must be at least 3 characters long");
-    } else {
-      setNameError("");
-    }
-  };
+   // Sjekk for bekreft passordvalidering
+   if (name === "confirmPassword" && value !== formData.password) {
+    setConfirmPasswordError("Passwords do not match");
+  } else if (name === "confirmPassword") {
+    setConfirmPasswordError("");
+  }
+
+  // Sjekk for navnvalidering
+  if (name === "name" && value.length < 3) {
+    setNameError("Name must be at least 3 characters long");
+  } else if (name === "name") {
+    setNameError("");
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log("FormData before submission:", formData);
 
-    // Sjekk om det er noen feil før du sender skjemaet
+    if (!formData.email.endsWith("@stud.noroff.no")) {
+      setEmailError("Please enter a valid @stud.noroff.no email");
+    } else {
+      setEmailError("");
+    }
+
+    if (formData.password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else {
+      setPasswordError("");
+    }
+
+    if (confirmPassword !== formData.password) {
+      setConfirmPasswordError("Passwords do not match");
+    } else {
+      setConfirmPasswordError("");
+    }
+
+    if (formData.name.length < 3) {
+      setNameError("Name must be at least 3 characters long");
+    } else {
+      setNameError("");
+    }
+
+    if (emailError || passwordError || confirmPasswordError || nameError) {
+      alert("Please fix the errors before submitting the form");
+      return;
+    }
+  
     if (emailError || passwordError || nameError) {
       alert("Please fix the errors before submitting the form");
       return;
@@ -143,8 +182,21 @@ function Register() {
 
 
         </LabelDiv>
+
         <LabelDiv>
-        <InputInfo>Password:</InputInfo>
+  <InputInfo>Confirm Password:</InputInfo>
+  <Input
+    type="password"
+    name="confirmPassword"
+    value={confirmPassword}
+    onChange={(e) => setConfirmPassword(e.target.value)}
+    required
+  />
+  {confirmPasswordError && <ErrorMessageRegister>{confirmPasswordError}</ErrorMessageRegister>}
+</LabelDiv>
+
+        <LabelDiv>
+        <InputInfo>Role:</InputInfo>
           <StyledSelect 
             name="role"
             value={formData.role}

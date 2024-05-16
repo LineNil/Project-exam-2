@@ -184,3 +184,30 @@ export const NoResults = styled.p`
   text-align: center;
   font-size: 20px;
 `;
+
+export const ScrollToTop = styled.button `
+
+position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #e9b945;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.scroll-to-top-btn:hover {
+background-color: #0056b3;
+}
+
+`;
+ 
