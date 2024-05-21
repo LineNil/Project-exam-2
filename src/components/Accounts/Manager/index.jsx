@@ -67,8 +67,8 @@ function ManagerAccount() {
             <LinksDiv>
               <StyledButton to="/venue-list-manager">View Venues</StyledButton>
               <StyledButton to="/create-venue">Create new venue</StyledButton>
-              <Switch onClick={() => setShowVenues(true)}>My Venues</Switch> {/* Knapp for å vise My Venues */}
-              <Switch onClick={() => setShowVenues(false)}>My Bookings</Switch> {/* Knapp for å vise Manager Bookings */}
+              <Switch onClick={() => setShowVenues(true)}>My Venues</Switch>
+              <Switch onClick={() => setShowVenues(false)}>My Bookings</Switch>
             </LinksDiv>
           </ProfileContainer>
         </LeftContainer>

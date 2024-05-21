@@ -34,26 +34,37 @@ export const Info = styled.div`
 `;
 
 export const ViewVenue = styled.button`
-  background-color: rgb(246, 242, 233);
-  color: black;
+  background-color: #f6f2e9;
+  color: #333;
   font-size: 13px;
-  padding: 8px 18px;
-  border: 1px solid rgb(237, 171, 13);
+  padding: 10px 20px;
+  border: 1px solid #edab0d;
   border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 
   &:hover,
   &:active {
-    background-color: rgba(237, 171, 13, 0.38);
-}
+    background-color: #edab0d;
+    color: #fff;
+    border-color: #d4940b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
 
-@media screen and (max-width: 768px) {
-  font-size: 11px;
-  padding: 5px 13px;
-}
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(237, 171, 13, 0.5);
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 11px;
+    padding: 7px 15px;
+  }
 `;
+
 
 export const LinkViewVenue = styled(Link)`
   margin-top: 20px

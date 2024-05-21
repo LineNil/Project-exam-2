@@ -13,7 +13,6 @@ function useVenueData() {
           }
         });
         const json = await response.json();
-        console.log("API response:", json);
         setVenues(json.data);
       } catch (error) {
         alert('Error fetching data:' + error.message);

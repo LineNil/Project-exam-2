@@ -19,7 +19,7 @@ import {
 
 
 
-function LoginForm() {
+function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -103,4 +103,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default Login;
