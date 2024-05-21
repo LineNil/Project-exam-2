@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonDiv, ButtonStyle, NavDiv, LogoDiv, LogoLink, ImageLogo } from "../style";
+import { 
+  ButtonDiv, 
+  ButtonStyle, 
+  NavDiv, 
+  LogoDiv, 
+  LogoLink, 
+  ImageLogo 
+} from "../style";
 
 
 
 function HeaderLoggedIn() {
   const handleLogout = () => {
-
     localStorage.removeItem("accessToken");
-
     window.location.href = "/login";
   };
 
@@ -19,7 +24,6 @@ function HeaderLoggedIn() {
           <ImageLogo/>
         </LogoLink>
       </LogoDiv>
-
       <ButtonDiv>
         <Link to="/venue-list-loggedin">
           <ButtonStyle>Home</ButtonStyle>

@@ -18,7 +18,7 @@ function useVenueData(venueId) {
         const data = await response.json();
         setVenue(data.data);
       } catch (error) {
-        console.error('Error fetching venue data:', error);
+        alert('Error fetching venue data:' +  error.message);
       }
     }
 

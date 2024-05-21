@@ -13,10 +13,10 @@ function useVenueData() {
           }
         });
         const json = await response.json();
-        console.log("API response:", json); // Legger til logging for å se API-responsen
+        console.log("API response:", json);
         setVenues(json.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        alert('Error fetching data:' + error.message);
       }
     }
 

@@ -9,12 +9,11 @@ export const LogInRegisterBody = styled.div`
   background-size: cover;
   height: 100%px;
   background-position: 0% 65%;
-padding-bottom: 50px;
+  padding-bottom: 50px;
   border-radius: 40px;
   margin: 0px 10px;
   display: flex;
-
-text-align: center
+  text-align: center
 
   @media screen and (max-width: 768px) {
     background-position: 11% 35%;
@@ -101,7 +100,7 @@ color: black;
 `;
 
 export const ButtonStyle = styled.button`
-background-color: rgb(242, 208, 127);
+  background-color: rgb(242, 208, 127);
   color: black;
   font-size: 11px;
   padding: 10px 27px;

@@ -8,7 +8,6 @@ import ManagerBookings from "./Booking/bookings";
 import { 
   LinksDiv, 
   Container, 
-  NoData, 
   ProfileContainer, 
   AvatarImage, 
   StyledButton, 
@@ -77,12 +76,10 @@ function ManagerAccount() {
          {showVenues ? (
           <div>
             <MyVenues />
-            {<NoData>You have no venues yet.</NoData>}
           </div>
           ) : (
           <div>
             <ManagerBookings />
-            {<NoData>You have no bookings yet.</NoData>}
           </div>
           )}
         </RightContainer>

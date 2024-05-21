@@ -4,6 +4,15 @@ import HeaderLoggedInManager from "../../Layout/Manager";
 import useVenueData from "../FetchData";
 import ApiKey from "../../Api/ApiKey";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
+import Footer from "../../Layout/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWifi,
+  faParking,
+  faUtensils,
+  faPaw,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   VenueImage,
   Container,
@@ -31,15 +40,6 @@ import {
   CustomDatePicker,
   DatePickerContainer,
 } from "../style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faWifi,
-  faParking,
-  faUtensils,
-  faPaw,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
-import Footer from "../../Layout/Footer";
 
 async function createBooking(startDate, endDate, guests, venueId) {
   const accessToken = localStorage.getItem("accessToken");
@@ -66,7 +66,6 @@ async function createBooking(startDate, endDate, guests, venueId) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error creating booking:", error);
     throw new Error("The selected dates and guests either overlap with an existing booking or exceed the maximum guests for this venue.");
   }
 }
@@ -102,8 +101,6 @@ function VenueDetailsManager() {
           throw new Error("Failed to fetch booked dates");
         }
 
-
-
         const data = await response.json();
         const dates = data.data.map(booking => ({
           startDate: new Date(booking.dateFrom),
@@ -111,10 +108,9 @@ function VenueDetailsManager() {
         }));
         setBookedDates(dates);
       } catch (error) {
-        console.error("Error fetching booked dates:", error);
+        alert("Error fetching booked dates:" + error.message);
       }
     }
-
     if (venueId) {
       fetchBookedDates();
     }
@@ -123,16 +119,13 @@ function VenueDetailsManager() {
   const handleBookVenue = async () => {
     try {
       await createBooking(startDate, endDate, guests, venueId);
-      console.log("Booking created successfully!");
       navigateToBookingSuccess(); 
     } catch (error) {
-      console.error("Booking failed:", error);
       setError(error.message);
     }
   };
 
   const navigateToBookingSuccess = () => {
-    console.log("Navigating to booking success page...");
     navigate("/booking-success-manager");
   };
 

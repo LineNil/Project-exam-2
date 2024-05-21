@@ -16,7 +16,7 @@ import {
   LeftContainer,
   ButtonContainer,
   SubmitButton,
-  ErrorMessage // Legg til ErrorMessage-komponenten
+  ErrorMessage
 } from "./CreateStyle";
 
 function CreateVenue() {
@@ -43,8 +43,8 @@ function CreateVenue() {
     }
   });
 
-  const [error, setError] = useState(""); // Legg til tilstand for feilmeldinger
-  const [errors, setErrors] = useState({}); // Legg til tilstand for valideringsfeil
+  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -63,7 +63,6 @@ function CreateVenue() {
       },
       [name]: parsedValue
     });
-    console.log("Form Data Updated:", formData);
   };
 
   const handleLocationChange = (e) => {
@@ -75,17 +74,16 @@ function CreateVenue() {
         [name]: value
       }
     });
-    console.log("Location Data Updated:", formData.location);
   };
 
   const handleSubmit = async (e) => {
     const accessToken = localStorage.getItem("accessToken");
     e.preventDefault();
     try {
-      const validationErrors = validateFormData(formData); // Valider dataene før du sender dem til serveren
+      const validationErrors = validateFormData(formData);
       if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors); // Sett valideringsfeilene
-        return; // Avbryt innsendingen hvis det er valideringsfeil
+        setErrors(validationErrors);
+        return;
       }
 
       const response = await fetch(
@@ -101,18 +99,17 @@ function CreateVenue() {
           body: JSON.stringify(formData)
         }
       );
-      console.log({ response });
+
       if (!response.ok) {
         throw new Error("Failed to create venue");
-      }
-      const data = await response.json();
-      console.log("Venue created successfully:", data);
-      navigate(`/created-venue-success`);
+      } 
+        await response.json();
+        navigate(`/created-venue-success`);
     } catch (error) {
-      console.error("Error creating venue:", error);
-      setError(error.message); // Sett feilmelding
+      alert("Error creating venue:" + error.message);
+      setError(error.message);
     }
-  };
+    };
 
   const handleImageUrlChange = (e) => {
     const { value } = e.target;
@@ -121,10 +118,8 @@ function CreateVenue() {
       ...formData,
       media: updatedImages
     });
-    console.log("Images Updated:", updatedImages);
   };
 
-  // Valideringsfunksjon for skjemaet
   const validateFormData = (data) => {
     const errors = {};
     if (data.name.length < 3) {
@@ -150,14 +145,14 @@ function CreateVenue() {
     }
     return errors;
   };
+
   return (
     <div>
       <HeaderLoggedInManager />
-
       <Heading>Create New Venue</Heading>
       <CreateVenueForm onSubmit={handleSubmit}>
         <LeftContainer>
-        <Label>
+          <Label>
             <InputName>Name</InputName>
             <Input
               type="text"
@@ -220,7 +215,6 @@ function CreateVenue() {
             {errors.rating && <ErrorMessage>{errors.rating}</ErrorMessage>}
           </Label>
         </LeftContainer>
-
         <RightContainer>
           <Label>
             <InputName>Address</InputName>
@@ -263,7 +257,7 @@ function CreateVenue() {
             />
             {errors.maxGuests && <ErrorMessage>{errors.maxGuests}</ErrorMessage>}
           </Label>
-<p>Facilities</p>
+          <p>Facilities</p>
           <LabelCheckbox>
             <CheckBox
               type="checkbox"
@@ -301,12 +295,9 @@ function CreateVenue() {
             <InputName>Breakfast</InputName>
           </LabelCheckbox>
         </RightContainer>
-
         <ButtonContainer>
           <SubmitButton type="submit">Create Venue</SubmitButton>
         </ButtonContainer>
-
-        {/* Legg til ErrorMessage-komponenten for å vise feilmeldinger */}
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </CreateVenueForm>
       <Footer />

@@ -18,7 +18,7 @@ import {
   ButtonContainer,
   SubmitButton,
   ErrorMessage,
-  CancelButton // Legg til ErrorMessage-komponenten
+  CancelButton
 } from "./CreateStyle";
 
 
@@ -47,8 +47,8 @@ function VenueUpdate() {
       lng: 0
     }
   });
-  const [error, setError] = useState(""); // Legg til tilstand for feilmeldinger
-  const [errors, setErrors] = useState({}); // Legg til tilstand for valideringsfeil
+  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,12 +71,11 @@ function VenueUpdate() {
         }
 
         const data = await response.json();
-        setFormData(data.data); // Populate form data with venue details
+        setFormData(data.data);
       } catch (error) {
-        console.error("Error fetching venue:", error);
+        alert("Error fetching venue:" + error.message);
       }
     }
-
     if (venueId) {
       fetchVenue();
     }
@@ -105,7 +104,6 @@ function VenueUpdate() {
             },
             [name]: parsedValue
           });
-          console.log("Form Data Updated:", formData);
         };
         }
 
@@ -119,13 +117,12 @@ function VenueUpdate() {
         [name]: value
       }
     });
-    console.log("Location Data Updated:", formData.location);
   };
 
   const handleImageUrlChange = (e) => {
     const { value } = e.target;
-    const isValidUrl = validateUrl(value); // Valider URL-en
-    setErrors({ ...errors, imageUrl: isValidUrl ? "" : "Invalid URL" }); // Sett feilmelding basert på gyldighet av URL
+    const isValidUrl = validateUrl(value);
+    setErrors({ ...errors, imageUrl: isValidUrl ? "" : "Invalid URL" });
     if (isValidUrl) {
       setFormData({
         ...formData,
@@ -135,7 +132,6 @@ function VenueUpdate() {
   };
   
   const validateUrl = (url) => {
-    // Enkel validering av URL ved å bruke en regex
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     return urlRegex.test(url);
   };
@@ -144,28 +140,26 @@ function VenueUpdate() {
   const handleSubmit = async (e) => {
     const accessToken = localStorage.getItem("accessToken");
     e.preventDefault();
+
     try {
-      const validationErrors = validateFormData(formData); // Valider dataene før du sender dem til serveren
+      const validationErrors = validateFormData(formData);
       if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors); // Sett valideringsfeilene
-        return; // Avbryt innsendingen hvis det er valideringsfeil
+        setErrors(validationErrors);
+        return;
       }
 
       const response = await updateVenue(venueId, formData, accessToken);
-      console.log({ response });
       if (!response) {
         throw new Error("Failed to update venue");
       }
-      console.log("Venue updated successfully:", response);
+
       navigate(`/update-venue-success`);
-      // Naviger til suksesssiden eller gjør noe annet ved vellykket oppdatering
     } catch (error) {
-      console.error("Error updating venue:", error);
-      setError(error.message); // Sett feilmelding
+      alert("Error updating venue:" + error.message);
+      setError(error.message);
     }
   };
 
-  // Valideringsfunksjon for skjemaet
   const validateFormData = (data) => {
     const errors = {};
     if (data.name.length < 3) {
@@ -199,7 +193,6 @@ function VenueUpdate() {
   return (
     <div>
       <HeaderLoggedInManager />
-
       <Heading>Update Venue</Heading>
       <CreateVenueForm onSubmit={handleSubmit}>
         <LeftContainer>
@@ -233,7 +226,6 @@ function VenueUpdate() {
               onChange={handleImageUrlChange}
             />
             {errors.imageUrl && <ErrorMessage>{errors.imageUrl}</ErrorMessage>}
-
           </Label>
           <Label>
             <InputName>Description</InputName>
@@ -267,11 +259,8 @@ function VenueUpdate() {
             />
             {errors.rating && <ErrorMessage>{errors.rating}</ErrorMessage>}
           </Label>
-
         </LeftContainer>
-
         <RightContainer>
-
           <Label>
             <InputName>Address</InputName>
             <Input
@@ -351,14 +340,10 @@ function VenueUpdate() {
             <InputName>Breakfast</InputName>
           </LabelCheckbox>
         </RightContainer>
-
         <ButtonContainer>
           <SubmitButton type="submit">Update</SubmitButton>
-
           <CancelButton to="/manager">Cancel</CancelButton>
         </ButtonContainer>
-
-        {/* Legg til ErrorMessage-komponenten for å vise feilmeldinger */}
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </CreateVenueForm>
       <Footer />

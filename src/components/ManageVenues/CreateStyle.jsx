@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
-
-
 export const Heading = styled.p`
 text-align: center;
 font-size: 35px;
 font-family: MonteCarlo;
 `;
+
+//Buttons
 
 export const ButtonContainer = styled.div`
   width: 100%;
@@ -65,6 +64,8 @@ export const CancelButton = styled(Link)`
   }
 `;
 
+//Form
+
 export const CreateVenueForm = styled.form`
   display: flex;
   flex-wrap: wrap;
@@ -73,10 +74,6 @@ export const CreateVenueForm = styled.form`
   @media screen and (max-width: 768px) {
     flex-direction: column;  
       }
-`;
-
-export const Name = styled.label`
-text-align: center;
 `;
 
 export const RightContainer = styled.div`
@@ -88,9 +85,7 @@ export const RightContainer = styled.div`
   @media screen and (max-width: 768px) {
     margin: 0px;
   }
-
   `;
-
 
 export const LeftContainer = styled.div`
   flex: 1;
@@ -103,7 +98,7 @@ export const LeftContainer = styled.div`
   }
   `;
 
-
+  //Content
 
 export const Label = styled.label`
   margin-bottom: 10px;
@@ -113,6 +108,10 @@ export const LabelCheckbox = styled.label`
 display: flex;
   margin-left: 10px;
   margin-top: 12px;
+`;
+
+export const Name = styled.label`
+text-align: center;
 `;
 
 
@@ -156,7 +155,6 @@ export const CheckBox = styled.input`
   background-color: ${({ checked }) => (checked ? "orange" : "transparent")};
 `;
 
-
 export const ErrorMessage = styled.p`
 color: red;
 font-size: 11px;
@@ -164,8 +162,6 @@ font-size: 11px;
   margin-left: 10px;
   margin-top: 0px;
 `;
-
-
 
 
 //success
@@ -192,7 +188,6 @@ export const Message = styled.p`
   margin-bottom: 10px;
 `;
 
-
 export const ButtonContainerSuccess = styled.div`
 display:flex;
   flex-direction: column;
@@ -204,7 +199,6 @@ display:flex;
     width: 100%;
   }
 `;
-
 
 export const Button = styled.button`
 background-color: rgb(242, 208, 127);
@@ -227,5 +221,4 @@ background-color: rgb(242, 208, 127);
     font-size: 11px;
     padding: 5px 13px;
   }
-
 `;

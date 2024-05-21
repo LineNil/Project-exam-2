@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonDiv, ButtonStyle, NavDiv, LogoDiv, LogoLink, ImageLogo } from "../style";
+import { 
+  ButtonDiv, 
+  ButtonStyle, 
+  NavDiv, 
+  LogoDiv, 
+  LogoLink, 
+  ImageLogo 
+} from "../style";
 
 
 
 function HeaderLoggedInManager() {
-
   const handleLogout = () => {
-
     localStorage.clear();
-
     window.location.href = "/login";
   };
 
@@ -20,7 +24,6 @@ function HeaderLoggedInManager() {
           <ImageLogo/>
         </LogoLink>
       </LogoDiv>
-
       <ButtonDiv>
         <Link to="/venue-list-manager">
           <ButtonStyle>Home</ButtonStyle>

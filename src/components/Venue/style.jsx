@@ -5,18 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 
 
-
-
-
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
-
 `;
-
 
 export const LeftColumn = styled.div`
   flex: 1;
@@ -24,7 +19,6 @@ export const LeftColumn = styled.div`
   @media screen and (max-width: 768px) {
     padding: 0px;
   }
-
 `;
 
 export const RightColumn = styled.div`
@@ -37,8 +31,6 @@ flex: 1;
   @media screen and (max-width: 768px) {
     margin: 40px 0px;
   }
-
-
 `;
 
 export const VenueImage = styled.img`
@@ -46,12 +38,9 @@ export const VenueImage = styled.img`
   height: auto;
 `;
 
-
-
 export const VenueInfo = styled.div`
 display: flex;
 justify-content: space-evenly;
-
 `;
 
 export const Option = styled.div`
@@ -75,32 +64,29 @@ margin-top: 45px;
 `;
 
 export const VenueLocation = styled.div`
-font-family: Playfair Display;
-margin-top: 45px;
-font-size: 20px;
-line-height: 0.5;
-text-align: center;
+  font-family: Playfair Display;
+  margin-top: 45px;
+  font-size: 20px;
+  line-height: 0.5;
+  text-align: center;
 `;
 
 export const IconParagraph = styled.p`
-display: flex;
-align-items: center;
-font-size: 22px;
+  display: flex;
+  align-items: center;
+  font-size: 22px;
 `;
 
 export const IconParagraphWifi = styled.p`
-display: flex;
-align-items: center;
-font-size: 18px;
-
+  display: flex;
+  align-items: center;
+  font-size: 18px;
 `;
 
 export const FacilitiesText = styled.span`
-padding-left: 15px;
-font-size:13px;
-font-family: Playfair Display;
-
-
+  padding-left: 15px;
+  font-size:13px;
+  font-family: Playfair Display;
 `;
 
 export const FacilitiesContainer = styled.div`
@@ -113,7 +99,6 @@ export const FacilitiesContainer = styled.div`
   @media screen and (max-width: 768px) {
     display: block;
   }
-
 `;
 
 export const VenueName = styled.p`
@@ -121,7 +106,6 @@ font-family: MonteCarlo;
 font-size: 45px;
   margin: 25px 0px 0px 0px;
 `;
-
 
 export const Rating = styled.div`
 display: flex;
@@ -135,58 +119,50 @@ export const StarIcon = styled(FontAwesomeIcon)`
   margin-right: 5px; /* Avstand mellom stjerne og tekst */
 `;
 
-
 export const PriceContainer = styled.div`
-display: flex;
-justify-content: space-evenly;
-margin-top: 55px;
-align-items: center;
-
-
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 55px;
+  align-items: center;
 `;
 
 export const PriceInfo = styled.p`
-font-family: Playfair Display;
-font-size: 14px;
-
+  font-family: Playfair Display;
+  font-size: 14px;
 `;
+
 export const Price = styled.p`
-font-family: Playfair Display;
-font-size: 14px;
-font-weight: bold;
-
+  font-family: Playfair Display;
+  font-size: 14px;
+  font-weight: bold;
 `;
-
 
 export const BookNow = styled.p`
-font-family: Playfair Display;
-font-size: 25px;
+  font-family: Playfair Display;
+  font-size: 25px;
 `;
-export const BookingDate = styled.p`
-font-family: Playfair Display;
-font-size: 14px;
-margin-bottom: 0px;
 
+export const BookingDate = styled.p`
+  font-family: Playfair Display;
+  font-size: 14px;
+  margin-bottom: 0px;
 `;
 
 export const Guests = styled.p`
-font-family: Playfair Display;
-font-size: 14px;
-margin-bottom: 0px;
-margin-top: 30px;
+  font-family: Playfair Display;
+  font-size: 14px;
+  margin-bottom: 0px;
+  margin-top: 30px;
 `;
 
 export const MaxGuests = styled.p`
-font-family: Playfair Display;
-font-size: 10px;
-margin-top: 0px;
-
+  font-family: Playfair Display;
+  font-size: 10px;
+  margin-top: 0px;
 `;
 
-
-
 export const BookingButton = styled.button`
-background-color: rgb(242, 208, 127);
+  background-color: rgb(242, 208, 127);
   color: black;
   font-size: 11px;
   padding: 10px 27px;
@@ -196,7 +172,6 @@ background-color: rgb(242, 208, 127);
   transition: background-color 0.3s ease;
   font-family: Playfair Display;
   margin-top: 35px;
-
 
   &:hover,
   &:active {
@@ -210,17 +185,17 @@ background-color: rgb(242, 208, 127);
 `;
 
 export const LogIn = styled(Link)`
-font-size: 12px;
-color: black;
+  font-size: 12px;
+  color: black;
 `;
 
 export const DatePickerContainer = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 `;
 
 export const CustomDatePicker  = styled(DatePicker) `
-font-size: 14px;
+  font-size: 14px;
 `;

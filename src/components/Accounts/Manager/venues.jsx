@@ -25,7 +25,6 @@ import {
   ShowAllButton 
 } from "../bookingStyles";
 
-
 function MyVenues() {
   const [venues, setVenues] = useState([]);
   const [showAllBookings, setShowAllBookings] = useState(false);
@@ -57,6 +56,7 @@ function MyVenues() {
           setVenues([]);
         }
       } catch (error) {
+        console.error(error);
       }
     }
 
@@ -71,55 +71,59 @@ function MyVenues() {
         setVenues(updatedVenues);
       }
     } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <div>
       <Heading>My Venues</Heading>
-      {venues.map((venue) => (
-        <VenueItem key={venue.id}>
-          <VenueContainer>
-            <VenueDetails>
-              <VenueName>{venue.name}</VenueName>
-              <Address>{venue.location.address}, {venue.location.city}</Address>
-              {venue.media.length > 0 ? (
-                <Img src={venue.media[0].url} alt={venue.media[0].alt} />
-              ) : (
-                <Img src={defaultImage} alt="Default" />
-              )}
-              <ManageContainer>
-                <Link to={`/venue-update/${venue.id}`}>
-                  <ManageButton>Edit</ManageButton>
-                </Link>
-                <ManageButtonDelete onClick={() => handleDeleteVenue(venue.id)}>Delete</ManageButtonDelete>
-              </ManageContainer>
-            </VenueDetails>
-            <BookingDetails>
-              <Bookings>Bookings</Bookings>
-              {venue.bookings && venue.bookings.length > 0 ? (
-                venue.bookings && venue.bookings.slice(0, showAllBookings ? venue.bookings.length : 3).map((booking) => (
-                <CustomerBookingContainer key={booking.id}>
-                  <CustomerName>{booking.customer.name}</CustomerName>
-                  <CustomerEmail>{booking.customer.email}</CustomerEmail>
-                  <CustomerEmail>{booking.guests} guest(s)</CustomerEmail>
-                  <BookingDate>Booked from-to</BookingDate>
-                  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
-                </CustomerBookingContainer>
-              ))
-              ) : (
-                <NoData>No bookings at the moment</NoData>
-              )
-            }
-              {venue.bookings && venue.bookings.length > 3 && (
-                <ShowAllButton onClick={() => setShowAllBookings(!showAllBookings)}>
-                  {showAllBookings ? "Show Less" : "Show All"}
-                </ShowAllButton>
-              )}
-            </BookingDetails>
-          </VenueContainer>
-        </VenueItem>
-      ))}
+      {venues.length === 0 ? (
+        <NoData>You have no venues yet.</NoData>
+      ) : (
+        venues.map((venue) => (
+          <VenueItem key={venue.id}>
+            <VenueContainer>
+              <VenueDetails>
+                <VenueName>{venue.name}</VenueName>
+                <Address>{venue.location.address}, {venue.location.city}</Address>
+                {venue.media.length > 0 ? (
+                  <Img src={venue.media[0].url} alt={venue.media[0].alt} />
+                ) : (
+                  <Img src={defaultImage} alt="Default" />
+                )}
+                <ManageContainer>
+                  <Link to={`/venue-update/${venue.id}`}>
+                    <ManageButton>Edit</ManageButton>
+                  </Link>
+                  <ManageButtonDelete onClick={() => handleDeleteVenue(venue.id)}>Delete</ManageButtonDelete>
+                </ManageContainer>
+              </VenueDetails>
+              <BookingDetails>
+                <Bookings>Bookings</Bookings>
+                {venue.bookings && venue.bookings.length > 0 ? (
+                  venue.bookings.slice(0, showAllBookings ? venue.bookings.length : 3).map((booking) => (
+                    <CustomerBookingContainer key={booking.id}>
+                      <CustomerName>{booking.customer.name}</CustomerName>
+                      <CustomerEmail>{booking.customer.email}</CustomerEmail>
+                      <CustomerEmail>{booking.guests} guest(s)</CustomerEmail>
+                      <BookingDate>Booked from-to</BookingDate>
+                      <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
+                    </CustomerBookingContainer>
+                  ))
+                ) : (
+                  <NoData>No bookings for this venue</NoData>
+                )}
+                {venue.bookings && venue.bookings.length > 3 && (
+                  <ShowAllButton onClick={() => setShowAllBookings(!showAllBookings)}>
+                    {showAllBookings ? "Show Less" : "Show All"}
+                  </ShowAllButton>
+                )}
+              </BookingDetails>
+            </VenueContainer>
+          </VenueItem>
+        ))
+      )}
     </div>
   );
 }

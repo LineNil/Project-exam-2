@@ -2,13 +2,45 @@ import React, { useState, useEffect } from "react";
 import HeaderLoggedIn from "../../Layout/User";
 import { useLocation, useNavigate } from "react-router-dom";
 import useVenueData from "../FetchData";
-
 import ApiKey from "../../Api/ApiKey";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
-import { VenueImage, Container, LeftColumn, RightColumn, PriceContainer, VenueInfo, Option, VenueDescription, VenueLocation, IconParagraph, IconParagraphWifi, FacilitiesText, FacilitiesContainer, VenueName, Rating, PriceInfo, Price, BookNow, BookingDate, Guests, MaxGuests, BookingButton, StarIcon, CustomDatePicker, DatePickerContainer   } from "../style";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWifi, faParking, faUtensils, faPaw, faStar } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../../Layout/Footer/index";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faWifi, 
+  faParking, 
+  faUtensils, 
+  faPaw, 
+  faStar 
+} from '@fortawesome/free-solid-svg-icons';
+import { 
+  VenueImage, 
+  Container, 
+  LeftColumn, 
+  RightColumn, 
+  PriceContainer, 
+  VenueInfo, 
+  Option, 
+  VenueDescription, 
+  VenueLocation, 
+  IconParagraph, 
+  IconParagraphWifi, 
+  FacilitiesText, 
+  FacilitiesContainer, 
+  VenueName, 
+  Rating, 
+  PriceInfo, 
+  Price, 
+  BookNow, 
+  BookingDate, 
+  Guests, 
+  MaxGuests, 
+  BookingButton, 
+  StarIcon, 
+  CustomDatePicker, 
+  DatePickerContainer   
+} from "../style";
+
 
 
 
@@ -37,7 +69,6 @@ async function createBooking(startDate, endDate, guests, venueId) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error creating booking:", error);
     throw new Error("The selected dates and guests either overlap with an existing booking or exceed the maximum guests for this venue.");
   }
 }
@@ -77,7 +108,7 @@ function VenueDetailsLoggedInUser() {
         }));
         setBookedDates(dates);
       } catch (error) {
-        console.error('Error fetching booked dates:', error);
+        alert('Error fetching booked dates:' + error.message);
       }
     }
 
@@ -89,16 +120,13 @@ function VenueDetailsLoggedInUser() {
   const handleBookVenue = async () => {
     try {
       await createBooking(startDate, endDate, guests, venueId);
-      console.log("Booking created successfully!");
       navigateToBookingSuccess(); 
     } catch (error) {
-      console.error("Booking failed:", error);
       setError(error.message);
     }
   };
 
   const navigateToBookingSuccess = () => {
-    console.log("Navigating to booking success page...");
     navigate("/booking-success");
   };
 
@@ -117,16 +145,16 @@ function VenueDetailsLoggedInUser() {
         <LeftColumn>
           <VenueImage src={venue.media.length > 0 ? venue.media[0].url : defaultImage} alt={ venue.media.length > 0 ? venue.media[0].alt : "Default" }/>
           <VenueInfo>
-  <Option selected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
-    Description
-  </Option>
-  <Option selected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
-    Location
-  </Option>
-  <Option selected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
-    Facilities
-  </Option>
-</VenueInfo>
+            <Option selected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
+              Description
+            </Option>
+            <Option selected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
+              Location
+            </Option>
+            <Option selected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
+              Facilities
+            </Option>
+          </VenueInfo>
           <div>
             {selectedInfo === "Description" && (
               <div>
@@ -175,61 +203,48 @@ function VenueDetailsLoggedInUser() {
             )}
           </div>
         </LeftColumn>
-
-
-
-
-
-
-
-
-
-
         <RightColumn>
           <VenueName>{venue.name}</VenueName>
           <Rating>
-          {venue.rating}
+            {venue.rating}
             <StarIcon icon={faStar} />
-
           </Rating>
           <PriceContainer>
             <PriceInfo>Starting price</PriceInfo>
             <Price>NOK {venue.price}</Price>
           </PriceContainer>
           <BookNow>Book your venue now!</BookNow>
-
           <DatePickerContainer>
-          <BookingDate>Select booking dates:</BookingDate>
-          <CustomDatePicker 
-            selected={startDate}
-            onChange={(date) =>
-              setStartDate(date)
-            }
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            minDate={new Date()}
-            dateFormat="dd/MM/yyyy"
-            excludeDates={bookedDates.map(
-              (booking) => booking.startDate
-            )}
-          />
-          <CustomDatePicker 
-            selected={endDate}
-            onChange={(date) =>
-              setEndDate(date)
-            }
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            dateFormat="dd/MM/yyyy"
-            excludeDates={bookedDates.map(
-              (booking) => booking.endDate
-            )}
-          />
+            <BookingDate>Select booking dates:</BookingDate>
+            <CustomDatePicker 
+              selected={startDate}
+              onChange={(date) =>
+                setStartDate(date)
+              }
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              minDate={new Date()}
+              dateFormat="dd/MM/yyyy"
+              excludeDates={bookedDates.map(
+                (booking) => booking.startDate
+              )}
+            />
+            <CustomDatePicker 
+              selected={endDate}
+              onChange={(date) =>
+                setEndDate(date)
+              }
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              dateFormat="dd/MM/yyyy"
+              excludeDates={bookedDates.map(
+                (booking) => booking.endDate
+              )}
+            />
           </DatePickerContainer>
-        
           <div>
             <Guests>Number of guests:</Guests>
             <input

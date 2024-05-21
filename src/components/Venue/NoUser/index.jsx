@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-
 import { useLocation } from "react-router-dom";
 import HeaderLoggedOut from "../../Layout/LoggedOut";
-
 import useVenueData from "../FetchData";
-
 import ApiKey from "../../Api/ApiKey";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
+import Footer from "../../Layout/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWifi,
+  faParking,
+  faUtensils,
+  faPaw,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   VenueImage,
   Container,
@@ -34,16 +40,6 @@ import {
   CustomDatePicker,
   DatePickerContainer,
 } from "../style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faWifi,
-  faParking,
-  faUtensils,
-  faPaw,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
-import Footer from "../../Layout/Footer";
-
 
 
 function VenueDetailsNoUser() {
@@ -67,13 +63,10 @@ function VenueDetailsNoUser() {
         if (!response.ok) {
           throw new Error('Failed to fetch booked dates');
         }
-
-        
       } catch (error) {
-        console.error('Error fetching booked dates:', error);
+        alert('Error fetching booked dates:' + error.message);
       }
     }
-
     if (venueId) {
       fetchBookedDates();
     }
@@ -190,7 +183,7 @@ function VenueDetailsNoUser() {
             />
             <MaxGuests>Max guests: {venue.maxGuests}</MaxGuests>
           </div>
-          <LogIn to="/login">Please log in as user to book this venue.</LogIn>
+          <LogIn to="/login">Please log in to book this venue.</LogIn>
         </RightColumn>
       </Container>
       <Footer />

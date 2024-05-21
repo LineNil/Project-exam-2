@@ -14,11 +14,9 @@ async function fetchProfile(name) {
       }
     );
     const responseData = await response.json();
-    console.log("Profile:", responseData.data);
     localStorage.setItem("profile", JSON.stringify(responseData.data));
     return responseData.data;
   } catch (error) {
-    console.error("Error:", error);
   }
 }
 

@@ -16,10 +16,9 @@ async function deleteVenue(venueId, accessToken) {
     if (!response.ok) {
       throw new Error("Failed to delete venue");
     }
-
     return true;
   } catch (error) {
-    console.error("Error deleting venue;", error);
+    alert("Error deleting venue;" + error.message);
     return false;
   }
 }

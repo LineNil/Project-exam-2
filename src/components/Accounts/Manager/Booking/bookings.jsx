@@ -51,7 +51,7 @@ function ManagerBookings() {
   const calculateTotalPrice = (pricePerDay, dateFrom, dateTo) => {
     const start = new Date(dateFrom);
     const end = new Date(dateTo);
-    const numberOfDays = Math.round((end - start) / (1000 * 60 * 60 * 24)); // Calculate difference in days
+    const numberOfDays = Math.round((end - start) / (1000 * 60 * 60 * 24));
     return pricePerDay * numberOfDays;
   };
 

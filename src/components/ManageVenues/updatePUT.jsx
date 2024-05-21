@@ -1,5 +1,3 @@
-// updateVenue.jsx
-
 import ApiKey from "../Api/ApiKey";
 
 async function updateVenue(venueId, formData, accessToken) {
@@ -20,11 +18,10 @@ async function updateVenue(venueId, formData, accessToken) {
     if (!response.ok) {
       throw new Error("Failed to update venue");
     }
-
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Error updating venue:", error);
+    alert("Error updating venue:" + error.message);
     throw new Error("Failed to update venue");
   }
 }

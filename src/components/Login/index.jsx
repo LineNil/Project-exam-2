@@ -2,8 +2,21 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchProfile } from "./apiService"; 
 import HeaderLoggedOut from "../Layout/LoggedOut";
-import { LogInRegisterBody, LogInDiv, LabelDiv, LoginH2, InputInfo, Input, DontHaveAccount, RegisterFree, ButtonStyle, Form, ErrorMessage } from "./style";
 import Footer from "../Layout/Footer/index";
+import { 
+  LogInRegisterBody, 
+  LogInDiv, 
+  LabelDiv, 
+  LoginH2, 
+  InputInfo, 
+  Input, 
+  DontHaveAccount, 
+  RegisterFree, 
+  ButtonStyle, 
+  Form, 
+  ErrorMessage 
+} from "./style";
+
 
 
 function LoginForm() {
@@ -31,29 +44,23 @@ function LoginForm() {
         body: JSON.stringify(formData),
       });
       const responseData = await response.json();
-      console.log(responseData);
 
       if (response.ok) {
         localStorage.setItem("accessToken", responseData.data.accessToken);
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("loggedInUserName", responseData.data.name);
-        console.log("Logged In User Name:", responseData.data.name);
+
         const profile = await fetchProfile(responseData.data.name);
-        console.log(profile);
         if (profile && profile.venueManager) {
-          console.log("Navigating to manager page...");
           navigate("/manager");
         } else {
-          console.log("Navigating to user account page...");
           navigate("/user-account");
         }
       } else {
         setError("Login failed. Please check your email and password.");
-        console.error("Login failed:", responseData.error);
       }
     } catch (error) {
       setError("An error occurred. Please try again later.");
-      console.error("Error:", error);
     }
   };
 

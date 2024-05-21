@@ -3,11 +3,9 @@ import styled from "styled-components";
 import Logo from "../Layout/LogoImg.jpg";
 
 
-
 export const LogoLink = styled(Link)`
   text-decoration: none;
 `;
-
 
 export const ImageLogoLoggedOut = styled.div`
 background-image: url("${Logo}");
