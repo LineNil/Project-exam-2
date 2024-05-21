@@ -18,6 +18,8 @@ export const VenueItem = styled.div`
   padding: 20px 20px 50px 20px;  
   border-radius: 8px;
   flex-direction: column;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
 
 `;
 
@@ -72,47 +74,63 @@ export const LinkViewVenue = styled(Link)`
 
 export const VenueName = styled.h2`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
 `;
 
 export const Location = styled.p`
   margin-right: 5px;
   font-weight: lighter;
+  margin-bottom: 0;
+  margin-right: 10px;
+  font-size: 13px;
 `;
 
 export const LocationInfo = styled.p`
   font-style: italic;
-`;
+  font-size: 12px;
+  margin-bottom: 0
+  `;
 
 export const NOK = styled.p`
-  margin-right: 5px;
-  font-weight: lighter;
-  margin-top:0px;
+margin-right: 5px;
+font-weight: lighter;
+margin-bottom: 0;
+margin-right: 10px;
+font-size: 13px;
+
 `;
 
 export const NOKInfo = styled.p`
-  font-style: italic;
-  margin-top:0px;
+font-style: italic;
+font-size: 12px;
+margin-bottom: 0
 `;
 
 export const Rating = styled.p`
   font-weight: lighter;
   margin-right: 5px;
+  font-size: 15px;
+  margin-bottom: 0;
 `;
 
 export const RatingNumber = styled.p`
   color: rgb(237, 171, 13);
+  margin-bottom: 0;
+
 `;
 
 export const VenueCardInfo = styled.div`
   display: flex;
   flex-derection: row;
+  align-items: flex-end;
 `;
 
 export const VenueCardInfoRating = styled.div`
   justify-content: center;
   display:flex;
+  align-items: flex-end;
+
 `;
 
 export const SearchForm = styled.form`
