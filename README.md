@@ -87,17 +87,11 @@ https://bookingholidaze.netlify.app/
 
 ## Get started
 
-• Clone the repo:
+#### Clone the repo:
 
-Git clone https://github.com/LineNil/Semester-project-2
+Git clone https://github.com/LineNil/Project-exam-2
 
-• install dependencies/To compile SASS files into CSS:
-
-npm run watch
-
-or open live site: https://semesterproject2023.netlify.app/
-
-### `npm run start`
+#### `npm run start`:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -106,7 +100,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 
-### `npm run build`
+#### `npm run build`:
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
