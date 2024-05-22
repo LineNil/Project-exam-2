@@ -20,7 +20,7 @@ import {
   RightColumn, 
   PriceContainer, 
   VenueInfo, 
-  Option, 
+  StyledOption, 
   VenueDescription, 
   VenueLocation, 
   IconParagraph, 
@@ -145,15 +145,15 @@ function VenueDetailsLoggedInUser() {
         <LeftColumn>
           <VenueImage src={venue.media.length > 0 ? venue.media[0].url : defaultImage} alt={ venue.media.length > 0 ? venue.media[0].alt : "Default" }/>
           <VenueInfo>
-            <Option selected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
+            <StyledOption selected={ selectedInfo === "Description" } onClick={() => handleInfoClick("Description") }>
               Description
-            </Option>
-            <Option selected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
+            </StyledOption>
+            <StyledOption selected={ selectedInfo === "Location" } onClick={() => handleInfoClick("Location") }>
               Location
-            </Option>
-            <Option selected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
+            </StyledOption>
+            <StyledOption selected={ selectedInfo === "Facilities" } onClick={() => handleInfoClick("Facilities") }>
               Facilities
-            </Option>
+            </StyledOption>
           </VenueInfo>
           <div>
             {selectedInfo === "Description" && (

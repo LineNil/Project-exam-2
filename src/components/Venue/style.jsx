@@ -43,7 +43,7 @@ display: flex;
 justify-content: space-evenly;
 `;
 
-export const Option = styled.div`
+export const StyledOption = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   margin-top: 20px;

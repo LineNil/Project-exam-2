@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import HeaderLoggedOut from "../../Layout/LoggedOut";
 import useVenueData from "../FetchData";
-import ApiKey from "../../Api/ApiKey";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
 import Footer from "../../Layout/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +19,7 @@ import {
   RightColumn,
   PriceContainer,
   VenueInfo,
-  Option,
+  StyledOption,
   VenueDescription,
   VenueLocation,
   IconParagraph,
@@ -32,13 +31,8 @@ import {
   PriceInfo,
   Price,
   BookNow,
-  BookingDate,
-  Guests,
-  MaxGuests,
   LogIn,
-  StarIcon,
-  CustomDatePicker,
-  DatePickerContainer,
+  StarIcon
 } from "../style";
 
 
@@ -48,29 +42,6 @@ function VenueDetailsNoUser() {
   const location = useLocation();
   const venueId = location.state.venue.id;
   const venue = useVenueData(venueId);
-
-  useEffect(() => {
-    async function fetchBookedDates() {
-      try {
-        const accessToken = localStorage.getItem("accessToken");
-        const response = await fetch(`https://v2.api.noroff.dev/holidaze/bookings?venueId=${venueId}`, {
-          headers: {
-            "X-Noroff-API-Key": ApiKey,
-            "Authorization": `Bearer ${accessToken}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch booked dates');
-        }
-      } catch (error) {
-        alert('Error fetching booked dates:' + error.message);
-      }
-    }
-    if (venueId) {
-      fetchBookedDates();
-    }
-  }, [venueId]);
 
   if (!venue) {
     return <div>Loading...</div>;
@@ -92,15 +63,15 @@ function VenueDetailsNoUser() {
             }
           />
           <VenueInfo>
-            <Option isSelected={selectedInfo === "Description"} onClick={() => handleInfoClick("Description")}>
+            <StyledOption $isSelected={selectedInfo === "Description"} onClick={() => handleInfoClick("Description")}>
               Description
-            </Option>
-            <Option isSelected={selectedInfo === "Location"} onClick={() => handleInfoClick("Location")}>
+            </StyledOption>
+            <StyledOption $isSelected={selectedInfo === "Location"} onClick={() => handleInfoClick("Location")}>
               Location
-            </Option>
-            <Option isSelected={selectedInfo === "Facilities"} onClick={() => handleInfoClick("Facilities")}>
+            </StyledOption>
+            <StyledOption $isSelected={selectedInfo === "Facilities"} onClick={() => handleInfoClick("Facilities")}>
               Facilities
-            </Option>
+            </StyledOption>
           </VenueInfo>
           <div>
             {selectedInfo === "Description" && (
@@ -161,28 +132,6 @@ function VenueDetailsNoUser() {
             <Price>NOK {venue.price}</Price>
           </PriceContainer>
           <BookNow>Book your venue now!</BookNow>
-          <DatePickerContainer>
-            <BookingDate>Select booking dates:</BookingDate>
-            <CustomDatePicker
-              selected={new Date()}
-              disabled
-              dateFormat="dd/MM/yyyy"
-            />
-            <CustomDatePicker
-              selected={new Date()}
-              disabled
-              dateFormat="dd/MM/yyyy"
-            />
-          </DatePickerContainer>
-          <div>
-            <Guests>Number of guests:</Guests>
-            <input
-              type="number"
-              value={1}
-              disabled
-            />
-            <MaxGuests>Max guests: {venue.maxGuests}</MaxGuests>
-          </div>
           <LogIn to="/login">Please log in to book this venue.</LogIn>
         </RightColumn>
       </Container>

@@ -20,7 +20,7 @@ import {
   RightColumn,
   PriceContainer,
   VenueInfo,
-  Option,
+  StyledOption,
   VenueDescription,
   VenueLocation,
   IconParagraph,
@@ -149,15 +149,15 @@ function VenueDetailsManager() {
             }
           />
           <VenueInfo>
-            <Option isSelected={selectedInfo === "Description"} onClick={() => handleInfoClick("Description")}>
+            <StyledOption $isSelected={selectedInfo === "Description"} onClick={() => handleInfoClick("Description")}>
               Description
-            </Option>
-            <Option isSelected={selectedInfo === "Location"} onClick={() => handleInfoClick("Location")}>
+            </StyledOption>
+            <StyledOption $isSelected={selectedInfo === "Location"} onClick={() => handleInfoClick("Location")}>
               Location
-            </Option>
-            <Option isSelected={selectedInfo === "Facilities"} onClick={() => handleInfoClick("Facilities")}>
+            </StyledOption>
+            <StyledOption $isSelected={selectedInfo === "Facilities"} onClick={() => handleInfoClick("Facilities")}>
               Facilities
-            </Option>
+            </StyledOption>
           </VenueInfo>
           <div>
             {selectedInfo === "Description" && (

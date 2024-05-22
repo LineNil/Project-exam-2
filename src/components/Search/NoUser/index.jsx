@@ -80,7 +80,7 @@ function SearchNoUser() {
             <Results>Search Results</Results>
           </ResultsH2Div>
             {searchResults.map((venue, index) => (
-              <VenueItem key={venue.id} index={index}>
+              <VenueItem key={venue.id} $index={index}>
                 {venue.media.length > 0 ? (
                   <Img src={venue.media[0].url} alt={venue.media[0].alt}/>
                 ) : (

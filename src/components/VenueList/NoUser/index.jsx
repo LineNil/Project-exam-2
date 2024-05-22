@@ -54,7 +54,7 @@ function VenueListNoUser() {
       <Search handleSearch={handleSearch} />
       <VenuesDiv>
         {filteredVenues.map((venue, index) => (
-          <VenueItem key={venue.id} index={index}>
+          <VenueItem key={venue.id} $index={index}>
             <Link to={`/venue-details-no-user/${venue.id}`} state={{ venue }}>
             {venue.media.length > 0 ? (
               <Img src={venue.media[0].url} alt={venue.media[0].alt} />
