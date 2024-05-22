@@ -75,15 +75,15 @@ https://bookingholidaze.netlify.app/
 
 ## Technologies Used
 
-• HTML
+• React
 
-• Bootstrap
+• Styled Components
 
-• SASS/SCSS
+• eslint
+  
+• Fontawesome
 
-• JavaScript
-
-• live-server
+• localhost: 3000
 
 ## Get started
 
