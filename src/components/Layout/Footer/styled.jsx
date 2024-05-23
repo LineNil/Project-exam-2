@@ -6,4 +6,7 @@ justify-content: center;
 padding-bottom: 50px;
 padding-top: 50px;
 margin: 0px;
+font-size: 13px;
 `;
+
+
