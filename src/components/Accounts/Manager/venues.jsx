@@ -77,7 +77,7 @@ function MyVenues() {
 
   return (
     <div>
-      <Heading>My Venues</Heading>
+      <Heading>Your Venues</Heading>
       {venues.length === 0 ? (
         <NoData>You have no venues yet.</NoData>
       ) : (

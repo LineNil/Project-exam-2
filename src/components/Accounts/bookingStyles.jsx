@@ -38,8 +38,10 @@ export const VenueContainer = styled.div`
 export const VenueDetails = styled.div`
   grid-column: 1;
   list-style: none;
-  padding-right:35px;
+  padding: 35px;
   margin-top: 30px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+
 
   @media screen and (max-width: 768px) {
   padding-right:0px;
@@ -129,13 +131,11 @@ background-color: #f1e6d4;;
 
 export const BookingDetails = styled.div`
   grid-column: 2;
-  border-left: 2px solid #ccc;
-  padding-left:20px;
-  padding-left:35px;
-  padding-right: 35px;
+  padding: 35px;
   text-align: center;
   margin-top: 30px;
-`;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-right: 25px;`;
 
 export const NoData = styled.p`
 font-size: 11px;
@@ -240,7 +240,7 @@ background-color: rgb(242, 208, 127);
 // customer bookings
 
 export const CustomerBookingContainer = styled.div`
-border-bottom: 2px solid #ccc;
+border-bottom: 1px solid #00000073;
 `;
 
 export const ShowAllButton = styled.button`

@@ -15,17 +15,20 @@ export const Container = styled.div`
 
 export const LeftColumn = styled.div`
   flex: 1;
-  padding: 15px 75px;
+  padding: 15px 75px 75px 75px;
+  box-shadow: 0px 5px 9px 3px rgba(0, 0, 0, 0.26);
+  margin: 15px 35px;
+
   @media screen and (max-width: 768px) {
     padding: 0px;
   }
 `;
 
 export const RightColumn = styled.div`
-flex: 1;
-  margin: 15px 75px;
+  flex: 1;
+  margin: 15px 35px 15px 0px;
   text-align: center;
-  border: 1px black solid;
+  box-shadow: 0px 5px 9px 3px rgba(0, 0, 0, 0.26);
   padding-bottom: 75px;
 
   @media screen and (max-width: 768px) {
@@ -36,6 +39,7 @@ flex: 1;
 export const VenueImage = styled.img`
   width: 100%;
   height: auto;
+  margin-top: 25px;
 `;
 
 export const VenueInfo = styled.div`
@@ -47,9 +51,13 @@ export const StyledOption = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   margin-top: 20px;
-  border-radius: 4px;
   font-family: Playfair Display;
-  ${(props) => props.isSelected && '  border-bottom: 3px solid #eebb3f;'}
+  border-bottom: ${(props) => (props.$isSelected ? '2px solid #eebb3f' : 'none')};  
+
+  &:hover,
+  &:active {
+    border-bottom: 2px solid #eebb3f73
+  }
 `;
 
 export const VenueDescription = styled.p`

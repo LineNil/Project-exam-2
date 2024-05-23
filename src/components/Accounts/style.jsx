@@ -65,14 +65,13 @@ export const LinksDiv = styled.div`
 
 
 export const StyledButton = styled(Link)`
-background-color: rgb(242, 208, 127);
-  color: black;
+  background-color: #f6f2e9;  color: black;
   font-size: 11px;
   padding: 10px 0px;
-  border: 1px solid rgb(237, 171, 13);
+  border: 1px solid #edab0d;  
   border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;  
   font-family: Playfair Display;
   margin-top: 15px;
   text-align: center;
@@ -80,8 +79,10 @@ background-color: rgb(242, 208, 127);
 
   &:hover,
   &:active {
-    background-color: rgb(227, 186, 86);
-  }
+    background-color: #edab0d;
+    color: #fff;
+    border-color: #d4940b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  }
 
   @media screen and (max-width: 768px) {
     font-size: 11px;
@@ -95,13 +96,14 @@ display: flex;
 `;
 
 export const Switch = styled(Link)`
+  background-color: #f6f2e9;
   color: black;
-  font-size: 9px;
+  font-size: 11px;
   padding: 7px 12px;
-  border: 1px solid rgb(237, 171, 13);
+  border: 1px solid #edab0d;  
   border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;  
   font-family: Playfair Display;
   margin-top: 15px;
   text-align: center;
@@ -109,7 +111,10 @@ export const Switch = styled(Link)`
 
   &:hover,
   &:active {
-    background-color: rgb(227, 186, 86);
+    background-color: #edab0d;
+    color: #fff;
+    border-color: #d4940b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  
   }
 
   @media screen and (max-width: 768px) {

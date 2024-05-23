@@ -65,10 +65,10 @@ function ManagerAccount() {
             </AvatarSettingsWrapper>
             <UserName>{userName}</UserName>
             <LinksDiv>
-              <StyledButton to="/venue-list-manager">View Venues</StyledButton>
+              <StyledButton to="/venue-list-manager">View all venues</StyledButton>
               <StyledButton to="/create-venue">Create new venue</StyledButton>
-              <Switch onClick={() => setShowVenues(true)}>My Venues</Switch>
-              <Switch onClick={() => setShowVenues(false)}>My Bookings</Switch>
+              <Switch onClick={() => setShowVenues(true)}>My venues</Switch>
+              <Switch onClick={() => setShowVenues(false)}>My bookings</Switch>
             </LinksDiv>
           </ProfileContainer>
         </LeftContainer>

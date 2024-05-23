@@ -52,7 +52,7 @@ margin-bottom: 0px;
 export const InputInfo = styled.p`
   font-size: 13px; 
   margin-bottom: 5px;
-  color: #333; 
+  color: black; 
   font-family: Playfair Display;
 
 `;
@@ -100,21 +100,30 @@ color: black;
 `;
 
 export const ButtonStyle = styled.button`
-  background-color: rgb(242, 208, 127);
-  color: black;
-  font-size: 11px;
+background-color: #f6f2e9;
+color: #333;
+font-size: 13px;
   padding: 10px 27px;
-  border: 1px solid rgb(237, 171, 13);
+  border: 1px solid #edab0d;
   border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   margin-top: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
   margin-bottom: 35px;
 
   &:hover,
   &:active {
-    background-color: rgb(227, 186, 86);
-  }
+    background-color: #edab0d;
+    color: #fff;
+    border-color: #d4940b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(237, 171, 13, 0.5);
+    }
 
   @media screen and (max-width: 768px) {
     font-size: 11px;

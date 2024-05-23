@@ -93,7 +93,7 @@ function Login() {
                 required
              />
            </LabelDiv>
-           <ButtonStyle type="submit">Log In</ButtonStyle>
+           <ButtonStyle type="submit">Log in</ButtonStyle>
            {error && <ErrorMessage>{error}</ErrorMessage>} 
           </Form>
         </LogInDiv> 

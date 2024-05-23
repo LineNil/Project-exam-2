@@ -10,7 +10,7 @@ export const LogoLink = styled(Link)`
 export const ImageLogoLoggedOut = styled.div`
 background-image: url("${Logo}");
 display: flex;
-height: 75px;
+height: 90px;
 width: 140px;
 background-repeat: no-repeat;
 background-size: contain;
@@ -29,7 +29,6 @@ export const ButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 10px;
   margin-right: 2%;
 
   @media screen and (max-width: 768px) {
@@ -41,17 +40,16 @@ export const ButtonDiv = styled.div`
 export const ButtonStyle = styled.button`
 background-color: rgb(246, 242, 233);
   color: black;
-  font-size: 12px;
-  padding: 10px 15px;
+  font-size: 13px;
+  padding: 10px 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: Playfair Display;
   border: none;
+  border-left: 1px solid #0000007d;;
 
   &:hover,
   &:active {
-    color: rgb(227, 186, 86);
-  }
+    background-color: rgb(255, 252, 246);  }
 
   @media screen and (max-width: 768px) {
     font-size: 10px;

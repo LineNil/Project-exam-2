@@ -20,6 +20,9 @@ function HeaderLoggedOut() {
         </LogoLink>
       </LogoDiv>
       <ButtonDiv>
+      <Link to="/">
+          <ButtonStyle>Home</ButtonStyle>
+        </Link>
         <Link to="/login">
           <ButtonStyle>Log in</ButtonStyle>
         </Link>
