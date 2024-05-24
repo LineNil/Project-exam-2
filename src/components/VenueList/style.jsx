@@ -82,12 +82,12 @@ export const Location = styled.p`
   font-weight: lighter;
   margin-bottom: 0;
   margin-right: 10px;
-  font-size: 13px;
+  font-size: 15px;
 `;
 
 export const LocationInfo = styled.p`
   font-style: italic;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 0
   `;
 
@@ -96,13 +96,13 @@ margin-right: 5px;
 font-weight: lighter;
 margin-bottom: 0;
 margin-right: 10px;
-font-size: 13px;
+font-size: 15px;
 
 `;
 
 export const NOKInfo = styled.p`
 font-style: italic;
-font-size: 12px;
+font-size: 14px;
 margin-bottom: 0
 `;
 
