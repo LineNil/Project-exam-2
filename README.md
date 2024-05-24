@@ -60,12 +60,7 @@ The client has outlined the following user stories:
 • Must use an approved Planning Application (Trello)
 
 
-## Required Links
-#### Trello board for project and project timing: 
-https://trello.com/invite/b/ywe5d6K3/ATTI55cd46663a66ce1d57bb5afc856c0f1fE81CD8E5/project-exam-2
-
-#### Design prototype and Style guide: 
-https://www.figma.com/design/ynDSZZZu6rl3irRYKTOI8p/ProjectExam2?node-id=0%3A1&t=dMcfb5Cn3zKrsHgr-1
+## Links
 
 #### Repository link 
 https://github.com/LineNil/Project-exam-2
