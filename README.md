@@ -92,9 +92,10 @@ https://bookingholidaze.netlify.app/
 
 Git clone https://github.com/LineNil/Project-exam-2
 
-#### Install NPM packages
+#### `npm install`:
 
-npm install
+Install NPM packages
+
 
 #### `npm run start`:
 
