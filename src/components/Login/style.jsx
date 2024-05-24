@@ -22,7 +22,7 @@ export const LogInRegisterBody = styled.div`
 `;
 
 export const LogInDiv = styled.div`
-  background-color: #ffffff63;
+  background-color: #ffffff8a;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
@@ -154,7 +154,7 @@ color: red;
 
 
 export const RegisterDiv = styled.div`
-  background-color: #ffffff63;
+  background-color: #ffffff8a;
   margin: 0px auto;
   display: flex;
   flex-direction: column;

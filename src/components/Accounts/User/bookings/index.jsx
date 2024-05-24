@@ -101,7 +101,7 @@ function UserBookings() {
                 <Bookings>Booking</Bookings>
                 <BookingContainer>
                   <BookingDate>Booked from-to</BookingDate>
-                  <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
+                  <StyledDate>{booking.dateFrom.split('T')[0]} - {booking.dateTo.split('T')[0]}</StyledDate>
                   <BookingDate>Guests</BookingDate>
                   <StyledDate>{booking.guests}</StyledDate>
                   {booking.venue && (

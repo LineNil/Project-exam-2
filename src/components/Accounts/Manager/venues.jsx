@@ -3,26 +3,26 @@ import ApiKey from "../../Api/ApiKey";
 import { Link } from "react-router-dom";
 import defaultImage from "../../VenueList/DefaultImg.jpg";
 import deleteVenue from "../../ManageVenues/deleteVenue";
-import { 
-  Heading, 
-  VenueContainer, 
-  VenueDetails, 
-  BookingDetails, 
-  NoData, 
-  VenueItem, 
-  ManageButton, 
-  Address, 
-  Bookings, 
-  CustomerName, 
-  CustomerEmail, 
-  BookingDate, 
-  StyledDate, 
-  CustomerBookingContainer, 
-  VenueName, 
-  Img, 
-  ManageContainer, 
-  ManageButtonDelete, 
-  ShowAllButton 
+import {
+  Heading,
+  VenueContainer,
+  VenueDetails,
+  BookingDetails,
+  NoData,
+  VenueItem,
+  ManageButton,
+  Address,
+  Bookings,
+  CustomerName,
+  CustomerEmail,
+  BookingDate,
+  StyledDate,
+  CustomerBookingContainer,
+  VenueName,
+  Img,
+  ManageContainer,
+  ManageButtonDelete,
+  ShowAllButton
 } from "../bookingStyles";
 
 function MyVenues() {
@@ -108,7 +108,7 @@ function MyVenues() {
                       <CustomerEmail>{booking.customer.email}</CustomerEmail>
                       <CustomerEmail>{booking.guests} guest(s)</CustomerEmail>
                       <BookingDate>Booked from-to</BookingDate>
-                      <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
+                      <StyledDate>{booking.dateFrom.split('T')[0]} - {booking.dateTo.split('T')[0]}</StyledDate>
                     </CustomerBookingContainer>
                   ))
                 ) : (

@@ -28,7 +28,7 @@ background-color: #f6f2e9;
   cursor: pointer;
   transition: all 0.3s ease;  
   font-family: Playfair Display;
-  margin-right: 20px; /* Legg til litt mellomrom mellom knappene */
+  margin-right: 20px; 
   
   &:hover,
   &:active {
@@ -44,21 +44,23 @@ background-color: #f6f2e9;
 `;
 
 export const CancelButton = styled(Link)`
-  background-color: rgb(242, 208, 127);
+background-color: #f6f2e9;
   color: black;
   font-size: 13px;
   padding: 12px 35px;
-  border: 1px solid rgb(237, 171, 13);
+  border: 1px solid #edab0d;  
   border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;  
   font-family: Playfair Display;
   text-decoration: none;
   
   &:hover,
   &:active {
-    background-color: rgb(227, 186, 86);
-  }
+    background-color: #edab0d;
+    color: #fff;
+    border-color: #d4940b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);    }
 
   @media screen and (max-width: 768px) {
     font-size: 11px;

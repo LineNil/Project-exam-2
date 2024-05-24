@@ -144,6 +144,9 @@ export const SearchForm = styled.form`
   position: relative;
   z-index: 1;
   margin-bottom: 100px;
+
+  ::placeholder {
+    color: black;
 `;
 
 export const SearchButton = styled.button`
@@ -178,6 +181,12 @@ export const StyledInput = styled.input`
   color: black;
   text-align: left;
   padding-left: 10px;
+
+  ::placeholder {
+    color: black;
+  }
+
+
 
   @media screen and (max-width: 768px){
     font-size: 12px;

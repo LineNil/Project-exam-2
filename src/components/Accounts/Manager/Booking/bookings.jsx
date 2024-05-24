@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import ApiKey from "../../../Api/ApiKey";
 import defaultImage from "../../../VenueList/DefaultImg.jpg";
-import { 
-  Heading, 
-  StyledDate, 
-  ManageButtonDelete, 
-  VenueContainer, 
-  Img, 
-  VenueDetails, 
-  VenueItem, 
-  VenueName, 
-  Address, 
-  ManageContainer, 
-  BookingDetails, 
-  Bookings, 
-  BookingContainer, 
-  BookingDate 
-} from "../../bookingStyles"; 
-
+import {
+  Heading,
+  StyledDate,
+  ManageButtonDelete,
+  VenueContainer,
+  Img,
+  VenueDetails,
+  VenueItem,
+  VenueName,
+  Address,
+  ManageContainer,
+  BookingDetails,
+  Bookings,
+  BookingContainer,
+  BookingDate
+} from "../../bookingStyles";
 
 function ManagerBookings() {
   const [bookings, setBookings] = useState([]);
@@ -42,6 +41,7 @@ function ManagerBookings() {
           setBookings(responseData.data);
         }
       } catch (error) {
+        console.error(error);
       }
     }
 
@@ -79,36 +79,41 @@ function ManagerBookings() {
     <div>
       <Heading>Your Bookings</Heading>
       {bookings.map((booking) => (
-      <VenueItem key={booking.id}>
-        <VenueContainer>
-          <VenueDetails>
-            <VenueName>{booking.venue.name}</VenueName>
-            <Address>{booking.venue.location.address}, {booking.venue.location.city}</Address>
-            <Img src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage} alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"} />
-            <ManageContainer>
-              <ManageButtonDelete onClick={() => handleDeleteBooking(booking.id)}>Delete</ManageButtonDelete>
-            </ManageContainer>
-          </VenueDetails>
-          <BookingDetails>
-            <Bookings>Booking</Bookings>
-            <BookingContainer>
-              <BookingDate>Booked from-to</BookingDate>
-              <StyledDate>{booking.dateFrom} - {booking.dateTo}</StyledDate>
-              <BookingDate>Guests</BookingDate>
-              <StyledDate>{booking.guests}</StyledDate>
-              {booking.venue && (
-              <div>
-                <BookingDate>Price</BookingDate>
-                <StyledDate>Per day: NOK {booking.venue.price}</StyledDate>
-                <StyledDate>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</StyledDate>
-              </div>
-              )}
-              <BookingDate>Booking ID</BookingDate>
-              <StyledDate>{booking.id}</StyledDate>
-           </BookingContainer>
-         </BookingDetails>
-        </VenueContainer>
-      </VenueItem>
+        <VenueItem key={booking.id}>
+          <VenueContainer>
+            <VenueDetails>
+              <VenueName>{booking.venue.name}</VenueName>
+              <Address>{booking.venue.location.address}, {booking.venue.location.city}</Address>
+              <Img
+                src={booking.venue.media.length > 0 ? booking.venue.media[0].url : defaultImage}
+                alt={booking.venue.media.length > 0 ? booking.venue.media[0].alt : "Default"}
+              />
+              <ManageContainer>
+                <ManageButtonDelete onClick={() => handleDeleteBooking(booking.id)}>
+                  Delete
+                </ManageButtonDelete>
+              </ManageContainer>
+            </VenueDetails>
+            <BookingDetails>
+              <Bookings>Booking</Bookings>
+              <BookingContainer>
+                <BookingDate>Booked from-to</BookingDate>
+                <StyledDate>{booking.dateFrom.split('T')[0]} - {booking.dateTo.split('T')[0]}</StyledDate>
+                <BookingDate>Guests</BookingDate>
+                <StyledDate>{booking.guests}</StyledDate>
+                {booking.venue && (
+                  <div>
+                    <BookingDate>Price</BookingDate>
+                    <StyledDate>Per day: NOK {booking.venue.price}</StyledDate>
+                    <StyledDate>Total: NOK {calculateTotalPrice(booking.venue.price, booking.dateFrom, booking.dateTo)}</StyledDate>
+                  </div>
+                )}
+                <BookingDate>Booking ID</BookingDate>
+                <StyledDate>{booking.id}</StyledDate>
+              </BookingContainer>
+            </BookingDetails>
+          </VenueContainer>
+        </VenueItem>
       ))}
     </div>
   );
