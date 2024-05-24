@@ -21,6 +21,7 @@ export const LeftColumn = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 0px;
+    box-shadow: none;
   }
 `;
 
@@ -33,6 +34,7 @@ export const RightColumn = styled.div`
 
   @media screen and (max-width: 768px) {
     margin: 40px 0px;
+    box-shadow: none;
   }
 `;
 
@@ -113,6 +115,10 @@ export const VenueName = styled.p`
 font-family: MonteCarlo;
 font-size: 45px;
   margin: 25px 0px 0px 0px;
+
+  @media screen and (max-width: 768px) {
+    margin: 25px 8px 0px 8px;
+  }
 `;
 
 export const Rating = styled.div`

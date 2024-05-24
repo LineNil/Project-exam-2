@@ -45,6 +45,8 @@ export const VenueDetails = styled.div`
 
   @media screen and (max-width: 768px) {
   padding-right:0px;
+  box-shadow: none;
+  padding: 0px;
   }
 `;
 
@@ -135,7 +137,12 @@ export const BookingDetails = styled.div`
   text-align: center;
   margin-top: 30px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  margin-right: 25px;`;
+  margin-right: 25px;
+  
+  @media screen and (max-width: 768px) {
+    margin: 0px;
+      }
+  `;
 
 export const NoData = styled.p`
 font-size: 11px;

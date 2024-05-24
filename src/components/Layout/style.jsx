@@ -46,6 +46,7 @@ background-color: rgb(246, 242, 233);
   transition: background-color 0.3s ease;
   border: none;
   border-left: 1px solid #0000007d;;
+  font-family: Playfair Display;
 
   &:hover,
   &:active {
