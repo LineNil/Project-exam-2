@@ -85,11 +85,21 @@ https://bookingholidaze.netlify.app/
 
 • localhost: 3000
 
+• FigmaVisual studio code
+
+• Netlify
+
+• HTML
+
 ## Get started
 
 #### Clone the repo:
 
 Git clone https://github.com/LineNil/Project-exam-2
+
+#### Install NPM packages
+
+npm install
 
 #### `npm run start`:
 
@@ -107,5 +117,14 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 The  app is ready to be deployed!
+
+
+## Acknowledgments
+
+[React](https://react.dev/)
+[Unsplash](https://unsplash.com/)
+[Styled Components](https://styled-components.com/)
+[Fontawesome](https://fontawesome.com/)
+
 
 
