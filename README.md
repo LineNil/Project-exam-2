@@ -118,6 +118,9 @@ The  app is ready to be deployed!
 ## Acknowledgments
 
 • [React](https://react.dev/)
+
 • [Unsplash](https://unsplash.com/)
+
 • [Styled Components](https://styled-components.com/)
+
 • [Fontawesome](https://fontawesome.com/)
